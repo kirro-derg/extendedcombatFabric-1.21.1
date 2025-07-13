@@ -3,20 +3,20 @@
 	"id": "extendedcombat",
 	"version": "${version}",
 	"name": "extendedcombat",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A mod that adds many new combat features/items, as well as some building blocks",
 	"authors": [
-		"Me!"
+		"kirro"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/extendedcombat/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"dev.kirro.Extendedcombat"
+			"dev.kirro.ExtendedCombat"
 		],
 		"client": [
 			"dev.kirro.ExtendedcombatClient"
@@ -26,11 +26,7 @@
 		]
 	},
 	"mixins": [
-		"extendedcombat.mixins.json",
-		{
-			"config": "extendedcombat.client.mixins.json",
-			"environment": "client"
-		}
+		"extendedcombat.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

@@ -1,14 +1,19 @@
 {
 	"required": true,
-	"package": "dev.kirro.mixin",
+	"package": "dev.kirro.extendedcombat.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"WardingStoneDisableSpawnMixin",
+		"ShieldBreakMixin"
+	],
+	"client": [
+		"client.ItemRendererMixin",
+		"client.ModelLoaderMixin",
+		"client.TwoHandedGreatswordMixin",
+		"client.PlayerEntityMixin",
+		"client.HideOffhandItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
 	}
 }
