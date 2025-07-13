@@ -19,7 +19,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -38,7 +37,6 @@ public class HeavyDoor extends DoorBlock {
     public static final EnumProperty<DoorHinge> HINGE = Properties.DOOR_HINGE;
     public static final BooleanProperty POWERED = Properties.POWERED;
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
-    protected static final float field_31083 = 3.0F;
     protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 32.0, 4.0);
     protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 12.0, 16.0, 32.0, 16.0);
     protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(12.0, 0.0, 0.0, 16.0, 32.0, 16.0);
@@ -52,9 +50,9 @@ public class HeavyDoor extends DoorBlock {
                 this.stateManager
                         .getDefaultState()
                         .with(FACING, Direction.NORTH)
-                        .with(OPEN, Boolean.valueOf(false))
+                        .with(OPEN, Boolean.FALSE)
                         .with(HINGE, DoorHinge.LEFT)
-                        .with(POWERED, Boolean.valueOf(false))
+                        .with(POWERED, Boolean.FALSE)
                         .with(HALF, DoubleBlockHalf.LOWER)
         );
     }
@@ -73,8 +71,8 @@ public class HeavyDoor extends DoorBlock {
             return this.getDefaultState()
                     .with(FACING, ctx.getHorizontalPlayerFacing())
                     .with(HINGE, this.getHinge(ctx))
-                    .with(POWERED, Boolean.valueOf(bl))
-                    .with(OPEN, Boolean.valueOf(bl))
+                    .with(POWERED, bl)
+                    .with(OPEN, bl)
                     .with(HALF, DoubleBlockHalf.LOWER);
         } else {
             return null;
@@ -164,7 +162,7 @@ public class HeavyDoor extends DoorBlock {
 
     public void setOpen(@Nullable Entity entity, World world, BlockState state, BlockPos pos, boolean open) {
         if (state.isOf(this) && state.get(OPEN) != open) {
-            world.setBlockState(pos, state.with(OPEN, Boolean.valueOf(open)), Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD);
+            world.setBlockState(pos, state.with(OPEN, open), Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD);
             this.playOpenCloseSound(entity, world, pos, open);
             world.emitGameEvent(entity, open ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
@@ -180,7 +178,7 @@ public class HeavyDoor extends DoorBlock {
                 world.emitGameEvent(null, bl ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
             }
 
-            world.setBlockState(pos, state.with(POWERED, Boolean.valueOf(bl)).with(OPEN, Boolean.valueOf(bl)), Block.NOTIFY_LISTENERS);
+            world.setBlockState(pos, state.with(POWERED, bl).with(OPEN, bl), Block.NOTIFY_LISTENERS);
         }
     }
 
