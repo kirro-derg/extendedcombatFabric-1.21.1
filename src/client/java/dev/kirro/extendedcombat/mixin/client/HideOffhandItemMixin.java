@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat.mixin.client;
 
+import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.item.custom.PickSwordItem;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.PlayerHeldItemFeatureRenderer;

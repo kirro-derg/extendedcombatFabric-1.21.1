@@ -2,9 +2,11 @@ package dev.kirro.extendedcombat.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -15,9 +17,31 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public class FramedGlassPanelBlock extends FacingBlock implements Waterloggable {
 
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+
+    private static final Map<Direction, VoxelShape> BASE = new EnumMap<>(Direction.class);
+    private static final Map<Direction, VoxelShape> SPECIAL = new EnumMap<>(Direction.class);
+
+    static {
+        BASE.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f / 16.0f));
+        BASE.put(Direction.SOUTH, VoxelShapes.cuboid(0.0f, 0.0f, 15.0f / 16.0f, 1.0f, 1.0f, 1.0f));
+        BASE.put(Direction.EAST, VoxelShapes.cuboid(15.0f / 16.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        BASE.put(Direction.WEST, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f / 16.0f, 1.0f, 1.0f));
+        BASE.put(Direction.UP, VoxelShapes.cuboid(0.0f, 15.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        BASE.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f / 16.0f, 1.0f));
+
+        SPECIAL.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 5.0f / 16.0f));
+        SPECIAL.put(Direction.SOUTH, VoxelShapes.cuboid(0.0f, 0.0f, 11.0 / 16.0f, 1.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.EAST, VoxelShapes.cuboid(11.0f / 16.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.WEST, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 5.0f / 16.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.UP, VoxelShapes.cuboid(0.0f, 11.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 5.0f / 16.0f, 1.0f));
+    }
 
 
     public FramedGlassPanelBlock(Settings settings) {
@@ -34,15 +58,18 @@ public class FramedGlassPanelBlock extends FacingBlock implements Waterloggable 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext ctx) {
         Direction dir = state.get(FACING);
-        return switch (dir) {
-            case NORTH -> VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0625f);
-            case SOUTH -> VoxelShapes.cuboid(0.0f, 0.0f, 0.9375f, 1.0f, 1.0f, 1.0f);
-            case EAST -> VoxelShapes.cuboid(0.9375f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
-            case WEST -> VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 0.0625f, 1.0f, 1.0f);
-            case UP -> VoxelShapes.cuboid(0.0f, 0.9375f, 0.0f, 1.0f, 1.0f, 1.0f);
-            case DOWN -> VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 0.0625f, 1.0f);
-            default -> VoxelShapes.fullCube();
-        };
+
+        boolean isHoldingBlock = false;
+
+        if (ctx instanceof EntityShapeContext entityCtx && entityCtx.getEntity() instanceof LivingEntity living) {
+            ItemStack main = living.getMainHandStack();
+            ItemStack off = living.getOffHandStack();
+            isHoldingBlock = main.isOf(this.asItem()) || off.isOf(this.asItem());
+        }
+
+        return  isHoldingBlock ? SPECIAL.get(dir) : BASE.get(dir);
+
+
     }
 
     @Override
