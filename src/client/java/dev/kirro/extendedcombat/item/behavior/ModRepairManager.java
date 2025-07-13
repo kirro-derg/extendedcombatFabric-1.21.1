@@ -4,6 +4,7 @@ import dev.kirro.extendedcombat.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,13 @@ public class ModRepairManager {
             ModItems.NETHER_STEEL_HELMET,
             ModItems.NETHER_STEEL_CHESTPLATE,
             ModItems.NETHER_STEEL_LEGGINGS,
-            ModItems.NETHER_STEEL_BOOTS
+            ModItems.NETHER_STEEL_BOOTS,
+            Items.SHIELD,
+            Items.TRIDENT,
+            Items.MACE,
+            Items.BOW,
+            Items.CROSSBOW
+
     );
 
     public static void repairItemsWithXP(PlayerEntity player, int xpAmount) {
@@ -27,7 +34,7 @@ public class ModRepairManager {
 
         for (ItemStack stack : allItems) {
             if (stack != null && REPAIRABLE_ITEMS.contains(stack.getItem()) && stack.isDamaged()) {
-                int repairAmount = xpAmount * 2;
+                int repairAmount = xpAmount * 4;
                 int damage = stack.getDamage();
                 int toRepair = Math.min(repairAmount, damage);
 
