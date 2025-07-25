@@ -4,7 +4,9 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"WardingStoneDisableSpawnMixin",
-		"ShieldBreakMixin"
+		"ShieldBreakMixin",
+		"ItemStackMixin",
+		"ArmorStandMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",

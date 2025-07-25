@@ -31,7 +31,7 @@ public class ModBlocks {
 
     public static final Block WARDING_STONE = registerBlock("warding_stone",
             new WardingStoneBlock(AbstractBlock.Settings.create().strength(6f)
-                    .sounds(BlockSoundGroup.DEEPSLATE_BRICKS).nonOpaque().luminance(state -> 2)) {
+                    .sounds(BlockSoundGroup.DEEPSLATE_BRICKS).nonOpaque().luminance(state -> 4)) {
                 @Override
                 public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType options) {
                     tooltip.add(Text.translatable("tooltip.extendedcombat.warding_stone_ln1"));

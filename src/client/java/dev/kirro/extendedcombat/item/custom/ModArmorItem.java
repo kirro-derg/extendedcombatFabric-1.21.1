@@ -3,7 +3,11 @@ package dev.kirro.extendedcombat.item.custom;
 import com.google.common.collect.ImmutableMap;
 import dev.kirro.extendedcombat.item.ModItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,12 +29,22 @@ public class ModArmorItem extends ArmorItem {
 
     private static final Map<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<RegistryEntry<ArmorMaterial>, List<StatusEffectInstance>>())
-                    .put(ModArmorMaterials.NETHER_STEEL_MATERIAL,
+                    .put(ModArmorMaterials.NETHER_STEEL,
                             List.of(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20, 1, false, false, false)))
                     .build();
 
     public ModArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);
+    }
+
+    public static AttributeModifiersComponent createAttributeModifiers(ArmorMaterial material, float fallDamageMultiplier) {
+        return AttributeModifiersComponent.builder()
+                .add(
+                        EntityAttributes.GENERIC_FALL_DAMAGE_MULTIPLIER,
+                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, fallDamageMultiplier, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
+                        AttributeModifierSlot.FEET
+                )
+                .build();
     }
 
     @Override
@@ -65,7 +79,7 @@ public class ModArmorItem extends ArmorItem {
             if (hasCorrectArmorOn(mapArmorMaterial, player)) {
                 ScaleTypes.BASE.getScaleData(player).setTargetScale(1.25f);
             } else if (!hasCorrectArmorOn(mapArmorMaterial, player)) {
-                ScaleTypes.BASE.getScaleData(player).resetScale();
+                ScaleTypes.BASE.getScaleData(player).setTargetScale(1.0f);
             }
         }
     }

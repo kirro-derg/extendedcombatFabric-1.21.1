@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "minecraft:gray_concrete"
+      "item": "minecraft:iron_nugget"
     },
     "G": {
-      "item": "minecraft:glowstone_dust"
+      "item": "minecraft:glass_pane"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "extendedcombat:flat_block",
+    "id": "extendedcombat:framed_glass_panel",
     "count": 16
   }
 }

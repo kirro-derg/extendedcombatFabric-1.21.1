@@ -4,14 +4,20 @@
   "key": {
     "#": {
       "item": "extendedcombat:nether_steel_ingot"
+    },
+    "S": {
+      "item": "minecraft:leather"
+    },
+    "X": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "pattern": [
-    "##",
-    "##"
-
+    "XS#",
+    "S#S",
+    "#SX"
   ],
   "result": {
-    "item": "extendedcombat:nether_steel_block"
+    "id": "extendedcombat:handle"
   }
 }

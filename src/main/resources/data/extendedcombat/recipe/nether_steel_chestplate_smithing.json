@@ -4,10 +4,10 @@
     "item": "extendedcombat:nether_steel_ingot"
   },
   "base": {
-    "item": "minecraft:netherite_leggings"
+    "item": "minecraft:netherite_chestplate"
   },
   "result": {
-    "item": "extendedcombat:nether_steel_leggings"
+    "id": "extendedcombat:nether_steel_chestplate"
   },
   "template": {
     "item": "extendedcombat:nether_steel_upgrade"

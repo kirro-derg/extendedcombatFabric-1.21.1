@@ -18,15 +18,15 @@ public class WardingStoneDisableSpawnMixin {
     private static boolean isSpawnDark(boolean original, @Local LocalRef<ServerWorldAccess> world, @Local BlockPos pos) {
         int radius = 55;
 
-        if (!(world.get() instanceof ServerWorld serverWorld)) {
+        if (!(world.get() instanceof ServerWorld sWorld)) {
             return original;
         }
 
 
-        PointOfInterestStorage poiStorage = serverWorld.getPointOfInterestStorage();
+        PointOfInterestStorage poi = sWorld.getPointOfInterestStorage();
 
 
-        boolean poiNearby = poiStorage.getInCircle(
+        boolean poiNearby = poi.getInCircle(
                 registryEntry -> registryEntry.value() == ModPOI.WARDING_STONE_POI,
                 pos,
                 radius,

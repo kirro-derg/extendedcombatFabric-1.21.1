@@ -7,6 +7,6 @@ import net.minecraft.util.math.BlockPos;
 
 public class FlatBlockEntity extends BlockEntity {
     public FlatBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityTypes.FLAT_BLOCK, pos, state);
+        super(ModBlockEntityTypes.FLAT_BLOCK_ENTITY, pos, state);
     }
 }

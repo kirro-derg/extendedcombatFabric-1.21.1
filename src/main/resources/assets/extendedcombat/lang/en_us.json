@@ -4,7 +4,7 @@
   "item.extendedcombat.nether_steel_ingot": "Nether Steel Ingot",
   "item.extendedcombat.handle": "Sturdy Handle",
   "item.extendedcombat.nether_steel_upgrade": "Nether Steel Upgrade Template",
-  "item.extendedcombat.ghost_charm": "ghost Charm",
+  "item.extendedcombat.statue": "Statue",
 
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
@@ -22,5 +22,7 @@
   "item.extendedcombat.nether_steel_helmet": "Nether Steel Helmet",
   "item.extendedcombat.nether_steel_chestplate": "Nether Steel Chestplate",
   "item.extendedcombat.nether_steel_leggings": "Nether Steel Leggings",
-  "item.extendedcombat.nether_steel_boots": "Nether Steel Boots"
+  "item.extendedcombat.nether_steel_boots": "Nether Steel Boots",
+
+  "entity.extendedcombat.statue": "Statue"
 }

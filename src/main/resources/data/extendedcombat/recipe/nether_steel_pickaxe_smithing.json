@@ -4,10 +4,10 @@
     "item": "extendedcombat:nether_steel_ingot"
   },
   "base": {
-    "item": "minecraft:netherite_boots"
+    "item": "minecraft:netherite_pickaxe"
   },
   "result": {
-    "item": "extendedcombat:nether_steel_boots"
+    "id": "extendedcombat:nether_steel_pickaxe"
   },
   "template": {
     "item": "extendedcombat:nether_steel_upgrade"

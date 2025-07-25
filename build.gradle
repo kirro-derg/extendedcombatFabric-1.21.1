@@ -25,6 +25,10 @@ repositories {
 		name = "Terraformers"
 		url = "https://maven.terraformersmc.com/"
 	}
+
+	maven {
+		url = "https://api.modrinth.com/maven"
+	}
 }
 
 loom {
@@ -35,6 +39,10 @@ loom {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
+	}
+
+	mixin {
+		useLegacyMixinAp.set(false)
 	}
 
 }
@@ -54,6 +62,8 @@ dependencies {
 	modApi("com.github.Virtuoel:Pehkui:${pehkui_version}", {
 		exclude group: "net.fabricmc.fabric-api"
 	})
+
+	modImplementation include ("maven.modrinth:midnightLib:${project.midnightLib_version}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"

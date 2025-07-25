@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
-    public static final RegistryEntry<ArmorMaterial> NETHER_STEEL_MATERIAL = registerArmorMaterials("nether_steel",
+    public static final RegistryEntry<ArmorMaterial> NETHER_STEEL = registerArmorMaterials("nether_steel",
             () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                 map.put(ArmorItem.Type.BOOTS, 5);
                 map.put(ArmorItem.Type.LEGGINGS, 8);

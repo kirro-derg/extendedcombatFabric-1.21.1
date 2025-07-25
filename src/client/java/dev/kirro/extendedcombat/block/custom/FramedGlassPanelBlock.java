@@ -35,12 +35,12 @@ public class FramedGlassPanelBlock extends FacingBlock implements Waterloggable 
         BASE.put(Direction.UP, VoxelShapes.cuboid(0.0f, 15.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
         BASE.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f / 16.0f, 1.0f));
 
-        SPECIAL.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 5.0f / 16.0f));
-        SPECIAL.put(Direction.SOUTH, VoxelShapes.cuboid(0.0f, 0.0f, 11.0 / 16.0f, 1.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.EAST, VoxelShapes.cuboid(11.0f / 16.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.WEST, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 5.0f / 16.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.UP, VoxelShapes.cuboid(0.0f, 11.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 5.0f / 16.0f, 1.0f));
+        SPECIAL.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 8.0f / 16.0f));
+        SPECIAL.put(Direction.SOUTH, VoxelShapes.cuboid(0.0f, 0.0f, 8.0 / 16.0f, 1.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.EAST, VoxelShapes.cuboid(8.0f / 16.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.WEST, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 8.0f / 16.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.UP, VoxelShapes.cuboid(0.0f, 8.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        SPECIAL.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 8.0f / 16.0f, 1.0f));
     }
 
 

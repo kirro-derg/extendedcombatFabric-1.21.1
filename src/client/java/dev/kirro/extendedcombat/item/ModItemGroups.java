@@ -25,6 +25,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.FLAT_BLOCK);
                         entries.add(ModBlocks.FRAMED_GLASS_PANEL);
                         entries.add(ModBlocks.HEAVY_DOOR);
+                        entries.add(ModItems.STATUE);
 
                         entries.add(ModItems.NETHER_STEEL_GREATSWORD);
                         entries.add(ModItems.NETHER_STEEL_PICKAXE);

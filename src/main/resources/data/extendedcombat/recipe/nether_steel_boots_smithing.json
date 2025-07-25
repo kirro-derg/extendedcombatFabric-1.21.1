@@ -4,12 +4,12 @@
     "item": "extendedcombat:nether_steel_ingot"
   },
   "base": {
-    "item": "minecraft:blackstone"
+    "item": "minecraft:netherite_boots"
   },
   "result": {
-    "item": "extendedcombat:nether_steel_upgrade"
+    "id": "extendedcombat:nether_steel_boots"
   },
   "template": {
-    "item": "minecraft:blaze_powder"
+    "item": "extendedcombat:nether_steel_upgrade"
   }
 }
