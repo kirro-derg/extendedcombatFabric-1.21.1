@@ -17,9 +17,6 @@ public class ExtendedcombatClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FRAMED_GLASS_PANEL, RenderLayer.getCutout());
 
-		EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.STATUE, StatueModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.STATUE_INNER_ARMOR, () -> StatueModel.getTexturedModelData(new Dilation(0.5f)));
-		EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.STATUE_OUTER_ARMOR, () -> StatueModel.getTexturedModelData(new Dilation(1.0f)));
-		EntityRendererRegistry.register(ModEntities.STATUE, StatueRenderer::new);
+		ModEntityModelLayers.registerLayerDefinitions();
 	}
 }

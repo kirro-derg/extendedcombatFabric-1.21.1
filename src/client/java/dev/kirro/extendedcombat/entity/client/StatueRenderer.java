@@ -6,18 +6,29 @@ import dev.kirro.extendedcombat.entity.custom.StatueEntity;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
+import net.minecraft.client.render.entity.feature.ElytraFeatureRenderer;
+import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
+import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import org.jetbrains.annotations.Nullable;
 
-public class StatueRenderer extends AbstractRenderer<StatueEntity> {
+public class StatueRenderer extends LivingEntityRenderer<StatueEntity, BasicStatueModel<StatueEntity>> {
 
     public StatueRenderer(EntityRendererFactory.Context context) {
-        super(context, new StatueModel(context.getPart(ModEntityModelLayers.STATUE)),
+        super(context, new StatueModel(context.getPart(ModEntityModelLayers.STATUE)), 0.0f);
+        this.addFeature(new ArmorFeatureRenderer<>(this,
                 new BasicStatueModel<>(context.getPart(ModEntityModelLayers.STATUE_INNER_ARMOR)),
-                new BasicStatueModel<>(context.getPart(ModEntityModelLayers.STATUE_OUTER_ARMOR)));
+                new BasicStatueModel<>(context.getPart(ModEntityModelLayers.STATUE_OUTER_ARMOR)),
+                context.getModelManager()
+        ));
+        this.addFeature(new HeldItemFeatureRenderer<>(this, context.getHeldItemRenderer()));
+        this.addFeature(new ElytraFeatureRenderer<>(this, context.getModelLoader()));
+        this.addFeature(new HeadFeatureRenderer<>(this, context.getModelLoader(), context.getHeldItemRenderer()));
     }
 
     @Override
