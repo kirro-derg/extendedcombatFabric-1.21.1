@@ -65,14 +65,4 @@ public class PickSwordItem extends SwordItem {
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         return true;
     }
-
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        return false;
-    }
-
-    @Override
-    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(0, attacker, EquipmentSlot.MAINHAND);
-    }
 }

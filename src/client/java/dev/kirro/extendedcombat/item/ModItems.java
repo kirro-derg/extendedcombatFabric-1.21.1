@@ -36,14 +36,14 @@ public class ModItems {
 
 
     public static final Item NETHER_STEEL_HELMET = registerItem("nether_steel_helmet",
-            new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(8124).fireproof()));
+            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(8124).fireproof()));
     public static final Item NETHER_STEEL_CHESTPLATE = registerItem("nether_steel_chestplate",
-            new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(8124).fireproof()));
+            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(8124).fireproof()));
     public static final Item NETHER_STEEL_LEGGINGS = registerItem("nether_steel_leggings",
-            new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(8124).fireproof()));
+            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(8124).fireproof()));
     public static final Item NETHER_STEEL_BOOTS = registerItem("nether_steel_boots",
-            new ModArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(8124).fireproof()
-                    .attributeModifiers(ModArmorItem.createAttributeModifiers(ModArmorMaterials.NETHER_STEEL.value(), -0.7f))));
+            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(8124).fireproof()
+                    .attributeModifiers(NetherSteelArmorItem.createAttributeModifiers(ModArmorMaterials.NETHER_STEEL.value(), -0.7f))));
 
 
     private static Item registerItem(String name, Item item) {

@@ -3,12 +3,11 @@ package dev.kirro.extendedcombat.entity.custom;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.entity.ModEntities;
 import dev.kirro.extendedcombat.entity.client.StatueModel;
-import dev.kirro.extendedcombat.entity.client.StatueRenderer;
+import dev.kirro.extendedcombat.entity.render.StatueRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.model.Dilation;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.util.Identifier;
 
 public class ModEntityModelLayers {

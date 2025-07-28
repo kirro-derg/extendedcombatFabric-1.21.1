@@ -34,7 +34,7 @@ public class ModRepairManager {
 
         for (ItemStack stack : allItems) {
             if (stack != null && REPAIRABLE_ITEMS.contains(stack.getItem()) && stack.isDamaged()) {
-                int repairAmount = xpAmount * 4;
+                int repairAmount = xpAmount * 16;
                 int damage = stack.getDamage();
                 int toRepair = Math.min(repairAmount, damage);
 

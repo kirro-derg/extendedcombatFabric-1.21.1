@@ -32,16 +32,6 @@ public class ModPickaxeItem extends PickaxeItem {
         ));
     }
 
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        return false;
-    }
-
-    @Override
-    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(0, attacker, EquipmentSlot.MAINHAND);
-    }
-
     private static ToolComponent createToolComponent() {
         return new ToolComponent(
                 List.of(ToolComponent.Rule.ofAlwaysDropping(List.of(ModBlocks.NETHER_STEEL_BLOCK, ModBlocks.WARDING_STONE), 25.0f),
@@ -49,19 +39,4 @@ public class ModPickaxeItem extends PickaxeItem {
                         ToolComponent.Rule.of(BlockTags.PICKAXE_MINEABLE, 25.0f)), 1.0f, 2
         );
     }
-
-
-
-
-
-
-
-    /*@Override
-    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-        if (state.isOf(ModBlocks.NETHER_STEEL_BLOCK)) {
-            return 20f;
-        } else {
-            return state.isIn(BlockTags.PICKAXE_MINEABLE) ? 20f : 1.0f;
-        }
-    }*/
 }

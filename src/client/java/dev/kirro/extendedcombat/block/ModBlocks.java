@@ -1,15 +1,9 @@
 package dev.kirro.extendedcombat.block;
 
 import dev.kirro.ExtendedCombat;
-import dev.kirro.extendedcombat.block.custom.FlatBlock;
-import dev.kirro.extendedcombat.block.custom.FramedGlassPanelBlock;
-import dev.kirro.extendedcombat.block.custom.HeavyDoor;
-import dev.kirro.extendedcombat.block.custom.WardingStoneBlock;
+import dev.kirro.extendedcombat.block.custom.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSetType;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -26,7 +20,7 @@ import java.util.List;
 public class ModBlocks {
 
     public static final Block NETHER_STEEL_BLOCK = registerBlock("nether_steel_block",
-            new Block(AbstractBlock.Settings.create().strength(100f)
+            new Block(AbstractBlock.Settings.create().strength(100f, 1200f)
                     .requiresTool().sounds(BlockSoundGroup.NETHERITE)));
 
     public static final Block WARDING_STONE = registerBlock("warding_stone",
@@ -45,6 +39,11 @@ public class ModBlocks {
             new FlatBlock(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().luminance(state -> 15)));
     public static final Block FRAMED_GLASS_PANEL = registerBlock("framed_glass_panel",
             new FramedGlassPanelBlock(AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque()));
+    public static final Block GLASS_PANEL = registerBlock("_stained_glass_panel",
+            new FramedGlassPanelBlock(AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque()));
+    public static final Block SEAT = registerBlock("seat_block",
+            new SeatBlock(AbstractBlock.Settings.create().strength(2f).nonOpaque()
+                    .sounds(BlockSoundGroup.WOOD)));
 
     public static final Block HEAVY_DOOR = registerBlock("heavy_door",
             new HeavyDoor(BlockSetType.CHERRY, AbstractBlock.Settings.create().strength(25f)
@@ -68,12 +67,14 @@ public class ModBlocks {
             fabricItemGroupEntries.add(ModBlocks.FRAMED_GLASS_PANEL);
             fabricItemGroupEntries.add(ModBlocks.FLAT_BLOCK);
             fabricItemGroupEntries.add(ModBlocks.HEAVY_DOOR);
+            fabricItemGroupEntries.add(ModBlocks.SEAT);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(fabricItemGroupEntries -> {
             fabricItemGroupEntries.add(ModBlocks.HEAVY_DOOR);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(fabricItemGroupEntries -> {
             fabricItemGroupEntries.add(ModBlocks.WARDING_STONE);
+            fabricItemGroupEntries.add(ModBlocks.SEAT);
         });
     }
 }
