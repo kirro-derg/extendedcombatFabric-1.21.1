@@ -36,8 +36,7 @@ public class StatueModel extends BasicStatueModel {
 
 		modelPartData.addChild(EntityModelPartNames.LEFT_ARM, ModelPartBuilder.create().uv(24, 16).mirrored().cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F), ModelTransform.pivot(5.0F, 2.0F, 0.0F));
 
-		modelPartData.addChild("basePlate", ModelPartBuilder.create().uv(8, 32).cuboid(-4.0F, 15.0F, -2.0F, 8.0F, 12.0F, 4.0F, new Dilation(0.0F))
-				.uv(0, 48).cuboid(-6.0F, 10.0F, -6.0F, 12.0F, 2.0F, 12.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0f, 12.0f, 0.0f));
+		modelPartData.addChild("basePlate", ModelPartBuilder.create().uv(0, 48).cuboid(-6.0F, 10.0F, -6.0F, 12.0F, 2.0F, 12.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0f, 12.0f, 0.0f));
 		return TexturedModelData.of(modelData, 64, 64);
 	}
 

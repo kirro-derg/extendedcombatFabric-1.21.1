@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(HostileEntity.class)
 public class WardingStoneDisableSpawnMixin {
     @ModifyReturnValue(method = "isSpawnDark", at = @At("RETURN"))
-    private static boolean isSpawnDark(boolean original, @Local LocalRef<ServerWorldAccess> world, @Local BlockPos pos) {
+    private static boolean isSpawnDark(boolean original, @Local(argsOnly = true) ServerWorldAccess world, @Local(argsOnly = true) BlockPos pos) {
         int radius = 55;
 
-        if (!(world.get() instanceof ServerWorld sWorld)) {
+        if (!(world instanceof ServerWorld sWorld)) {
             return original;
         }
 

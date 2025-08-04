@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/kirro-derg/extendedcombatFabric-1.21.1"
 	},
 	"license": "All Rights Reserved",
 	"icon": "assets/extendedcombat/icon.png",
@@ -23,11 +23,15 @@
 		],
 		"fabric-datagen": [
 			"dev.kirro.ExtendedcombatDataGenerator"
+		],
+		"cardinal-components-entity": [
+			"dev.kirro.extendedcombat.entity.components.ModEntityComponents"
 		]
 	},
 	"mixins": [
 		"extendedcombat.mixins.json"
 	],
+	"accessWidener": "extendedcombat.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.16.14",
 		"minecraft": "~1.21.1",
@@ -36,5 +40,13 @@
 	},
 	"suggests": {
 		"another-mod": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"extendedcombat:air_jump",
+			"extendedcombat:air_mobility",
+			"extendedcombat:dash",
+			"extendedcombat:blink"
+		]
 	}
 }

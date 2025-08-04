@@ -1,4 +1,4 @@
-package dev.kirro.extendedcombat.item.behavior;
+package dev.kirro.extendedcombat.behavior.item;
 
 import dev.kirro.extendedcombat.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;

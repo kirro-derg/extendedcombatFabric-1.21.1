@@ -19,7 +19,8 @@ public class ModItems {
     public static Item NETHER_STEEL_INGOT = registerItem("nether_steel_ingot", new Item(new Item.Settings().fireproof()) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            tooltip.add(Text.translatable("tooltip.extendedcombat.nether_steel_ingot"));
+            tooltip.add(Text.translatable("tooltip.extendedcombat.nether_steel_ingot_ln1"));
+            tooltip.add(Text.translatable("tooltip.extendedcombat.nether_steel_ingot_ln2"));
             super.appendTooltip(stack, context, tooltip, type);
         }
     });

@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.item.custom;
 
 import com.google.common.collect.ImmutableMap;
+import dev.kirro.extendedcombat.entity.custom.StatueEntity;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.Entity;
@@ -51,6 +52,10 @@ public class NetherSteelArmorItem extends ArmorItem {
                 evaluatePlayerScale(player);
             } else if (entity instanceof PlayerEntity player && !hasFullSuitOfArmorOn(player)){
                 evaluatePlayerScale(player);
+            } else if (entity instanceof LivingEntity player && hasFullSuitOfArmorOn((PlayerEntity) player)) {
+                evaluatePlayerScale((PlayerEntity) player);
+            } else if (entity instanceof LivingEntity player && !hasFullSuitOfArmorOn((PlayerEntity) player)) {
+                evaluatePlayerScale((PlayerEntity) player);
             }
             super.inventoryTick(stack, world, entity, slot, selected);
         }
