@@ -11,6 +11,7 @@
 		"enchantment.airjump.LivingEntityMixin",
 		"enchantment.dash.LivingEntityMixin",
 		"enchantment.blink.ArmorFeatureRendererMixin",
+		"enchantment.blink.HeldItemFeatureRendererMixin",
 		"enchantment.blink.LivingEntityMixin"
 	],
 	"client": [
