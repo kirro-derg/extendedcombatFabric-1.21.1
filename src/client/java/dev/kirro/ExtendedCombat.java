@@ -2,17 +2,27 @@ package dev.kirro;
 
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.block.entity.ModBlockEntityTypes;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
+import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
 import dev.kirro.extendedcombat.entity.custom.StatueEntity;
+import dev.kirro.extendedcombat.event.AirMobilityEvent;
+import dev.kirro.extendedcombat.event.EquipmentResetEvent;
+import dev.kirro.extendedcombat.event.MultiplyMovementSpeedEvent;
 import dev.kirro.extendedcombat.item.ModItemGroups;
 import dev.kirro.extendedcombat.item.ModItems;
-import dev.kirro.extendedcombat.item.behavior.XPRepairTracker;
+import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
 import dev.kirro.extendedcombat.sound.ModSounds;
 import dev.kirro.extendedcombat.villager.ModPOI;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +43,17 @@ public class ExtendedCombat implements ModInitializer {
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
-		ModPOI.registerPOIs();
 		ModBlockEntityTypes.registerBlockEntityTypes();
+
+		ModPOI.registerPOIs();
+
 		ModEntities.registerModEntities();
+
+		ModEnchantmentEffectComponentTypes.register();
+
+		registerEvents();
+		registerPayloads();
+
 
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
@@ -43,6 +61,34 @@ public class ExtendedCombat implements ModInitializer {
 			}
 		});
 
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+		});
+
 		FabricDefaultAttributeRegistry.register(ModEntities.STATUE, StatueEntity.createAttributes());
+
+
+	}
+
+	private void registerEvents() {
+		// config
+		MultiplyMovementSpeedEvent.EVENT.register(new AirMobilityEvent());
+		// enchantment
+		ServerEntityEvents.EQUIPMENT_CHANGE.register(new EquipmentResetEvent());
+	}
+
+	private void registerPayloads() {
+		//server
+		PayloadTypeRegistry.playS2C().register(AirJumpParticlePayload.ID, AirJumpParticlePayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(DashParticlePayload.ID, DashParticlePayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(BlinkParticlePayload.ID, BlinkParticlePayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(BlinkSyncPayload.ID, BlinkSyncPayload.CODEC);
+		// client
+		PayloadTypeRegistry.playC2S().register(AirJumpPayload.ID, AirJumpPayload.CODEC);
+		PayloadTypeRegistry.playC2S().register(DashPayload.ID, DashPayload.CODEC);
+		PayloadTypeRegistry.playC2S().register(BlinkPayload.ID, BlinkPayload.CODEC);
+		// server recievers
+		ServerPlayNetworking.registerGlobalReceiver(AirJumpPayload.ID, new AirJumpPayload.Reciever());
+		ServerPlayNetworking.registerGlobalReceiver(DashPayload.ID, new DashPayload.Reciever());
+		ServerPlayNetworking.registerGlobalReceiver(BlinkPayload.ID, new BlinkPayload.Reciever());
 	}
 }

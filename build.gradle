@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id 'io.github.ladysnake.chenille' version '0.13.1'
 }
 
 version = project.mod_version
@@ -16,6 +17,7 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	chenille.repositories.ladysnake()
 
 	maven {
 		url = "https://jitpack.io"
@@ -33,6 +35,8 @@ repositories {
 
 loom {
 	splitEnvironmentSourceSets()
+
+	accessWidenerPath = file("src/main/resources/extendedcombat.accesswidener")
 
 	mods {
 		"extendedcombat" {
@@ -59,9 +63,16 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
+	modIncludeApi "org.ladysnake.cardinal-components-api:cardinal-components-base:${cardinal_components_version}"
+	modIncludeApi "org.ladysnake.cardinal-components-api:cardinal-components-entity:${cardinal_components_version}"
+	modIncludeApi "org.ladysnake.cardinal-components-api:cardinal-components-world:${cardinal_components_version}"
+
 	modApi("com.github.Virtuoel:Pehkui:${pehkui_version}", {
 		exclude group: "net.fabricmc.fabric-api"
 	})
+
+	modLocalImplementation "maven.modrinth:sodium:${sodium_version}"
+	modCompileOnly "maven.modrinth:iris:${iris_version}"
 
 	modImplementation include ("maven.modrinth:midnightLib:${project.midnightLib_version}")
 

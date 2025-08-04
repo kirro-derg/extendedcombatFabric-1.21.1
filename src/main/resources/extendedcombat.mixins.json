@@ -1,19 +1,27 @@
 {
 	"required": true,
+	"minVersion": "0.8",
 	"package": "dev.kirro.extendedcombat.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"WardingStoneDisableSpawnMixin",
 		"ShieldBreakMixin",
 		"ItemStackMixin",
-		"ArmorStandMixin"
+		"ArmorStandMixin",
+		"enchantment.airjump.LivingEntityMixin",
+		"enchantment.dash.LivingEntityMixin",
+		"enchantment.blink.ArmorFeatureRendererMixin",
+		"enchantment.blink.LivingEntityMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
 		"client.ModelLoaderMixin",
 		"client.TwoHandedGreatswordMixin",
 		"client.PlayerEntityMixin",
-		"client.HideOffhandItemMixin"
+		"client.HideOffhandItemMixin",
+		"duplicates.ControlsListWidgetKeyBindingEntryMixin",
+		"duplicates.GameOptionsMixin",
+		"duplicates.KeyBindingMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
