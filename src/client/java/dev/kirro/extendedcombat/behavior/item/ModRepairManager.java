@@ -1,6 +1,8 @@
 package dev.kirro.extendedcombat.behavior.item;
 
+import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.item.ModItems;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,20 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 public class ModRepairManager {
-    public static final Set<Item> REPAIRABLE_ITEMS = Set.of(
-            ModItems.NETHER_STEEL_GREATSWORD,
-            ModItems.NETHER_STEEL_PICKAXE,
-            ModItems.NETHER_STEEL_HELMET,
-            ModItems.NETHER_STEEL_CHESTPLATE,
-            ModItems.NETHER_STEEL_LEGGINGS,
-            ModItems.NETHER_STEEL_BOOTS,
-            Items.SHIELD,
-            Items.TRIDENT,
-            Items.MACE,
-            Items.BOW,
-            Items.CROSSBOW
-
-    );
 
     public static void repairItemsWithXP(PlayerEntity player, int xpAmount) {
         List<ItemStack> allItems = new ArrayList<>();
@@ -33,7 +21,7 @@ public class ModRepairManager {
 
 
         for (ItemStack stack : allItems) {
-            if (stack != null && REPAIRABLE_ITEMS.contains(stack.getItem()) && stack.isDamaged()) {
+            if (ModConfig.xpRepairActive && stack != null && stack.isIn(ModItemTags.REPAIRABLE_ITEMS) && stack.isDamaged()) {
                 int repairAmount = xpAmount * 16;
                 int damage = stack.getDamage();
                 int toRepair = Math.min(repairAmount, damage);

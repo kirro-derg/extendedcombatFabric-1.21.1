@@ -8,6 +8,8 @@
     "extendedcombat:nether_steel_greatsword",
     "minecraft:shield",
     "minecraft:trident",
-    "minecraft:mace"
+    "minecraft:mace",
+    "minecraft:bow",
+    "minecraft:crossbow"
   ]
 }

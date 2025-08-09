@@ -36,6 +36,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.SHIELD)
                 .add(Items.TRIDENT)
                 .add(Items.MACE)
+                .add(Items.BOW)
+                .add(Items.CROSSBOW)
         ;
 
         getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
