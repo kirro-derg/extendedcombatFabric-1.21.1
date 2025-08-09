@@ -1,10 +1,7 @@
 package dev.kirro;
 
 import dev.kirro.extendedcombat.block.ModBlocks;
-import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
-import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
-import dev.kirro.extendedcombat.enchantment.payload.BlinkSyncPayload;
-import dev.kirro.extendedcombat.enchantment.payload.DashParticlePayload;
+import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
 import dev.kirro.extendedcombat.entity.render.ChairRenderer;
@@ -41,12 +38,12 @@ public class ExtendedcombatClient implements ClientModInitializer {
 			"key.extendedcombat.dash",
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_LEFT_CONTROL,
-			"key.categories.movement")));
+			"key.categories.extendedcombatenchantments")));
 	public static final KeyBinding BLINK = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
 			"key.extendedcombat.blink",
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_LEFT_SHIFT,
-			"key.categories.movement")));
+			"key.categories.extendedcombatenchantments")));
 
 	private static KeyBinding registerKeyBinding(Supplier<KeyBinding> supplier) {
 		KeyBinding keyBinding = supplier.get();

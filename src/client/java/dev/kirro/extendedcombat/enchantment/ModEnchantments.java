@@ -1,9 +1,7 @@
 package dev.kirro.extendedcombat.enchantment;
 
 import dev.kirro.ExtendedCombat;
-import dev.kirro.extendedcombat.enchantment.custom.AirJumpEnchantmentEffect;
-import dev.kirro.extendedcombat.enchantment.custom.BlinkEnchantmentEffect;
-import dev.kirro.extendedcombat.enchantment.custom.DashEnchantmentEffect;
+import dev.kirro.extendedcombat.enchantment.custom.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -28,6 +26,12 @@ public class ModEnchantments {
 
     public static final RegistryKey<Enchantment> BLINK =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "blink"));
+
+    public static final RegistryKey<Enchantment> OBSCURITY =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "obscurity"));
+
+    public static final RegistryKey<Enchantment> VANITY =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "vanity"));
 
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
@@ -68,6 +72,24 @@ public class ModEnchantments {
                         new BlinkEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(10)),
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(5))
+                        ))));
+
+        registerable.register(OBSCURITY, create(OBSCURITY.getValue(),
+                items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                1,
+                AttributeModifierSlot.HEAD, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.OBSCURITY,
+                        new ObscurityEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
+                        ))));
+
+        registerable.register(VANITY, create(VANITY.getValue(),
+                items.getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                1,
+                AttributeModifierSlot.ARMOR, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.VANITY,
+                        new VanityEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
                         ))));
     }
 

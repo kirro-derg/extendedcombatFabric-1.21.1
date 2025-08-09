@@ -5,7 +5,10 @@ import eu.midnightdust.lib.config.MidnightConfig;
 
 public class ModConfig extends MidnightConfig {
     @Entry
-    public static boolean disableDurability = true;
+    public static boolean disableDurability = false;
+
+    @Entry
+    public static boolean xpRepairActive = true;
 
     @Entry
     public static boolean airMobilityActive = true;

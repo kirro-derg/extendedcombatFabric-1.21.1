@@ -26,58 +26,85 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addOptionalTag(of("create", "sandpaper"))
                 .addOptional(of("create", "super_glue"));
 
+        getOrCreateTagBuilder(ModItemTags.REPAIRABLE_ITEMS)
+                .add(ModItems.NETHER_STEEL_BOOTS)
+                .add(ModItems.NETHER_STEEL_LEGGINGS)
+                .add(ModItems.NETHER_STEEL_CHESTPLATE)
+                .add(ModItems.NETHER_STEEL_HELMET)
+                .add(ModItems.NETHER_STEEL_PICKAXE)
+                .add(ModItems.NETHER_STEEL_GREATSWORD)
+                .add(Items.SHIELD)
+                .add(Items.TRIDENT)
+                .add(Items.MACE)
+        ;
+
         getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
                 .add(ModItems.NETHER_STEEL_BOOTS)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_HELMET)
-                .setReplace(false);
+                .setReplace(false)
+        ;
 
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(ModItems.NETHER_STEEL_PICKAXE)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.AXES)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.SHOVELS)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(ModItems.NETHER_STEEL_GREATSWORD)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.HOES)
-                .setReplace(false);
+                .setReplace(false)
+        ;
 
         getOrCreateTagBuilder(ItemTags.ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_HELMET)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
                 .add(ModItems.NETHER_STEEL_BOOTS)
-                .setReplace(false);
+                .setReplace(false)
+        ;
 
 
         getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
                 .add(ModItems.NETHER_STEEL_HELMET)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
                 .add(ModItems.NETHER_STEEL_BOOTS)
-                .setReplace(false);
+                .setReplace(false)
+        ;
 
         getOrCreateTagBuilder(ItemTags.HEAD_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_HELMET)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.LEG_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_BOOTS)
-                .setReplace(false);
+                .setReplace(false)
+        ;
     }
 }
