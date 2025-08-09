@@ -12,7 +12,7 @@
 		"enchantment.dash.LivingEntityMixin",
 		"enchantment.blink.ArmorFeatureRendererMixin",
 		"enchantment.blink.HeldItemFeatureRendererMixin",
-		"enchantment.blink.LivingEntityMixin",
+		"enchantment.blink.EntityMixin",
 		"enchantment.obscurity.LivingEntityRendererMixin",
 		"enchantment.vanity.ArmorFeatureRendererMixin"
 	],
