@@ -2,6 +2,8 @@
   "values": [
     "extendedcombat:dash",
     "extendedcombat:air_jump",
-    "extendedcombat:blink"
+    "extendedcombat:blink",
+    "extendedcombat:obscurity",
+    "extendedcombat:vanity"
   ]
 }

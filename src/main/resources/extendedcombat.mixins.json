@@ -12,13 +12,14 @@
 		"enchantment.dash.LivingEntityMixin",
 		"enchantment.blink.ArmorFeatureRendererMixin",
 		"enchantment.blink.HeldItemFeatureRendererMixin",
-		"enchantment.blink.LivingEntityMixin"
+		"enchantment.blink.LivingEntityMixin",
+		"enchantment.obscurity.LivingEntityRendererMixin",
+		"enchantment.vanity.ArmorFeatureRendererMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
 		"client.ModelLoaderMixin",
 		"client.TwoHandedGreatswordMixin",
-		"client.PlayerEntityMixin",
 		"client.HideOffhandItemMixin",
 		"duplicates.ControlsListWidgetKeyBindingEntryMixin",
 		"duplicates.GameOptionsMixin",

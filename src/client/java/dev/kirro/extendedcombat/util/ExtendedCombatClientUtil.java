@@ -1,11 +1,15 @@
 package dev.kirro.extendedcombat.util;
 
+import dev.kirro.ExtendedcombatClient;
 import dev.kirro.ModConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 

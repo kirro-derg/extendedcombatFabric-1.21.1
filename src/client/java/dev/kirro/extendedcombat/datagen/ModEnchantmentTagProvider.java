@@ -19,6 +19,8 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.DASH)
                 .add(ModEnchantments.AIR_JUMP)
                 .add(ModEnchantments.BLINK)
+                .add(ModEnchantments.OBSCURITY)
+                .add(ModEnchantments.VANITY)
                 .setReplace(false);
     }
 }
