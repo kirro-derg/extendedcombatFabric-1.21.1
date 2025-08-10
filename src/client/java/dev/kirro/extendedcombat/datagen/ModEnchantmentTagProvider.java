@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat.datagen;
 
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentTags;
 import dev.kirro.extendedcombat.enchantment.ModEnchantments;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -21,6 +22,11 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.BLINK)
                 .add(ModEnchantments.OBSCURITY)
                 .add(ModEnchantments.VANITY)
-                .setReplace(false);
+                .add(ModEnchantments.STEALTH)
+        ;
+
+        getOrCreateTagBuilder(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET)
+                .add(ModEnchantments.STEALTH, ModEnchantments.BLINK)
+        ;
     }
 }

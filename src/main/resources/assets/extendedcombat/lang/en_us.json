@@ -32,6 +32,7 @@
   "enchantment.extendedcombat.blink": "Blink",
   "enchantment.extendedcombat.obscurity": "Obscurity",
   "enchantment.extendedcombat.vanity": "Vanity",
+  "enchantment.extendedcombat.stealth": "Stealth",
 
   "entity.extendedcombat.statue": "Statue",
 
@@ -42,6 +43,7 @@
 
   "extendedcombat.midnightconfig.title": "Common Settings",
   "extendedcombat.midnightconfig.disableDurability": "Disable Durability",
+  "extendedcombat.midnightconfig.xpRepairActive": "XP Repair",
   "extendedcombat.midnightconfig.airMobilityActive": "Increase Mobility In Air",
   "extendedcombat.midnightconfig.category.client": "Client Settings",
   "extendedcombat.midnightconfig.allowDuplicateKeybinds": "Allow Duplicate Keybinds"

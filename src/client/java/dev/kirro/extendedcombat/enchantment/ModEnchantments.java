@@ -14,6 +14,7 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
@@ -33,6 +34,9 @@ public class ModEnchantments {
     public static final RegistryKey<Enchantment> VANITY =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "vanity"));
 
+    public static final RegistryKey<Enchantment> STEALTH =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "stealth"));
+
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
         effectsAdder.addEffects(builder);
@@ -41,6 +45,7 @@ public class ModEnchantments {
 
     public static void bootStrap(Registerable<Enchantment> registerable) {
         var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
+        var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
 
         registerable.register(DASH, create(DASH.getValue(),
                 items.getOrThrow(ItemTags.LEG_ARMOR_ENCHANTABLE),
@@ -72,7 +77,7 @@ public class ModEnchantments {
                         new BlinkEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(10)),
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(5))
-                        ))));
+                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET))));
 
         registerable.register(OBSCURITY, create(OBSCURITY.getValue(),
                 items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
@@ -91,6 +96,15 @@ public class ModEnchantments {
                         new VanityEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
                         ))));
+
+        registerable.register(STEALTH, create(STEALTH.getValue(),
+                items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                1,
+                AttributeModifierSlot.CHEST, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.STEALTH,
+                        new StealthEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
+                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET))));
     }
 
     public interface EffectsAdder {

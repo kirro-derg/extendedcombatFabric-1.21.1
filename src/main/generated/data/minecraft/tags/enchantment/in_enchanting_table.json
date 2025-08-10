@@ -4,6 +4,7 @@
     "extendedcombat:air_jump",
     "extendedcombat:blink",
     "extendedcombat:obscurity",
-    "extendedcombat:vanity"
+    "extendedcombat:vanity",
+    "extendedcombat:stealth"
   ]
 }

@@ -15,6 +15,7 @@ public class ModEnchantmentEffectComponentTypes {
     public static final ComponentType<BlinkEnchantmentEffect> BLINK = register("blink", builder -> builder.codec(BlinkEnchantmentEffect.CODEC));
     public static final ComponentType<ObscurityEnchantmentEffect> OBSCURITY = register("obscurity", builder -> builder.codec(ObscurityEnchantmentEffect.CODEC));
     public static final ComponentType<VanityEnchantmentEffect> VANITY = register("vanity", builder -> builder.codec(VanityEnchantmentEffect.CODEC));
+    public static final ComponentType<StealthEnchantmentEffect> STEALTH = register("stealth", builder -> builder.codec(StealthEnchantmentEffect.CODEC));
 
     private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, Identifier.of(ExtendedCombat.MOD_ID, id), builderOperator.apply(ComponentType.builder()).build());

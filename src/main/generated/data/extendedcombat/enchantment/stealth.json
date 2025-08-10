@@ -1,17 +1,13 @@
 {
   "anvil_cost": 2,
   "description": {
-    "translate": "enchantment.extendedcombat.blink"
+    "translate": "enchantment.extendedcombat.stealth"
   },
   "effects": {
-    "extendedcombat:blink": {
-      "cooldown": {
+    "extendedcombat:stealth": {
+      "stealth": {
         "type": "minecraft:add",
-        "value": 10.0
-      },
-      "usage_duration": {
-        "type": "minecraft:add",
-        "value": 5.0
+        "value": 1.0
       }
     }
   },

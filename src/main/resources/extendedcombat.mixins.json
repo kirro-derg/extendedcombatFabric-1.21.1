@@ -14,7 +14,8 @@
 		"enchantment.blink.HeldItemFeatureRendererMixin",
 		"enchantment.blink.EntityMixin",
 		"enchantment.obscurity.LivingEntityRendererMixin",
-		"enchantment.vanity.ArmorFeatureRendererMixin"
+		"enchantment.vanity.ArmorFeatureRendererMixin",
+		"enchantment.stealth.EntityMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
