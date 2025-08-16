@@ -46,7 +46,9 @@
 			"extendedcombat:air_jump",
 			"extendedcombat:air_mobility",
 			"extendedcombat:dash",
-			"extendedcombat:blink"
+			"extendedcombat:blink",
+            "extendedcombat:crawl",
+            "extendedcombat:sit"
 		]
 	}
 }

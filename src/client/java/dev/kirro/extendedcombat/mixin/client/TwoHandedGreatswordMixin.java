@@ -18,7 +18,7 @@ public class TwoHandedGreatswordMixin {
                                                     CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
         ItemStack itemStack = player.getMainHandStack();
         if (itemStack.getItem() instanceof PickSwordItem) {
-            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
+            cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
         }
     }
 }

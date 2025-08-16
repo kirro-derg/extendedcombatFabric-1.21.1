@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.enchantment;
 
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.enchantment.custom.*;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -36,6 +37,9 @@ public class ModEnchantments {
 
     public static final RegistryKey<Enchantment> STEALTH =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "stealth"));
+
+    public static final RegistryKey<Enchantment> SHIELD_BURST =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "shield_burst"));
 
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));

@@ -1,5 +1,6 @@
 package dev.kirro;
 
+import dev.kirro.extendedcombat.behavior.abilities.payload.CrawlSyncPayload;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
@@ -37,13 +38,25 @@ public class ExtendedcombatClient implements ClientModInitializer {
 	public static final KeyBinding DASH = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
 			"key.extendedcombat.dash",
 			InputUtil.Type.KEYSYM,
-			GLFW.GLFW_KEY_LEFT_CONTROL,
+			GLFW.GLFW_KEY_LEFT_SHIFT,
 			"key.categories.extendedcombatenchantments")));
 	public static final KeyBinding BLINK = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
 			"key.extendedcombat.blink",
 			InputUtil.Type.KEYSYM,
-			GLFW.GLFW_KEY_LEFT_SHIFT,
+			GLFW.GLFW_KEY_B,
 			"key.categories.extendedcombatenchantments")));
+    public static final KeyBinding CRAWL = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "key.extendedcombat.crawl",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_C,
+            "key.categories.extendedcombatenchantments"
+    )));
+    public static final KeyBinding SIT = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "key.extendedcombat.sit",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_X,
+            "key.categories.extendedcombatenchantments"
+    )));
 
 	private static KeyBinding registerKeyBinding(Supplier<KeyBinding> supplier) {
 		KeyBinding keyBinding = supplier.get();
@@ -62,5 +75,7 @@ public class ExtendedcombatClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(DashParticlePayload.ID, new DashParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkParticlePayload.ID, new BlinkParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkSyncPayload.ID, BlinkSyncPayload::handle);
+        ClientPlayNetworking.registerGlobalReceiver(CrawlSyncPayload.ID, new CrawlSyncPayload.Reciever());
+        ClientPlayNetworking.registerGlobalReceiver(CrawlSyncPayload.ID, CrawlSyncPayload::handle);
 	}
 }

@@ -30,7 +30,7 @@ public class ModItems {
 
     public static final Item NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
             new PickSwordItem(ModToolMaterials.NETHER_STEEL, new Item.Settings().fireproof()
-                    .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.4f))));
+                    .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.8f))));
     public static final Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             new ModPickaxeItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
                     .attributeModifiers(ModPickaxeItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 1, -2.8f))));

@@ -1,10 +1,15 @@
 package dev.kirro;
 
+import dev.kirro.extendedcombat.behavior.abilities.CrawlBehavior;
+import dev.kirro.extendedcombat.behavior.abilities.SitBehavior;
+import dev.kirro.extendedcombat.behavior.abilities.payload.CrawlPayload;
+import dev.kirro.extendedcombat.behavior.abilities.payload.CrawlSyncPayload;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.block.entity.ModBlockEntityTypes;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
+import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.entity.custom.StatueEntity;
 import dev.kirro.extendedcombat.event.AirMobilityEvent;
 import dev.kirro.extendedcombat.event.EquipmentResetEvent;
@@ -13,6 +18,7 @@ import dev.kirro.extendedcombat.item.ModItemGroups;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
 import dev.kirro.extendedcombat.sound.ModSounds;
+import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import dev.kirro.extendedcombat.villager.ModPOI;
 import net.fabricmc.api.ModInitializer;
 
@@ -22,10 +28,15 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class ExtendedCombat implements ModInitializer {
 	public static final String MOD_ID = "extendedcombat";
@@ -59,9 +70,36 @@ public class ExtendedCombat implements ModInitializer {
 			for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
 				XPRepairTracker.tick(player);
 			}
+
+            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+                CrawlBehavior crawl = ModEntityComponents.CRAWL.get(player);
+                boolean crawling = crawl.isCrawling();
+                if (crawling) {
+                        player.setSwimming(crawling);
+                        player.setPose(EntityPose.SWIMMING);
+                }
+
+
+                SitBehavior sit = ModEntityComponents.SIT.get(player);
+                if (sit.isSitting()) {
+                    player.setPose(EntityPose.SITTING);
+                    ScaleTypes.HITBOX_HEIGHT.getScaleData(player).setTargetScale(0.75f);
+                    ScaleTypes.MOTION.getScaleData(player).setTargetScale(0.25f);
+                } else {
+                    ScaleTypes.HITBOX_HEIGHT.getScaleData(player).resetScale();
+                    ScaleTypes.MOTION.getScaleData(player).resetScale();
+                }
+
+                System.out.println(player.getName().getString() + " crawl=" + crawl.isCrawling() + " sit=" + sit.isSitting());
+
+
+            }
+
 		});
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            PlayerEntity player = client.player;
+
 		});
 
 		FabricDefaultAttributeRegistry.register(ModEntities.STATUE, StatueEntity.createAttributes());
@@ -82,13 +120,16 @@ public class ExtendedCombat implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(DashParticlePayload.ID, DashParticlePayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(BlinkParticlePayload.ID, BlinkParticlePayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(BlinkSyncPayload.ID, BlinkSyncPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(CrawlSyncPayload.ID, CrawlSyncPayload.CODEC);
 		// client
 		PayloadTypeRegistry.playC2S().register(AirJumpPayload.ID, AirJumpPayload.CODEC);
 		PayloadTypeRegistry.playC2S().register(DashPayload.ID, DashPayload.CODEC);
 		PayloadTypeRegistry.playC2S().register(BlinkPayload.ID, BlinkPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(CrawlPayload.ID, CrawlPayload.CODEC);
 		// server recievers
 		ServerPlayNetworking.registerGlobalReceiver(AirJumpPayload.ID, new AirJumpPayload.Reciever());
 		ServerPlayNetworking.registerGlobalReceiver(DashPayload.ID, new DashPayload.Reciever());
 		ServerPlayNetworking.registerGlobalReceiver(BlinkPayload.ID, new BlinkPayload.Reciever());
+        ServerPlayNetworking.registerGlobalReceiver(CrawlPayload.ID, new CrawlPayload.Reciever());
 	}
 }

@@ -1,10 +1,9 @@
 package dev.kirro.extendedcombat.entity.components;
 
 import dev.kirro.ExtendedCombat;
-import dev.kirro.extendedcombat.behavior.enchantment.AirJumpBehavior;
-import dev.kirro.extendedcombat.behavior.enchantment.AirMobilityBehavior;
-import dev.kirro.extendedcombat.behavior.enchantment.BlinkBehavior;
-import dev.kirro.extendedcombat.behavior.enchantment.DashBehavior;
+import dev.kirro.extendedcombat.behavior.abilities.CrawlBehavior;
+import dev.kirro.extendedcombat.behavior.abilities.SitBehavior;
+import dev.kirro.extendedcombat.behavior.enchantment.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -19,6 +18,8 @@ public class ModEntityComponents implements EntityComponentInitializer {
     public static final ComponentKey<AirMobilityBehavior> AIR_MOBILITY = ComponentRegistry.getOrCreate(Identifier.of(ExtendedCombat.MOD_ID, "air_mobility"), AirMobilityBehavior.class);
     public static final ComponentKey<DashBehavior> DASH = ComponentRegistry.getOrCreate(Identifier.of(ExtendedCombat.MOD_ID, "dash"), DashBehavior.class);
     public static final ComponentKey<BlinkBehavior> BLINK = ComponentRegistry.getOrCreate(Identifier.of(ExtendedCombat.MOD_ID, "blink"), BlinkBehavior.class);
+    public static final ComponentKey<CrawlBehavior> CRAWL = ComponentRegistry.getOrCreate(Identifier.of(ExtendedCombat.MOD_ID, "crawl"), CrawlBehavior.class);
+    public static final ComponentKey<SitBehavior> SIT = ComponentRegistry.getOrCreate(Identifier.of(ExtendedCombat.MOD_ID, "sit"), SitBehavior.class);
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
@@ -26,5 +27,7 @@ public class ModEntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(AIR_JUMP, AirJumpBehavior::new, RespawnCopyStrategy.LOSSLESS_ONLY);
         registry.registerForPlayers(DASH, DashBehavior::new, RespawnCopyStrategy.LOSSLESS_ONLY);
         registry.registerForPlayers(BLINK, BlinkBehavior::new, RespawnCopyStrategy.LOSSLESS_ONLY);
+        registry.registerForPlayers(CRAWL, CrawlBehavior::new, RespawnCopyStrategy.NEVER_COPY);
+        registry.registerForPlayers(SIT, SitBehavior::new, RespawnCopyStrategy.NEVER_COPY);
     }
 }
