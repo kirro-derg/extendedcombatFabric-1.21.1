@@ -71,7 +71,7 @@ public class ExtendedCombat implements ModInitializer {
 				XPRepairTracker.tick(player);
 			}
 
-            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+            /*for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
                 CrawlBehavior crawl = ModEntityComponents.CRAWL.get(player);
                 boolean crawling = crawl.isCrawling();
                 if (crawling) {
@@ -90,16 +90,12 @@ public class ExtendedCombat implements ModInitializer {
                     ScaleTypes.MOTION.getScaleData(player).resetScale();
                 }
 
-                System.out.println(player.getName().getString() + " crawl=" + crawl.isCrawling() + " sit=" + sit.isSitting());
 
-
-            }
+            }*/
 
 		});
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            PlayerEntity player = client.player;
-
 		});
 
 		FabricDefaultAttributeRegistry.register(ModEntities.STATUE, StatueEntity.createAttributes());

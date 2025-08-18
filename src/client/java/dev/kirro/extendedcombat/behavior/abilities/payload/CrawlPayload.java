@@ -14,17 +14,17 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
-public record CrawlPayload(boolean crawling) implements CustomPayload {
+public record CrawlPayload() implements CustomPayload {
     public static final Id<CrawlPayload> ID = new Id<>(Identifier.of(ExtendedCombat.MOD_ID, "crawl"));
-    public static final PacketCodec<PacketByteBuf, CrawlPayload> CODEC = PacketCodec.tuple(PacketCodecs.BOOL, CrawlPayload::crawling, CrawlPayload::new);
+    public static final PacketCodec<PacketByteBuf, CrawlPayload> CODEC = PacketCodec.unit(new CrawlPayload());
 
     @Override
     public Id<? extends CustomPayload> getId() {
         return ID;
     }
 
-    public static void send(boolean crawling) {
-        ClientPlayNetworking.send(new CrawlPayload(crawling));
+    public static void send() {
+        ClientPlayNetworking.send(new CrawlPayload());
     }
 
     public static class Reciever implements ServerPlayNetworking.PlayPayloadHandler<CrawlPayload> {
@@ -32,7 +32,6 @@ public record CrawlPayload(boolean crawling) implements CustomPayload {
         public void receive(CrawlPayload payload, ServerPlayNetworking.Context context) {
             CrawlBehavior crawl = ModEntityComponents.CRAWL.get(context.player());
             if (crawl.isCrawling()) {
-                crawl.setCrawling(payload.crawling());
                 crawl.use();
 
                 CrawlSyncPayload.broadcast(context.player(), crawl.isCrawling());

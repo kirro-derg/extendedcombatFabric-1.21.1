@@ -50,6 +50,8 @@ public record CrawlSyncPayload(int entityId, boolean crawling) implements Custom
         CrawlBehavior crawl = ModEntityComponents.CRAWL.get(entity);
         if (crawl.isCrawling()) {
             entity.setPose(EntityPose.SWIMMING);
+        } else {
+            entity.setPose(EntityPose.STANDING);
         }
     }
 
@@ -66,8 +68,8 @@ public record CrawlSyncPayload(int entityId, boolean crawling) implements Custom
             Entity entity = context.player().getWorld().getEntityById(payload.entityId());
             if (entity != null) {
                 setPlayerPose(entity);
+                handle(payload, context);
             }
-            handle(payload, context);
         }
     }
 }

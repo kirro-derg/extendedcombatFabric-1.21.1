@@ -34,22 +34,26 @@ public class CrawlBehavior implements AutoSyncedComponent, CommonTickingComponen
     public void tick() {
         if (ExtendedcombatClient.CRAWL.isPressed()) {
             crawling = true;
-            sync();
         } else {
             reset();
+            sync();
+
         }
     }
 
     @Override
     public void clientTick() {
         tick();
-        use();
-        CrawlPayload.send(isCrawling());
-        CrawlSyncPayload.setPlayerPose(player);
+        if (crawling) {
+            use();
+            CrawlSyncPayload.setPlayerPose(player);
+            CrawlPayload.send();
+        } else {
+            CrawlSyncPayload.setPlayerPose(player);
+        }
     }
 
     public void use() {
-        player.setSwimming(crawling);
         ExtendedCombatClientUtil.setCrawling(player.getUuid(), crawling);
     }
 
@@ -67,7 +71,7 @@ public class CrawlBehavior implements AutoSyncedComponent, CommonTickingComponen
     }
 
     public void reset() {
-        crawling = false;
+        setCrawling(false);
         sync();
     }
 }
