@@ -50,8 +50,6 @@ public record CrawlSyncPayload(int entityId, boolean crawling) implements Custom
         CrawlBehavior crawl = ModEntityComponents.CRAWL.get(entity);
         if (crawl.isCrawling()) {
             entity.setPose(EntityPose.SWIMMING);
-        } else {
-            entity.setPose(EntityPose.STANDING);
         }
     }
 

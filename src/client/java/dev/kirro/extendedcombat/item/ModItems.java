@@ -3,10 +3,7 @@ package dev.kirro.extendedcombat.item;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.item.custom.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -55,19 +52,19 @@ public class ModItems {
         ExtendedCombat.LOGGER.info("Registering items for" + ExtendedCombat.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.add(NETHER_STEEL_INGOT);
-            fabricItemGroupEntries.add(HANDLE);
-            fabricItemGroupEntries.add(NETHER_STEEL_UPGRADE);
+            fabricItemGroupEntries.addAfter(Items.NETHERITE_INGOT, NETHER_STEEL_INGOT);
+            fabricItemGroupEntries.addAfter(Items.STICK, HANDLE);
+            fabricItemGroupEntries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, NETHER_STEEL_UPGRADE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.add(NETHER_STEEL_GREATSWORD);
-            fabricItemGroupEntries.add(NETHER_STEEL_HELMET);
-            fabricItemGroupEntries.add(NETHER_STEEL_CHESTPLATE);
-            fabricItemGroupEntries.add(NETHER_STEEL_LEGGINGS);
-            fabricItemGroupEntries.add(NETHER_STEEL_BOOTS);
+            fabricItemGroupEntries.addAfter(Items.NETHERITE_SWORD, NETHER_STEEL_GREATSWORD);
+            fabricItemGroupEntries.addAfter(Items.NETHERITE_BOOTS, NETHER_STEEL_HELMET);
+            fabricItemGroupEntries.addAfter(NETHER_STEEL_HELMET, NETHER_STEEL_CHESTPLATE);
+            fabricItemGroupEntries.addAfter(NETHER_STEEL_CHESTPLATE, NETHER_STEEL_LEGGINGS);
+            fabricItemGroupEntries.addAfter(NETHER_STEEL_LEGGINGS, NETHER_STEEL_BOOTS);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.add(NETHER_STEEL_PICKAXE);
+            fabricItemGroupEntries.addAfter(Items.NETHERITE_HOE, NETHER_STEEL_PICKAXE);
         });
     }
 }
