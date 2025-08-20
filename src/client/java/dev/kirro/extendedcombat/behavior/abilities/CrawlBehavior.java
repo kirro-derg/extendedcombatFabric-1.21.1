@@ -48,8 +48,6 @@ public class CrawlBehavior implements AutoSyncedComponent, CommonTickingComponen
             use();
             CrawlSyncPayload.setPlayerPose(player);
             CrawlPayload.send();
-        } else {
-            CrawlSyncPayload.setPlayerPose(player);
         }
     }
 

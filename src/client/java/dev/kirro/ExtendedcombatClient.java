@@ -65,12 +65,14 @@ public class ExtendedcombatClient implements ClientModInitializer {
 	}
 
 	private void registerEvents() {
+        // enchantment hud renderers
 		HudRenderCallback.EVENT.register(new DashRenderEvent());
 		HudRenderCallback.EVENT.register(new AirJumpRenderEvent());
 		HudRenderCallback.EVENT.register(new BlinkRenderEvent());
 	}
 
 	private void registerPayloads() {
+        // client receivers
 		ClientPlayNetworking.registerGlobalReceiver(AirJumpParticlePayload.ID, new AirJumpParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(DashParticlePayload.ID, new DashParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkParticlePayload.ID, new BlinkParticlePayload.Reciever());
