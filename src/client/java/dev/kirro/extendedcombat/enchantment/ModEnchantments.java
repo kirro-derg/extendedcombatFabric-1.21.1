@@ -3,19 +3,15 @@ package dev.kirro.extendedcombat.enchantment;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.enchantment.custom.*;
 import dev.kirro.extendedcombat.tags.ModItemTags;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelBasedValue;
-import net.minecraft.enchantment.effect.EnchantmentValueEffect;
 import net.minecraft.enchantment.effect.value.AddEnchantmentEffect;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
@@ -38,11 +34,17 @@ public class ModEnchantments {
     public static final RegistryKey<Enchantment> STEALTH =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "stealth"));
 
-    public static final RegistryKey<Enchantment> SHIELD_BURST =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "shield_burst"));
+    public static final RegistryKey<Enchantment> KEEPSAKE =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "keepsake"));
 
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
+        effectsAdder.addEffects(builder);
+        return builder.build(id);
+    }
+
+    public static Enchantment createKeepsake(Identifier id, RegistryEntryList<Item> supportedItems, RegistryEntryList<Item> primaryItems, int weight, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
+        Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, primaryItems, weight, maxLevel, Enchantment.leveledCost(25, 25), Enchantment.leveledCost(75, 25), 4, slot));
         effectsAdder.addEffects(builder);
         return builder.build(id);
     }
@@ -109,6 +111,17 @@ public class ModEnchantments {
                         new StealthEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
                         )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET))));
+
+        registerable.register(KEEPSAKE, createKeepsake(KEEPSAKE.getValue(),
+                items.getOrThrow(ModItemTags.KEEPSAKE_ENCHANTABLE),
+                items.getOrThrow(ItemTags.DURABILITY_ENCHANTABLE),
+                2,
+                1,
+                AttributeModifierSlot.ANY, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.KEEPSAKE,
+                        new KeepsakeEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
+                        ))));
     }
 
     public interface EffectsAdder {

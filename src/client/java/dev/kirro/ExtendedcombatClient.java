@@ -1,9 +1,9 @@
 package dev.kirro;
 
-import dev.kirro.extendedcombat.behavior.abilities.payload.CrawlSyncPayload;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
+import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
 import dev.kirro.extendedcombat.entity.render.ChairRenderer;
 import dev.kirro.extendedcombat.event.AirJumpRenderEvent;
@@ -19,6 +19,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.function.Supplier;
@@ -45,18 +48,6 @@ public class ExtendedcombatClient implements ClientModInitializer {
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_B,
 			"key.categories.extendedcombatenchantments")));
-    public static final KeyBinding CRAWL = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "key.extendedcombat.crawl",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_C,
-            "key.categories.extendedcombatenchantments"
-    )));
-    public static final KeyBinding SIT = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "key.extendedcombat.sit",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_X,
-            "key.categories.extendedcombatenchantments"
-    )));
 
 	private static KeyBinding registerKeyBinding(Supplier<KeyBinding> supplier) {
 		KeyBinding keyBinding = supplier.get();
@@ -73,11 +64,9 @@ public class ExtendedcombatClient implements ClientModInitializer {
 
 	private void registerPayloads() {
         // client receivers
-		ClientPlayNetworking.registerGlobalReceiver(AirJumpParticlePayload.ID, new AirJumpParticlePayload.Reciever());
+		ClientPlayNetworking.registerGlobalReceiver(AirJumpParticlePayload.ID, new AirJumpParticlePayload.Receiver());
 		ClientPlayNetworking.registerGlobalReceiver(DashParticlePayload.ID, new DashParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkParticlePayload.ID, new BlinkParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkSyncPayload.ID, BlinkSyncPayload::handle);
-        ClientPlayNetworking.registerGlobalReceiver(CrawlSyncPayload.ID, new CrawlSyncPayload.Reciever());
-        ClientPlayNetworking.registerGlobalReceiver(CrawlSyncPayload.ID, CrawlSyncPayload::handle);
 	}
 }

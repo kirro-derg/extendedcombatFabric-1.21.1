@@ -19,13 +19,17 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.FLAT_BLOCK)
                 .add(ModBlocks.NETHER_STEEL_BLOCK)
                 .add(ModBlocks.WARDING_STONE)
-                .setReplace(false);
+                .setReplace(false)
+        ;
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(ModBlocks.HEAVY_DOOR)
-                .setReplace(false);
+                .add(ModBlocks.SEAT)
+                .setReplace(false)
+        ;
 
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.NETHER_STEEL_BLOCK)
-                .setReplace(false);
+                .setReplace(false)
+        ;
     }
 }

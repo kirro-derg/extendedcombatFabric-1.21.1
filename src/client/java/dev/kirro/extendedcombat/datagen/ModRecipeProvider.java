@@ -3,13 +3,16 @@ package dev.kirro.extendedcombat.datagen;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.ModItems;
+import dev.kirro.extendedcombat.potion.ModPotions;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -117,8 +120,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.GLOWSTONE_DUST), conditionsFromItem(Items.GLOWSTONE_DUST))
                 .offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.SEAT)
-                        .pattern("   ")
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.SEAT, 3)
                         .pattern("LLL")
                         .pattern("PPP")
                         .input('L', Items.LEATHER)
@@ -126,9 +128,40 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion(hasItem(Items.OAK_SLAB), conditionsFromItem(Items.OAK_SLAB))
                         .offerTo(exporter);
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.GOLDEN_STEAK)
+                .pattern("GGG")
+                .pattern("GSG")
+                .pattern("GGG")
+                .input('G', Items.GOLD_INGOT)
+                .input('S', Items.COOKED_BEEF)
+                .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BLACK_APPLE)
+                .pattern("OOO")
+                .pattern("OAO")
+                .pattern("OOO")
+                .input('O', Items.OBSIDIAN)
+                .input('A', Items.APPLE)
+                .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
+                .offerTo(exporter);
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_INGOT, 4)
                 .input(ModBlocks.NETHER_STEEL_BLOCK)
                 .criterion(hasItem(ModBlocks.NETHER_STEEL_BLOCK), conditionsFromItem(ModBlocks.NETHER_STEEL_BLOCK))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_ingot_from_block"));
+    }
+
+    public static void registerPotionRecipes() {
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+            builder.registerPotionRecipe(Potions.AWKWARD, Items.AMETHYST_SHARD, ModPotions.SHRINKING_POTION_0);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_0, Items.REDSTONE, ModPotions.SHRINKING_POTION_1);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_1, Items.REDSTONE, ModPotions.SHRINKING_POTION_2);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_2, Items.REDSTONE, ModPotions.SHRINKING_POTION_3);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_0, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_1, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_2, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
+            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_3, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
+        });
     }
 }

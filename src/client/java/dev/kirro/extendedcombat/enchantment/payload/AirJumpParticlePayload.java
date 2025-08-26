@@ -34,7 +34,7 @@ public record AirJumpParticlePayload(int entityId) implements CustomPayload {
         }
     }
 
-    public static class Reciever implements ClientPlayNetworking.PlayPayloadHandler<AirJumpParticlePayload> {
+    public static class Receiver implements ClientPlayNetworking.PlayPayloadHandler<AirJumpParticlePayload> {
         @Override
         public void receive(AirJumpParticlePayload payload, ClientPlayNetworking.Context context) {
             Entity entity = context.player().getWorld().getEntityById(payload.entityId());

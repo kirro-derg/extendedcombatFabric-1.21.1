@@ -3,6 +3,10 @@
     "extendedcombat:nether_steel_boots",
     "extendedcombat:nether_steel_leggings",
     "extendedcombat:nether_steel_chestplate",
-    "extendedcombat:nether_steel_helmet"
+    "extendedcombat:nether_steel_helmet",
+    "extendedcombat:echo_steel_boots",
+    "extendedcombat:echo_steel_leggings",
+    "extendedcombat:echo_steel_chestplate",
+    "extendedcombat:echo_steel_helmet"
   ]
 }

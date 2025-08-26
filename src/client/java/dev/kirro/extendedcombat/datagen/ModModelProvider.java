@@ -29,11 +29,19 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.NETHER_STEEL_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.NETHER_STEEL_UPGRADE, Models.GENERATED);
         itemModelGenerator.register(ModItems.NETHER_STEEL_PICKAXE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.NETHER_STEEL_HAMMER, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.BLACK_APPLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLDEN_STEAK, Models.GENERATED);
 
 
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_BOOTS);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_LEGGINGS);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_CHESTPLATE);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_HELMET);
+
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_BOOTS);
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_LEGGINGS);
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_CHESTPLATE);
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_HELMET);
     }
 }

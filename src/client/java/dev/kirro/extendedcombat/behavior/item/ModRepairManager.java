@@ -1,8 +1,11 @@
 package dev.kirro.extendedcombat.behavior.item;
 
 import dev.kirro.ModConfig;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
+import dev.kirro.extendedcombat.enchantment.ModEnchantments;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.tags.ModItemTags;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

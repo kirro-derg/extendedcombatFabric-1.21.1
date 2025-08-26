@@ -16,7 +16,7 @@
       "enchantment.obscurity.LivingEntityRendererMixin",
       "enchantment.vanity.ArmorFeatureRendererMixin",
       "enchantment.stealth.EntityMixin",
-      "abilities.sit.BipedEntityModelMixin"
+      "potion.shrinking.LivingEntityMixin"
 	],
 	"client": [
       "client.ItemRendererMixin",
@@ -27,10 +27,8 @@
       "client.ElytraFeatureRendererMixin",
       "duplicates.ControlsListWidgetKeyBindingEntryMixin",
       "duplicates.GameOptionsMixin",
-      "duplicates.KeyBindingMixin",
-      "abilities.sit.PlayerEntityMixin",
-      "abilities.sit.LivingEntityRendererMixin"
-	],
+      "duplicates.KeyBindingMixin"
+    ],
 	"injectors": {
 		"defaultRequire": 1
 	}

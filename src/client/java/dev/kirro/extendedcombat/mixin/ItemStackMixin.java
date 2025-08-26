@@ -1,7 +1,9 @@
 package dev.kirro.extendedcombat.mixin;
 
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,14 +27,14 @@ public abstract class ItemStackMixin {
     @Inject(method = "damage(ILnet/minecraft/server/world/ServerWorld;Lnet/minecraft/server/network/ServerPlayerEntity;Ljava/util/function/Consumer;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isDamageable()Z"))
     private <T extends LivingEntity> void extendedcombat$disablesDurability(int amount, ServerWorld world, @Nullable ServerPlayerEntity player, Consumer<Item> breakCallback, CallbackInfo ci) {
         ItemStack stack = (ItemStack) (Object) this;
-        if (player != null && ExtendedCombatUtil.isUnbreakable(stack)) {
+        if (player != null && ExtendedCombatUtil.isUnbreakable(stack) || EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.KEEPSAKE)) {
             Criteria.ITEM_DURABILITY_CHANGED.trigger(player, stack, getDamage());
         }
     }
 
     @Inject(method = "isDamageable", at = @At("HEAD"), cancellable = true)
     private void extendedcombat$disablesDurability(CallbackInfoReturnable<Boolean> cir) {
-        if (ExtendedCombatUtil.isUnbreakable((ItemStack) (Object) this)) {
+        if (ExtendedCombatUtil.isUnbreakable((ItemStack) (Object) this) || EnchantmentHelper.hasAnyEnchantmentsWith(((ItemStack) (Object) this), ModEnchantmentEffectComponentTypes.KEEPSAKE)) {
             cir.setReturnValue(false);
         }
     }

@@ -1,8 +1,10 @@
 package dev.kirro.extendedcombat.util;
 
 import dev.kirro.ModConfig;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +15,7 @@ import net.minecraft.world.RaycastContext;
 public class ExtendedCombatUtil {
 
     public static boolean isUnbreakable(ItemStack stack) {
-        return ModConfig.disableDurability && !stack.isEmpty() && stack.contains(DataComponentTypes.MAX_DAMAGE) && !stack.isIn(ModItemTags.PERSISTENT_DURABILITY);
+        return ModConfig.disableDurability && !stack.isEmpty() && stack.contains(DataComponentTypes.MAX_DAMAGE) && !stack.isIn(ModItemTags.PERSISTENT_DURABILITY) || EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.KEEPSAKE);
     }
 
     public static boolean isGrounded(LivingEntity living, boolean allowWater) {

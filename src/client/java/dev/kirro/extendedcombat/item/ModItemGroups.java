@@ -29,14 +29,14 @@ public class ModItemGroups {
 
                         entries.add(ModItems.NETHER_STEEL_GREATSWORD);
                         entries.add(ModItems.NETHER_STEEL_PICKAXE);
+                        entries.add(ModItems.NETHER_STEEL_HAMMER);
 
                         entries.add(ModItems.NETHER_STEEL_HELMET);
                         entries.add(ModItems.NETHER_STEEL_CHESTPLATE);
                         entries.add(ModItems.NETHER_STEEL_LEGGINGS);
                         entries.add(ModItems.NETHER_STEEL_BOOTS);
 
-
-
+                        entries.add(ModItems.BLACK_APPLE);
 
                     }).build());
 

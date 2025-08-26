@@ -22,22 +22,46 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ModItemTags.PERSISTENT_DURABILITY)
-                .add(Items.WOLF_ARMOR)
-                .addOptionalTag(of("create", "sandpaper"))
-                .addOptional(of("create", "super_glue"));
+                .add(Items.SHIELD)
+                .add(Items.MACE)
+        ;
 
         getOrCreateTagBuilder(ModItemTags.REPAIRABLE_ITEMS)
+                .add(ModItems.ECHO_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .add(ModItems.ECHO_STEEL_HELMET)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_ARMOR)
+                .add(ModItems.NETHER_STEEL_BOOTS)
+                .add(ModItems.NETHER_STEEL_LEGGINGS)
+                .add(ModItems.NETHER_STEEL_CHESTPLATE)
+                .add(ModItems.NETHER_STEEL_HELMET)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.ECHO_ARMOR)
+                .add(ModItems.ECHO_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .add(ModItems.ECHO_STEEL_HELMET)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.KEEPSAKE_ENCHANTABLE)
+                .add(ModItems.ECHO_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .add(ModItems.ECHO_STEEL_HELMET)
+        ;
+
+        getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_BOOTS)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_HELMET)
                 .add(ModItems.NETHER_STEEL_PICKAXE)
+                .add(ModItems.NETHER_STEEL_HAMMER)
                 .add(ModItems.NETHER_STEEL_GREATSWORD)
-                .add(Items.SHIELD)
-                .add(Items.TRIDENT)
-                .add(Items.MACE)
-                .add(Items.BOW)
-                .add(Items.CROSSBOW)
         ;
 
         getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
@@ -45,11 +69,16 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_HELMET)
+                .add(ModItems.ECHO_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .add(ModItems.ECHO_STEEL_HELMET)
                 .setReplace(false)
         ;
 
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(ModItems.NETHER_STEEL_PICKAXE)
+                .add(ModItems.NETHER_STEEL_HAMMER)
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.AXES)
@@ -71,6 +100,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
                 .add(ModItems.NETHER_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .add(ModItems.ECHO_STEEL_HELMET)
                 .setReplace(false)
         ;
 
@@ -94,18 +127,22 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.HEAD_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_HELMET)
+                .add(ModItems.ECHO_STEEL_HELMET)
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.CHEST_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
+                .add(ModItems.ECHO_STEEL_CHESTPLATE)
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.LEG_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_LEGGINGS)
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.FOOT_ARMOR_ENCHANTABLE)
                 .add(ModItems.NETHER_STEEL_BOOTS)
+                .add(ModItems.ECHO_STEEL_BOOTS)
                 .setReplace(false)
         ;
     }

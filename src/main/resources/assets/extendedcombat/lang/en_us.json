@@ -8,6 +8,10 @@
 
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
+  "item.extendedcombat.nether_steel_hammer": "Nether Steel Hammer",
+
+  "item.extendedcombat.black_apple": "Black Apple",
+  "item.extendedcombat.golden_steak": "Golden Steak",
 
   "block.extendedcombat.nether_steel_block": "Block of Nether Steel",
   "block.extendedcombat.warding_stone": "Warding Stone",
@@ -26,6 +30,10 @@
   "item.extendedcombat.nether_steel_chestplate": "Nether Steel Chestplate",
   "item.extendedcombat.nether_steel_leggings": "Nether Steel Leggings",
   "item.extendedcombat.nether_steel_boots": "Nether Steel Boots",
+  "item.extendedcombat.echo_steel_helmet": "Echo Steel Helmet",
+  "item.extendedcombat.echo_steel_chestplate": "Echo Steel Chestplate",
+  "item.extendedcombat.echo_steel_leggings": "Echo Steel Leggings",
+  "item.extendedcombat.echo_steel_boots": "Echo Steel Boots",
 
   "enchantment.extendedcombat.dash": "Dash",
   "enchantment.extendedcombat.air_jump": "Air Jump",
@@ -33,13 +41,35 @@
   "enchantment.extendedcombat.obscurity": "Obscurity",
   "enchantment.extendedcombat.vanity": "Vanity",
   "enchantment.extendedcombat.stealth": "Stealth",
+  "enchantment.extendedcombat.keepsake": "Keepsake",
+
+  "effect.extendedcombat.shrinking": "Shrinking",
+
+  "item.minecraft.potion.effect.shrinking_1.00": "Shrinking Potion",
+  "item.minecraft.splash_potion.effect.shrinking_1.00": "Shrinking Splash Potion",
+  "item.minecraft.lingering_potion.effect.shrinking_1.00": "Shrinking Lingering Potion",
+  "item.minecraft.potion.effect.shrinking_2.00": "Shrinking Potion",
+  "item.minecraft.splash_potion.effect.shrinking_2.00": "Shrinking Splash Potion",
+  "item.minecraft.lingering_potion.effect.shrinking_2.00": "Shrinking Lingering Potion",
+  "item.minecraft.potion.effect.shrinking_3.00": "Shrinking Potion",
+  "item.minecraft.splash_potion.effect.shrinking_3.00": "Shrinking Splash Potion",
+  "item.minecraft.lingering_potion.effect.shrinking_3.00": "Shrinking Lingering Potion",
+  "item.minecraft.potion.effect.shrinking_4.00": "Shrinking Potion",
+  "item.minecraft.splash_potion.effect.shrinking_4.00": "Shrinking Splash Potion",
+  "item.minecraft.lingering_potion.effect.shrinking_4.00": "Shrinking Lingering Potion",
+  "item.minecraft.potion.effect.shrinking": "Shrinking Potion",
+  "item.minecraft.splash_potion.effect.shrinking": "Shrinking Splash Potion",
+  "item.minecraft.lingering_potion.effect.shrinking": "Shrinking Lingering Potion",
+  "item.minecraft.potion.effect.permanent_shrinking": "Permanent Shrinking Potion",
+  "item.minecraft.splash_potion.effect.permanent_shrinking": "Permanent Shrinking Splash Potion",
+  "item.minecraft.lingering_potion.effect.permanent_shrinking": "Permanent Shrinking Lingering Potion",
 
   "entity.extendedcombat.statue": "Statue",
 
   "key.extendedcombat.dash": "Dash",
   "key.extendedcombat.blink": "Blink",
 
-  "key.categories.extendedcombatenchantments": "Enchantments",
+  "key.categories.extendedcombatenchantments": "Enchantment Controls",
 
   "extendedcombat.midnightconfig.title": "Common Settings",
   "extendedcombat.midnightconfig.disableDurability": "Disable Durability",
