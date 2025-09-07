@@ -10,7 +10,14 @@
 
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
+  "item.extendedcombat.wooden_hammer": "Wooden Hammer",
+  "item.extendedcombat.stone_hammer": "Stone Hammer",
+  "item.extendedcombat.iron_hammer": "Iron Hammer",
+  "item.extendedcombat.golden_hammer": "Golden Hammer",
+  "item.extendedcombat.diamond_hammer": "Diamond Hammer",
+  "item.extendedcombat.netherite_hammer": "Netherite Hammer",
   "item.extendedcombat.nether_steel_hammer": "Nether Steel Hammer",
+  "item.extendedcombat.echo_steel_hammer": "Echo Steel Hammer",
 
   "item.extendedcombat.black_apple": "Black Apple",
   "item.extendedcombat.golden_steak": "Golden Steak",
