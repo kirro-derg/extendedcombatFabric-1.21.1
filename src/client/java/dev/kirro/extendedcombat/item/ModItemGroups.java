@@ -17,8 +17,10 @@ public class ModItemGroups {
                     .displayName(Text.translatable("itemgroup.extended_combat_items"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.NETHER_STEEL_INGOT);
+                        entries.add(ModItems.ECHO_STEEL_INGOT);
                         entries.add(ModItems.HANDLE);
                         entries.add(ModItems.NETHER_STEEL_UPGRADE);
+                        entries.add(ModItems.ECHO_STEEL_UPGRADE);
 
                         entries.add(ModBlocks.NETHER_STEEL_BLOCK);
                         entries.add(ModBlocks.WARDING_STONE);
