@@ -23,7 +23,6 @@ import org.jetbrains.annotations.Nullable;
 public class WardingStoneBlock extends Block {
     public static final MapCodec<WardingStoneBlock> CODEC = createCodec(WardingStoneBlock::new);
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
-    private PlayerEntity player;
 
     @Override
     public MapCodec<? extends WardingStoneBlock> getCodec() {

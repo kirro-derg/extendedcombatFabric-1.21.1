@@ -44,7 +44,7 @@ public class AirMobilityBehavior implements CommonTickingComponent {
                 if (resetBypassTicks == 0) {
                     ticksInAir = 0;
                 }
-            } else if (ExtendedCombatUtil.isGrounded(entity) && ExtendedCombatUtil.inAir(entity, 1)) {
+            } else if (!ExtendedCombatUtil.isGrounded(entity) && ExtendedCombatUtil.inAir(entity, 1)) {
                 ticksInAir++;
             }
         } else {

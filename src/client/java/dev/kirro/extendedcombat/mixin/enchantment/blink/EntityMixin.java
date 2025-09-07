@@ -4,12 +4,14 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.kirro.extendedcombat.behavior.enchantment.BlinkBehavior;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
 public class EntityMixin {

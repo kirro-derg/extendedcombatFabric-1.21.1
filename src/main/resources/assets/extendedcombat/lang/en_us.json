@@ -2,8 +2,10 @@
   "itemgroup.extended_combat_items": "Extended Combat",
 
   "item.extendedcombat.nether_steel_ingot": "Nether Steel Ingot",
+  "item.extendedcombat.echo_steel_ingot": "Echo Steel Ingot",
   "item.extendedcombat.handle": "Sturdy Handle",
   "item.extendedcombat.nether_steel_upgrade": "Nether Steel Upgrade Template",
+  "item.extendedcombat.echo_steel_upgrade": "Echo Steel Upgrade Template",
   "item.extendedcombat.statue": "Statue",
 
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
@@ -12,6 +14,7 @@
 
   "item.extendedcombat.black_apple": "Black Apple",
   "item.extendedcombat.golden_steak": "Golden Steak",
+  "item.extendedcombat.honey_bread": "Honey Bread",
 
   "block.extendedcombat.nether_steel_block": "Block of Nether Steel",
   "block.extendedcombat.warding_stone": "Warding Stone",
@@ -23,8 +26,6 @@
   "tooltip.extendedcombat.warding_stone_ln1": "Once placed, this stone will disable",
   "tooltip.extendedcombat.warding_stone_ln2": "mob spawning in a 55 block radius",
   "tooltip.extendedcombat.warding_stone_ln3": "around itself",
-  "tooltip.extendedcombat.nether_steel_ingot_ln1": "This metal has strangely durable properties, ",
-  "tooltip.extendedcombat.nether_steel_ingot_ln2": "and seems to absorb experience points rather well",
 
   "item.extendedcombat.nether_steel_helmet": "Nether Steel Helmet",
   "item.extendedcombat.nether_steel_chestplate": "Nether Steel Chestplate",
@@ -35,6 +36,8 @@
   "item.extendedcombat.echo_steel_leggings": "Echo Steel Leggings",
   "item.extendedcombat.echo_steel_boots": "Echo Steel Boots",
 
+  "item.extendedcombat.echo_reinforced_elytra": "Echo Steel Reinforced Elytra",
+
   "enchantment.extendedcombat.dash": "Dash",
   "enchantment.extendedcombat.air_jump": "Air Jump",
   "enchantment.extendedcombat.blink": "Blink",
@@ -42,6 +45,7 @@
   "enchantment.extendedcombat.vanity": "Vanity",
   "enchantment.extendedcombat.stealth": "Stealth",
   "enchantment.extendedcombat.keepsake": "Keepsake",
+  "enchantment.extendedcombat.burst": "Burst",
 
   "effect.extendedcombat.shrinking": "Shrinking",
 
@@ -68,13 +72,16 @@
 
   "key.extendedcombat.dash": "Dash",
   "key.extendedcombat.blink": "Blink",
+  "key.extendedcombat.crawl": "Crawl",
 
-  "key.categories.extendedcombatenchantments": "Enchantment Controls",
+  "key.categories.enchantments": "Enchantments",
 
   "extendedcombat.midnightconfig.title": "Common Settings",
   "extendedcombat.midnightconfig.disableDurability": "Disable Durability",
   "extendedcombat.midnightconfig.xpRepairActive": "XP Repair",
   "extendedcombat.midnightconfig.airMobilityActive": "Increase Mobility In Air",
   "extendedcombat.midnightconfig.category.client": "Client Settings",
-  "extendedcombat.midnightconfig.allowDuplicateKeybinds": "Allow Duplicate Keybinds"
+  "extendedcombat.midnightconfig.allowDuplicateKeybinds": "Allow Duplicate Keybinds",
+  "extendedcombat.midnightconfig.wardingStoneActiveRadius": "Warding Stone Active Radius",
+  "extendedcombat.midnightconfig.showArmorSleeves": "Show Armor Sleeves"
 }

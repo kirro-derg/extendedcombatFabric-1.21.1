@@ -17,6 +17,7 @@ import java.util.function.UnaryOperator;
 public class ModEnchantmentEffectComponentTypes {
     public static final ComponentType<AirJumpEnchantmentEffect> AIR_JUMP = register("air_jump", builder -> builder.codec(AirJumpEnchantmentEffect.CODEC));
     public static final ComponentType<DashEnchantmentEffect> DASH = register("dash", builder -> builder.codec(DashEnchantmentEffect.CODEC));
+    public static final ComponentType<BurstEnchantmentEffect> BURST = register("burst", builder -> builder.codec(BurstEnchantmentEffect.CODEC));
     public static final ComponentType<BlinkEnchantmentEffect> BLINK = register("blink", builder -> builder.codec(BlinkEnchantmentEffect.CODEC));
     public static final ComponentType<ObscurityEnchantmentEffect> OBSCURITY = register("obscurity", builder -> builder.codec(ObscurityEnchantmentEffect.CODEC));
     public static final ComponentType<VanityEnchantmentEffect> VANITY = register("vanity", builder -> builder.codec(VanityEnchantmentEffect.CODEC));

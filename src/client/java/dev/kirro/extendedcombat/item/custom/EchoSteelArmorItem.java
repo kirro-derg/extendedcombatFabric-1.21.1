@@ -1,9 +1,10 @@
 package dev.kirro.extendedcombat.item.custom;
 
-import dev.kirro.extendedcombat.effects.ModStatusEffects;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -16,9 +17,8 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
-import virtuoel.pehkui.api.ScaleTypes;
 
-public class EchoSteelArmorItem extends ArmorItem {
+public class EchoSteelArmorItem extends ModArmorItem {
 
     public EchoSteelArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);
@@ -39,6 +39,10 @@ public class EchoSteelArmorItem extends ArmorItem {
         if(!world.isClient()) {
             if (entity instanceof LivingEntity living && hasFullSuitOfArmorOn(living)) {
                 evaluateArmorEffects(living);
+                ItemStack head = living.getEquippedStack(EquipmentSlot.HEAD);
+                if (!EnchantmentHelper.hasAnyEnchantmentsWith(head, ModEnchantmentEffectComponentTypes.VANITY) && head.isOf(this)) {
+                    living.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 100, 0, false, false, false));
+                }
             }
             super.inventoryTick(stack, world, entity, slot, selected);
         }
@@ -47,7 +51,6 @@ public class EchoSteelArmorItem extends ArmorItem {
     private void evaluateArmorEffects(LivingEntity entity) {
             if (hasCorrectArmorOn(entity)) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20, 1, false, false, false));
-                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 100, 0, false, false, false));
             }
     }
 
@@ -73,9 +76,9 @@ public class EchoSteelArmorItem extends ArmorItem {
         ItemStack chestplate = (entity.getEquippedStack(EquipmentSlot.CHEST));
         ItemStack helmet = (entity.getEquippedStack(EquipmentSlot.HEAD));
 
-        return helmet.isIn(ModItemTags.ECHO_ARMOR)
-                && chestplate.isIn(ModItemTags.ECHO_ARMOR)
-                && leggings.isIn(ModItemTags.ECHO_ARMOR)
-                && boots.isIn(ModItemTags.ECHO_ARMOR);
+        return helmet.isIn(ModItemTags.ECHO_WEARABLES)
+                && chestplate.isIn(ModItemTags.ECHO_WEARABLES)
+                && leggings.isIn(ModItemTags.ECHO_WEARABLES)
+                && boots.isIn(ModItemTags.ECHO_WEARABLES);
     }
 }

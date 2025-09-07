@@ -11,16 +11,16 @@
       }
     }
   },
+  "exclusive_set": "#extendedcombat:exclusive_set/durability",
   "max_cost": {
     "base": 75,
-    "per_level_above_first": 25
+    "per_level_above_first": 75
   },
   "max_level": 1,
   "min_cost": {
     "base": 25,
     "per_level_above_first": 25
   },
-  "primary_items": "#minecraft:enchantable/durability",
   "slots": [
     "any"
   ],

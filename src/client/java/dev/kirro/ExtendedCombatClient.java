@@ -3,7 +3,6 @@ package dev.kirro;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
-import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
 import dev.kirro.extendedcombat.entity.render.ChairRenderer;
 import dev.kirro.extendedcombat.event.AirJumpRenderEvent;
@@ -16,20 +15,29 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
+import java.util.Locale;
 import java.util.function.Supplier;
 
-public class ExtendedcombatClient implements ClientModInitializer {
-	@Override
+public class ExtendedCombatClient implements ClientModInitializer {
+
+    @Override
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FRAMED_GLASS_PANEL, RenderLayer.getCutout());
+
+        FabricLoader.getInstance().getModContainer(ExtendedCombat.MOD_ID).ifPresent(modContainer -> {
+            ResourceManagerHelper.registerBuiltinResourcePack(ExtendedCombat.id("extendedcombat_programmer_art"), modContainer, ResourcePackActivationType.NORMAL);
+        });
 
 		ModEntityModelLayers.registerLayerDefinitions();
 		EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
@@ -42,12 +50,12 @@ public class ExtendedcombatClient implements ClientModInitializer {
 			"key.extendedcombat.dash",
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_LEFT_SHIFT,
-			"key.categories.extendedcombatenchantments")));
+			"key.categories.enchantments")));
 	public static final KeyBinding BLINK = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
 			"key.extendedcombat.blink",
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_B,
-			"key.categories.extendedcombatenchantments")));
+			"key.categories.enchantments")));
 
 	private static KeyBinding registerKeyBinding(Supplier<KeyBinding> supplier) {
 		KeyBinding keyBinding = supplier.get();

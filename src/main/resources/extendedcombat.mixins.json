@@ -14,6 +14,7 @@
       "enchantment.blink.HeldItemFeatureRendererMixin",
       "enchantment.blink.EntityMixin",
       "enchantment.obscurity.LivingEntityRendererMixin",
+      "enchantment.obscurity.EndermanEntityMixin",
       "enchantment.vanity.ArmorFeatureRendererMixin",
       "enchantment.stealth.EntityMixin",
       "potion.shrinking.LivingEntityMixin"
@@ -27,7 +28,10 @@
       "client.ElytraFeatureRendererMixin",
       "duplicates.ControlsListWidgetKeyBindingEntryMixin",
       "duplicates.GameOptionsMixin",
-      "duplicates.KeyBindingMixin"
+      "duplicates.KeyBindingMixin",
+      "client.PlayerEntityRendererMixin",
+      "client.ArmorStandEntityRendererMixin",
+      "client.HeldItemRendererMixin"
     ],
 	"injectors": {
 		"defaultRequire": 1

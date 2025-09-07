@@ -37,14 +37,17 @@ public class ModEnchantments {
     public static final RegistryKey<Enchantment> KEEPSAKE =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "keepsake"));
 
+    public static final RegistryKey<Enchantment> BURST =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "burst"));
+
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
         effectsAdder.addEffects(builder);
         return builder.build(id);
     }
 
-    public static Enchantment createKeepsake(Identifier id, RegistryEntryList<Item> supportedItems, RegistryEntryList<Item> primaryItems, int weight, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
-        Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, primaryItems, weight, maxLevel, Enchantment.leveledCost(25, 25), Enchantment.leveledCost(75, 25), 4, slot));
+    public static Enchantment createCustom(Identifier id, RegistryEntryList<Item> supportedItems, int weight, int maxLevel, Enchantment.Cost minCost, Enchantment.Cost maxCost, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
+        Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, weight, maxLevel, minCost, maxCost, 4, slot));
         effectsAdder.addEffects(builder);
         return builder.build(id);
     }
@@ -112,16 +115,29 @@ public class ModEnchantments {
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
                         )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET))));
 
-        registerable.register(KEEPSAKE, createKeepsake(KEEPSAKE.getValue(),
+        registerable.register(KEEPSAKE, createCustom(KEEPSAKE.getValue(),
                 items.getOrThrow(ModItemTags.KEEPSAKE_ENCHANTABLE),
-                items.getOrThrow(ItemTags.DURABILITY_ENCHANTABLE),
                 2,
                 1,
+                Enchantment.leveledCost(25, 25),
+                Enchantment.leveledCost(75, 75),
                 AttributeModifierSlot.ANY, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.KEEPSAKE,
                         new KeepsakeEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
-                        ))));
+                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.DURABILITY_EXCLUSIVE_SET))));
+
+        registerable.register(BURST, createCustom(BURST.getValue(),
+                items.getOrThrow(ModItemTags.ELYTRA_ENCHANTABLE),
+                2,
+                3,
+                Enchantment.leveledCost(25, 25),
+                Enchantment.leveledCost(75, 75),
+                AttributeModifierSlot.CHEST, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.BURST,
+                        new BurstEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.05f, 0.5f))
+                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.ELYTRA_EXCLUSIVE_SET))));
     }
 
     public interface EffectsAdder {

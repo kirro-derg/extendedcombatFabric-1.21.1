@@ -1,7 +1,5 @@
 package dev.kirro.extendedcombat.item.custom;
 
-import com.google.common.collect.ImmutableMap;
-import dev.kirro.extendedcombat.effects.ModStatusEffects;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
@@ -18,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 
-public class NetherSteelArmorItem extends ArmorItem {
+public class NetherSteelArmorItem extends ModArmorItem {
 
     public NetherSteelArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);
@@ -92,9 +90,9 @@ public class NetherSteelArmorItem extends ArmorItem {
         ItemStack chestplate = (entity.getEquippedStack(EquipmentSlot.CHEST));
         ItemStack helmet = (entity.getEquippedStack(EquipmentSlot.HEAD));
 
-        return helmet.isIn(ModItemTags.NETHER_STEEL_ARMOR)
-                && chestplate.isIn(ModItemTags.NETHER_STEEL_ARMOR)
-                && leggings.isIn(ModItemTags.NETHER_STEEL_ARMOR)
-                && boots.isIn(ModItemTags.NETHER_STEEL_ARMOR);
+        return helmet.isIn(ModItemTags.NETHER_STEEL_WEARABLES)
+                && chestplate.isIn(ModItemTags.NETHER_STEEL_WEARABLES)
+                && leggings.isIn(ModItemTags.NETHER_STEEL_WEARABLES)
+                && boots.isIn(ModItemTags.NETHER_STEEL_WEARABLES);
     }
 }

@@ -2,7 +2,7 @@ package dev.kirro.extendedcombat.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
+import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.villager.ModPOI;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -33,7 +33,7 @@ public class WardingStoneDisableSpawnMixin {
 
     @Unique
     private static boolean isWardingStoneNearby(WorldAccess world, BlockPos pos, boolean original) {
-        int radius = 55;
+        int radius = ModConfig.wardingStoneActiveRadius;
 
         if (!(world instanceof ServerWorld serverWorld)) {
             return original;

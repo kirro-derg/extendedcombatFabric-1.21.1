@@ -5,6 +5,8 @@
     "extendedcombat:blink",
     "extendedcombat:obscurity",
     "extendedcombat:vanity",
-    "extendedcombat:stealth"
+    "extendedcombat:stealth",
+    "minecraft:mending",
+    "extendedcombat:burst"
   ]
 }

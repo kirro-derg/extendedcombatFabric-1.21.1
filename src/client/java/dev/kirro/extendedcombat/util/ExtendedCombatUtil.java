@@ -30,8 +30,24 @@ public class ExtendedCombatUtil {
         return !living.isFallFlying() && living.getVehicle() == null && !living.isClimbing();
     }
 
+    public static boolean isGroundedElytra(LivingEntity living, boolean allowWater) {
+        if (living instanceof PlayerEntity player && player.getAbilities().flying) {
+            return false;
+        }
+        if (!allowWater) {
+            if (living.isTouchingWater() || living.isSwimming()) {
+                return false;
+            }
+        }
+        return living.isFallFlying() && living.getVehicle() == null && !living.isClimbing();
+    }
+
     public static boolean isGrounded(LivingEntity living) {
         return isGrounded(living, false);
+    }
+
+    public static boolean isGroundedElytra(LivingEntity living) {
+        return isGroundedElytra(living, false);
     }
 
     public static boolean inAir(Entity entity, double distanceFromGround) {

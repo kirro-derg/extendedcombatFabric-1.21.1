@@ -17,4 +17,10 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 1), 1.0F)
             .alwaysEdible()
             .build();
+    public static final FoodComponent HONEY_BREAD = new FoodComponent.Builder()
+            .nutrition(5)
+            .saturationModifier(0.6f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20), 1.0f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 80), 0.01f)
+            .build();
 }
