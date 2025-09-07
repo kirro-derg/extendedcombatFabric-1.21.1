@@ -29,14 +29,28 @@ public class ModItemGroups {
 
                         entries.add(ModItems.NETHER_STEEL_GREATSWORD);
                         entries.add(ModItems.NETHER_STEEL_PICKAXE);
+                        entries.add(ModItems.WOODEN_HAMMER);
+                        entries.add(ModItems.STONE_HAMMER);
+                        entries.add(ModItems.IRON_HAMMER);
+                        entries.add(ModItems.GOLDEN_HAMMER);
+                        entries.add(ModItems.DIAMOND_HAMMER);
+                        entries.add(ModItems.NETHERITE_HAMMER);
                         entries.add(ModItems.NETHER_STEEL_HAMMER);
+                        entries.add(ModItems.ECHO_STEEL_HAMMER);
 
                         entries.add(ModItems.NETHER_STEEL_HELMET);
                         entries.add(ModItems.NETHER_STEEL_CHESTPLATE);
                         entries.add(ModItems.NETHER_STEEL_LEGGINGS);
                         entries.add(ModItems.NETHER_STEEL_BOOTS);
+                        entries.add(ModItems.ECHO_STEEL_HELMET);
+                        entries.add(ModItems.ECHO_STEEL_CHESTPLATE);
+                        entries.add(ModItems.ECHO_STEEL_LEGGINGS);
+                        entries.add(ModItems.ECHO_STEEL_BOOTS);
+                        entries.add(ModItems.ECHO_REINFORCED_ELYTRA);
 
                         entries.add(ModItems.BLACK_APPLE);
+                        entries.add(ModItems.GOLDEN_STEAK);
+                        entries.add(ModItems.HONEY_BREAD);
 
                     }).build());
 

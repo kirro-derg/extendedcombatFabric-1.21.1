@@ -1,27 +1,26 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
-import dev.kirro.ExtendedcombatClient;
+import dev.kirro.ExtendedCombatClient;
 import dev.kirro.extendedcombat.enchantment.custom.BlinkEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
-import dev.kirro.extendedcombat.enchantment.payload.BlinkSyncPayload;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponent {
-    private final PlayerEntity player;
+    private final LivingEntity player;
     private boolean refresh = false, hasBlink = false, wasPressingKey = false, invisible = false;
     private int cooldown = 0, lastCooldown = 0, duration = 0;
 
-    public BlinkBehavior(PlayerEntity player) {
+    public BlinkBehavior(LivingEntity player) {
         this.player = player;
     }
 
@@ -73,7 +72,7 @@ public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponen
     public void clientTick() {
         tick();
         if (hasBlink && !player.isSpectator() && player == MinecraftClient.getInstance().player) {
-            boolean pressingKey = ExtendedcombatClient.BLINK.isPressed();
+            boolean pressingKey = ExtendedCombatClient.BLINK.isPressed();
             if (pressingKey && !wasPressingKey && canUse()) {
                 use();
                 BlinkParticlePayload.addParticles(player);

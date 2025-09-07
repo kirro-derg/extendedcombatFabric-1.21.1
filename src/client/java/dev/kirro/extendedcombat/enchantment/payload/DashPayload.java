@@ -6,6 +6,8 @@ import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
@@ -32,6 +34,9 @@ public record DashPayload() implements CustomPayload {
             DashBehavior dash = ModEntityComponents.DASH.get(context.player());
             if (dash.hasDash() && dash.canUse()) {
                 dash.use();
+                PlayerLookup.tracking(context.player()).forEach(foundPlayer -> DashParticlePayload.send(foundPlayer, context.player().getId()));
+            } else if (dash.hasDash() && dash.canUseWithElytra()) {
+                dash.useWithElytra(context.player().getOffHandStack());
                 PlayerLookup.tracking(context.player()).forEach(foundPlayer -> DashParticlePayload.send(foundPlayer, context.player().getId()));
             }
         }

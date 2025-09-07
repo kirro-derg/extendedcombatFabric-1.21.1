@@ -11,7 +11,7 @@ public class AirMobilityEvent implements MultiplyMovementSpeedEvent{
     public float multiply(float currentMultiplier, World world, LivingEntity living) {
         if (ModConfig.airMobilityActive && living.isOnGround()) {
             AirMobilityBehavior mobility = ModEntityComponents.AIR_MOBILITY.getNullable(living);
-            if (mobility != null && mobility.getTicksInAir() > 10) {
+            if (mobility != null && mobility.getTicksInAir() > 5) {
                 return currentMultiplier * 1.5f;
             }
         }

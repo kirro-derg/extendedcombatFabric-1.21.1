@@ -1,0 +1,33 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.extendedcombat.burst"
+  },
+  "effects": {
+    "extendedcombat:burst": {
+      "strength": {
+        "type": "minecraft:add",
+        "value": {
+          "type": "minecraft:linear",
+          "base": 1.05,
+          "per_level_above_first": 0.5
+        }
+      }
+    }
+  },
+  "exclusive_set": "#extendedcombat:exclusive_set/elytra",
+  "max_cost": {
+    "base": 75,
+    "per_level_above_first": 75
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 25
+  },
+  "slots": [
+    "chest"
+  ],
+  "supported_items": "#extendedcombat:enchantable/elytra",
+  "weight": 2
+}

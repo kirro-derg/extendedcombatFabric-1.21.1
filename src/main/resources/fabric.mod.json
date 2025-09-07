@@ -19,10 +19,10 @@
 			"dev.kirro.ExtendedCombat"
 		],
 		"client": [
-			"dev.kirro.ExtendedcombatClient"
+          "dev.kirro.ExtendedCombatClient"
 		],
 		"fabric-datagen": [
-			"dev.kirro.ExtendedcombatDataGenerator"
+          "dev.kirro.ExtendedCombatDataGenerator"
 		],
 		"cardinal-components-entity": [
 			"dev.kirro.extendedcombat.entity.components.ModEntityComponents"
@@ -46,9 +46,7 @@
 			"extendedcombat:air_jump",
 			"extendedcombat:air_mobility",
 			"extendedcombat:dash",
-			"extendedcombat:blink",
-            "extendedcombat:crawl",
-            "extendedcombat:sit"
+			"extendedcombat:blink"
 		]
 	}
 }

@@ -9,6 +9,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -35,9 +36,8 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.CHESTPLATE, 12);
                 map.put(ArmorItem.Type.HELMET, 5);
                 map.put(ArmorItem.Type.BODY, 13);
-            }), 44, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, () -> Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT),
+            }), 44, SoundEvents.ITEM_ARMOR_EQUIP_WOLF, () -> Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT),
                     List.of(new ArmorMaterial.Layer(Identifier.of(ExtendedCombat.MOD_ID, "echo_steel"))), 5, 0.7f));
-
 
     public static RegistryEntry<ArmorMaterial> registerArmorMaterials(String name, Supplier<ArmorMaterial> material) {
         return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(ExtendedCombat.MOD_ID, name), material.get());

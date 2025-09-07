@@ -4,12 +4,20 @@ import dev.kirro.ExtendedCombat;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 
-public class ModItemTags {
-    public static final TagKey<Item> PERSISTENT_DURABILITY = TagKey.of(RegistryKeys.ITEM, Identifier.of(ExtendedCombat.MOD_ID, "persistent_durability"));
-    public static final TagKey<Item> REPAIRABLE_ITEMS = TagKey.of(RegistryKeys.ITEM, Identifier.of(ExtendedCombat.MOD_ID, "repairable_items"));
-    public static final TagKey<Item> KEEPSAKE_ENCHANTABLE = TagKey.of(RegistryKeys.ITEM, Identifier.of(ExtendedCombat.MOD_ID, "enchantable/keepsake"));
-    public static final TagKey<Item> NETHER_STEEL_ARMOR = TagKey.of(RegistryKeys.ITEM, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_armor"));
-    public static final TagKey<Item> ECHO_ARMOR = TagKey.of(RegistryKeys.ITEM, Identifier.of(ExtendedCombat.MOD_ID, "echo_armor"));
+public interface ModItemTags {
+    TagKey<Item> PERSISTENT_DURABILITY = create("persistent_durability");
+    TagKey<Item> REPAIRABLE_ITEMS = create("repairable_items");
+    TagKey<Item> KEEPSAKE_ENCHANTABLE = create("enchantable/keepsake");
+    TagKey<Item> NETHER_STEEL_WEARABLES = create("nether_steel_wearables");
+    TagKey<Item> NETHER_STEEL_TOOLS = create("nether_steel_tools");
+    TagKey<Item> ECHO_WEARABLES = create("echo_wearables");
+    TagKey<Item> ECHO_ITEMS = create("echo_items");
+    TagKey<Item> SCALED_ITEMS = create("scaled_items");
+    TagKey<Item> SLEEVED_ARMOR = create("sleeved_armor");
+    TagKey<Item> ELYTRA_ENCHANTABLE = create("enchantable/elytra");
+
+    private static TagKey<Item> create(String id) {
+        return TagKey.of(RegistryKeys.ITEM, ExtendedCombat.id(id));
+    }
 }

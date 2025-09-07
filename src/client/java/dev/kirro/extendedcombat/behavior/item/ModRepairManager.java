@@ -21,11 +21,12 @@ public class ModRepairManager {
         List<ItemStack> allItems = new ArrayList<>();
         allItems.addAll(player.getInventory().main);
         allItems.addAll(player.getInventory().armor);
+        allItems.addAll(player.getInventory().offHand);
 
 
         for (ItemStack stack : allItems) {
             if (ModConfig.xpRepairActive && stack != null && stack.isIn(ModItemTags.REPAIRABLE_ITEMS) && stack.isDamaged()) {
-                int repairAmount = xpAmount * 16;
+                int repairAmount = (xpAmount * 16);
                 int damage = stack.getDamage();
                 int toRepair = Math.min(repairAmount, damage);
 
