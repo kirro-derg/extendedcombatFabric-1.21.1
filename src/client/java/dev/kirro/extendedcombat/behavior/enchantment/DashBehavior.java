@@ -24,6 +24,9 @@ import net.minecraft.util.math.Vec3d;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity player;
     private boolean refresh = false;
@@ -145,12 +148,12 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
         player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), 1.0f, 1.0f);
     }
 
-    public void useWithElytra(ItemStack stack) {
+    public void useWithElytra(ItemStack off) {
         resetWithElytra();
         usedMidair = true;
         setImmunityTicks(0);
         if (!player.isCreative()) {
-            stack.decrement(BurstEnchantmentEffect.getLevel(player));
+            useGunpowder(off);
         }
         float strength = BurstEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
@@ -158,6 +161,12 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
         player.fallDistance = 0;
         player.velocityModified = true;
         player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), 1.0f, 1.0f);
+    }
+
+    private void useGunpowder(ItemStack offhand) {
+        if (offhand.isOf(Items.GUNPOWDER)) {
+            offhand.decrement(BurstEnchantmentEffect.getLevel(player));
+        }
     }
 
     public static boolean wasUsedMidair() {

@@ -1,7 +1,7 @@
 package dev.kirro.extendedcombat.mixin.client;
 
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
-import dev.kirro.extendedcombat.entity.render.model.ModArmorFeatureRenderer;
+import dev.kirro.extendedcombat.entity.render.model.SleeveFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.ModElytraFeatureRenderer;
 import net.minecraft.client.render.entity.ArmorStandEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -22,7 +22,7 @@ public abstract class ArmorStandEntityRendererMixin extends LivingEntityRenderer
 
     @Inject(method = "<init>", at = @At("TAIL"))
     public void extendedcombat$armorSleeves(EntityRendererFactory.Context context, CallbackInfo ci) {
-        this.addFeature(new ModArmorFeatureRenderer<>(this,
+        this.addFeature(new SleeveFeatureRenderer<>(this,
                 new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.PLAYER_INNER_ARMOR))));
         this.addFeature(new ModElytraFeatureRenderer<>(this,
                 context.getModelLoader()));

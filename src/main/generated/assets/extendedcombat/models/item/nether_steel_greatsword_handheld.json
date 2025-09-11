@@ -1,5 +1,5 @@
 {
-  "parent": "extendedcombat:item/scaled_item_handheld",
+  "parent": "extendedcombat:item/greatsword_template_handheld",
   "textures": {
     "layer0": "extendedcombat:item/nether_steel_greatsword_handheld"
   }

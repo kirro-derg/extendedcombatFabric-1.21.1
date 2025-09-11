@@ -17,16 +17,16 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
-import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ExtendedCombatClient implements ClientModInitializer {
@@ -44,7 +44,9 @@ public class ExtendedCombatClient implements ClientModInitializer {
 
 		registerEvents();
 		registerPayloads();
-	}
+
+
+    }
 
 	public static final KeyBinding DASH = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
 			"key.extendedcombat.dash",

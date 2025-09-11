@@ -26,7 +26,15 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
 
         getOrCreateTagBuilder(ModItemTags.SCALED_ITEMS)
+                .add(ModItems.WOODEN_GREATSWORD)
+                .add(ModItems.STONE_GREATSWORD)
+                .add(ModItems.IRON_GREATSWORD)
+                .add(ModItems.GOLDEN_GREATSWORD)
+                .add(ModItems.DIAMOND_GREATSWORD)
+                .add(ModItems.NETHERITE_GREATSWORD)
                 .add(ModItems.NETHER_STEEL_GREATSWORD)
+                .add(ModItems.ECHO_STEEL_GREATSWORD)
+
         ;
 
         getOrCreateTagBuilder(ModItemTags.SLEEVED_ARMOR)
@@ -68,6 +76,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.ECHO_ITEMS)
                 .add(ModItems.ECHO_STEEL_HAMMER)
+                .add(ModItems.ECHO_STEEL_GREATSWORD)
         ;
 
         getOrCreateTagBuilder(ModItemTags.KEEPSAKE_ENCHANTABLE)
@@ -77,6 +86,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_STEEL_HELMET)
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
                 .add(ModItems.ECHO_STEEL_HAMMER)
+                .add(ModItems.ECHO_STEEL_GREATSWORD)
                 .addTag(ItemTags.DURABILITY_ENCHANTABLE)
         ;
 
@@ -100,7 +110,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.DIAMOND_HAMMER)
                 .add(ModItems.NETHERITE_HAMMER)
                 .add(ModItems.NETHER_STEEL_HAMMER)
-                .add(ModItems.ECHO_STEEL_HAMMER)
                 .setReplace(false)
         ;
 
@@ -149,7 +158,14 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.SWORDS)
+                .add(ModItems.WOODEN_GREATSWORD)
+                .add(ModItems.STONE_GREATSWORD)
+                .add(ModItems.IRON_GREATSWORD)
+                .add(ModItems.GOLDEN_GREATSWORD)
+                .add(ModItems.DIAMOND_GREATSWORD)
+                .add(ModItems.NETHERITE_GREATSWORD)
                 .add(ModItems.NETHER_STEEL_GREATSWORD)
+                .add(ModItems.ECHO_STEEL_GREATSWORD)
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.HOES)

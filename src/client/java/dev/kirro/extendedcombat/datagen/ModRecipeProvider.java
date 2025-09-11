@@ -7,11 +7,16 @@ import dev.kirro.extendedcombat.potion.ModPotions;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
+import net.minecraft.component.ComponentType;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.LingeringPotionItem;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -107,7 +112,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.SOUL_SOIL), conditionsFromItem(Items.SOUL_SOIL))
                 .offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_GREATSWORD)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.NETHER_STEEL_GREATSWORD)
                 .pattern(" IN")
                 .pattern("GNI")
                 .pattern("HG ")
@@ -117,6 +122,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('N', ModItems.NETHER_STEEL_INGOT)
                 .criterion(hasItem(ModItems.NETHER_STEEL_INGOT), conditionsFromItem(ModItems.NETHER_STEEL_INGOT))
                 .offerTo(exporter);
+
+        ItemStack potion = new ItemStack(Items.LINGERING_POTION);
+        PotionContentsComponent.createStack(potion.getItem(), Potions.POISON);
+        Item poison = potion.getItem();
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.POISON_DAGGER)
+                .pattern(" PD")
+                .pattern(" D ")
+                .pattern("E  ")
+                .input('E', Items.ECHO_SHARD)
+                .input('D', Items.DISC_FRAGMENT_5)
+                .input('P', poison)
+                .criterion(hasItem(Items.ECHO_SHARD), conditionsFromItem(Items.ECHO_SHARD))
+                .offerTo(exporter);
+
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_INGOT)
                 .pattern("MMM")

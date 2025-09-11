@@ -8,7 +8,15 @@
   "item.extendedcombat.echo_steel_upgrade": "Echo Steel Upgrade Template",
   "item.extendedcombat.statue": "Statue",
 
+  "item.extendedcombat.wooden_greatsword": "Wooden Greatsword",
+  "item.extendedcombat.stone_greatsword": "Stone Greatsword",
+  "item.extendedcombat.iron_greatsword": "Iron Greatsword",
+  "item.extendedcombat.golden_greatsword": "Golden Greatsword",
+  "item.extendedcombat.diamond_greatsword": "Diamond Greatsword",
+  "item.extendedcombat.netherite_greatsword": "Netherite Greatsword",
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
+  "item.extendedcombat.echo_steel_greatsword": "Echo Steel Greatsword",
+
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
   "item.extendedcombat.wooden_hammer": "Wooden Hammer",
   "item.extendedcombat.stone_hammer": "Stone Hammer",
@@ -68,12 +76,15 @@
   "item.minecraft.potion.effect.shrinking_4.00": "Shrinking Potion",
   "item.minecraft.splash_potion.effect.shrinking_4.00": "Shrinking Splash Potion",
   "item.minecraft.lingering_potion.effect.shrinking_4.00": "Shrinking Lingering Potion",
-  "item.minecraft.potion.effect.shrinking": "Shrinking Potion",
-  "item.minecraft.splash_potion.effect.shrinking": "Shrinking Splash Potion",
-  "item.minecraft.lingering_potion.effect.shrinking": "Shrinking Lingering Potion",
   "item.minecraft.potion.effect.permanent_shrinking": "Permanent Shrinking Potion",
   "item.minecraft.splash_potion.effect.permanent_shrinking": "Permanent Shrinking Splash Potion",
   "item.minecraft.lingering_potion.effect.permanent_shrinking": "Permanent Shrinking Lingering Potion",
+
+  "item.minecraft.tipped_arrow.effect.shrinking_1.00": "Arrow of Shrinking",
+  "item.minecraft.tipped_arrow.effect.shrinking_2.00": "Arrow of Shrinking",
+  "item.minecraft.tipped_arrow.effect.shrinking_3.00": "Arrow of Shrinking",
+  "item.minecraft.tipped_arrow.effect.shrinking_4.00": "Arrow of Shrinking",
+  "item.minecraft.tipped_arrow.effect.permanent_shrinking": "Arrow of Permanent Shrinking",
 
   "entity.extendedcombat.statue": "Statue",
 

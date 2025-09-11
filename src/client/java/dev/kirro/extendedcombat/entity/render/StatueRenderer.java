@@ -5,7 +5,7 @@ import dev.kirro.extendedcombat.entity.client.BasicStatueModel;
 import dev.kirro.extendedcombat.entity.client.StatueModel;
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
 import dev.kirro.extendedcombat.entity.custom.StatueEntity;
-import dev.kirro.extendedcombat.entity.render.model.ModArmorFeatureRenderer;
+import dev.kirro.extendedcombat.entity.render.model.SleeveFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.ModElytraFeatureRenderer;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -13,7 +13,6 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.feature.ElytraFeatureRenderer;
-import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
@@ -30,7 +29,7 @@ public class StatueRenderer extends LivingEntityRenderer<StatueEntity, BasicStat
                 new BasicStatueModel(context.getPart(ModEntityModelLayers.STATUE_OUTER_ARMOR)),
                 context.getModelManager()
         ));
-        this.addFeature(new ModArmorFeatureRenderer<>(this,
+        this.addFeature(new SleeveFeatureRenderer<>(this,
                 new BasicStatueModel(context.getPart(ModEntityModelLayers.PLAYER_INNER_ARMOR))));
         this.addFeature(new HeldItemFeatureRenderer<>(this, context.getHeldItemRenderer()));
         this.addFeature(new ElytraFeatureRenderer<>(this, context.getModelLoader()));
