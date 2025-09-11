@@ -38,8 +38,8 @@ public class ScaledItemRenderer implements BuiltinItemRendererRegistry.DynamicIt
     public void reload(ResourceManager manager) {
         final MinecraftClient client = MinecraftClient.getInstance();
         this.itemRenderer = client.getItemRenderer();
-        this.inventoryModel = client.getBakedModelManager().getModel(new ModelIdentifier(Identifier.of(this.itemId.getNamespace()), this.itemId.getPath() + "_inventory"));
-        this.heldModel = client.getBakedModelManager().getModel(new ModelIdentifier(Identifier.of(this.itemId.getNamespace()), this.itemId.getPath() + "_handheld"));
+        this.inventoryModel = client.getBakedModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(this.itemId.getNamespace(), this.itemId.getPath())));
+        this.heldModel = client.getBakedModelManager().getModel(ModelIdentifier.ofInventoryVariant(Identifier.of(this.itemId.getNamespace(), this.itemId.getPath() + "_handheld")));
     }
 
     @Override

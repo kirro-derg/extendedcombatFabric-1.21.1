@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:disc_fragment_5"
+    },
+    "E": {
+      "item": "minecraft:echo_shard"
+    },
+    "P": {
+      "item": "minecraft:lingering_potion"
+    }
+  },
+  "pattern": [
+    " PD",
+    " D ",
+    "E  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:poison_dagger"
+  }
+}

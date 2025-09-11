@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.mixin.client;
 
 import dev.kirro.extendedcombat.item.ModItems;
+import dev.kirro.extendedcombat.item.custom.GreatswordItem;
 import dev.kirro.extendedcombat.item.custom.PickSwordItem;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.PlayerHeldItemFeatureRenderer;
@@ -22,9 +23,9 @@ public class HideOffhandItemMixin {
                               CallbackInfo ci) {
         if (!entity.isUsingItem()) {
             if ((entity.getMainArm() == Arm.RIGHT && arm == Arm.LEFT) && entity.getMainHandStack().getItem()
-            instanceof PickSwordItem) {ci.cancel();return;}
+            instanceof GreatswordItem) {ci.cancel();return;}
             if ((entity.getMainArm() == Arm.LEFT && arm == Arm.LEFT) && entity.getMainHandStack().getItem()
-            instanceof PickSwordItem) {ci.cancel();}
+            instanceof GreatswordItem) {ci.cancel();}
         }
     }
 }

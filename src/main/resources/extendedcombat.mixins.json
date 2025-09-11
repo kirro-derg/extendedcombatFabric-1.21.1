@@ -8,6 +8,7 @@
       "ShieldBreakMixin",
       "ItemStackMixin",
       "ArmorStandMixin",
+      "potion.misc.EnchantmentHelperMixin",
       "enchantment.airjump.LivingEntityMixin",
       "enchantment.dash.LivingEntityMixin",
       "enchantment.blink.ArmorFeatureRendererMixin",
@@ -30,8 +31,7 @@
       "duplicates.GameOptionsMixin",
       "duplicates.KeyBindingMixin",
       "client.PlayerEntityRendererMixin",
-      "client.ArmorStandEntityRendererMixin",
-      "client.HeldItemRendererMixin"
+      "client.ArmorStandEntityRendererMixin"
     ],
 	"injectors": {
 		"defaultRequire": 1

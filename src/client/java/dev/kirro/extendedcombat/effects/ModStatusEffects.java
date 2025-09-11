@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.effects;
 
 import dev.kirro.ExtendedCombat;
+import dev.kirro.extendedcombat.effects.custom.VulnerabilityStatusEffect;
 import dev.kirro.extendedcombat.effects.custom.ShrinkingStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -12,6 +13,7 @@ import net.minecraft.util.Identifier;
 public class ModStatusEffects{
 
     public static final RegistryEntry<StatusEffect> SHRINKING = register("shrinking", new ShrinkingStatusEffect(StatusEffectCategory.NEUTRAL, 15978425));
+    public static final RegistryEntry<StatusEffect> VULNERABILITY = register("vulnerability", new VulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, 4866583));
 
     private static RegistryEntry<StatusEffect> register(String id, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(ExtendedCombat.MOD_ID, id), statusEffect);

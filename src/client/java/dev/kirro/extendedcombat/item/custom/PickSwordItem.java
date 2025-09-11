@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class PickSwordItem extends SwordItem {
+public class PickSwordItem extends GreatswordItem {
     public PickSwordItem(ToolMaterial material, Item.Settings settings) {
         super(material, settings);
         DefaultItemComponentEvents.MODIFY.register(context -> context.modify(

@@ -4,12 +4,9 @@ import dev.kirro.ExtendedCombat;
 import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.behavior.enchantment.BlinkBehavior;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
-import dev.kirro.extendedcombat.item.custom.ModArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;
-import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
@@ -20,20 +17,17 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 
-import java.util.Objects;
-
 @Environment(EnvType.CLIENT)
-public class ModArmorFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
+public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
     private final A innerModel;
 
-    public ModArmorFeatureRenderer(FeatureRendererContext<T, M> context, A innerModel) {
+    public SleeveFeatureRenderer(FeatureRendererContext<T, M> context, A innerModel) {
         super(context);
         this.innerModel = innerModel;
     }

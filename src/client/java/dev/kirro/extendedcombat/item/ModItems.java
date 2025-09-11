@@ -3,17 +3,11 @@ package dev.kirro.extendedcombat.item;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.item.custom.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.client.render.VertexFormatElement;
-import net.minecraft.component.ComponentType;
 import net.minecraft.item.*;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-
-import java.util.List;
 
 public class ModItems {
     public static Item NETHER_STEEL_INGOT = registerItem("nether_steel_ingot", new Item(new Item.Settings().fireproof()));
@@ -23,9 +17,33 @@ public class ModItems {
     public static final Item ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade", new Item(new Item.Settings().fireproof()));
     public static final Item STATUE = registerItem("statue", new StatueItem(new Item.Settings()));
 
+    public static final Item POISON_DAGGER = registerItem("poison_dagger", new PoisonDaggerItem(new Item.Settings().maxDamage(3)));
+
+    public static final Item WOODEN_GREATSWORD = registerItem("wooden_greatsword",
+            new GreatswordItem(ToolMaterials.WOOD, new Item.Settings()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.WOOD, 7, -2.7f))));
+    public static final Item STONE_GREATSWORD = registerItem("stone_greatsword",
+            new GreatswordItem(ToolMaterials.STONE, new Item.Settings()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.STONE, 7, -2.7f))));
+    public static final Item IRON_GREATSWORD = registerItem("iron_greatsword",
+            new GreatswordItem(ToolMaterials.IRON, new Item.Settings()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.IRON, 7, -2.7f))));
+    public static final Item GOLDEN_GREATSWORD = registerItem("golden_greatsword",
+            new GreatswordItem(ToolMaterials.GOLD, new Item.Settings()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.GOLD, 7, -2.7f))));
+    public static final Item DIAMOND_GREATSWORD = registerItem("diamond_greatsword",
+            new GreatswordItem(ToolMaterials.DIAMOND, new Item.Settings()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.DIAMOND, 7, -2.7f))));
+    public static final Item NETHERITE_GREATSWORD = registerItem("netherite_greatsword",
+            new GreatswordItem(ToolMaterials.NETHERITE, new Item.Settings()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 7, -2.7f))));
     public static final Item NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
             new PickSwordItem(ModToolMaterials.NETHER_STEEL, new Item.Settings().fireproof()
                     .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.7f))));
+    public static final Item ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
+            new GreatswordItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof()
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.7f))));
+
     public static final Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             new ModPickaxeItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
                     .attributeModifiers(ModPickaxeItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 1, -2.8f))));
@@ -94,41 +112,45 @@ public class ModItems {
     public static void registerModItems() {
         ExtendedCombat.LOGGER.info("Registering items for" + ExtendedCombat.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.addAfter(Items.NETHERITE_INGOT, NETHER_STEEL_INGOT);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_INGOT, ECHO_STEEL_INGOT);
-            fabricItemGroupEntries.addAfter(Items.STICK, HANDLE);
-            fabricItemGroupEntries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, NETHER_STEEL_UPGRADE);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_UPGRADE, ECHO_STEEL_UPGRADE);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+            entries.addAfter(Items.NETHERITE_INGOT, NETHER_STEEL_INGOT);
+            entries.addAfter(NETHER_STEEL_INGOT, ECHO_STEEL_INGOT);
+            entries.addAfter(Items.STICK, HANDLE);
+            entries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, NETHER_STEEL_UPGRADE);
+            entries.addAfter(NETHER_STEEL_UPGRADE, ECHO_STEEL_UPGRADE);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.addAfter(Items.NETHERITE_SWORD, NETHER_STEEL_GREATSWORD);
-            fabricItemGroupEntries.addAfter(Items.NETHERITE_BOOTS, NETHER_STEEL_HELMET);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_HELMET, NETHER_STEEL_CHESTPLATE);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_CHESTPLATE, NETHER_STEEL_LEGGINGS);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_LEGGINGS, NETHER_STEEL_BOOTS);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_BOOTS, ECHO_STEEL_HELMET);
-            fabricItemGroupEntries.addAfter(ECHO_STEEL_HELMET, ECHO_STEEL_CHESTPLATE);
-            fabricItemGroupEntries.addAfter(ECHO_STEEL_CHESTPLATE, ECHO_STEEL_LEGGINGS);
-            fabricItemGroupEntries.addAfter(ECHO_STEEL_LEGGINGS, ECHO_STEEL_BOOTS);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
+            entries.addAfter(Items.NETHERITE_SWORD, NETHER_STEEL_GREATSWORD);
+            entries.addAfter(Items.WIND_CHARGE, POISON_DAGGER);
+            entries.addAfter(Items.NETHERITE_BOOTS, NETHER_STEEL_HELMET);
+            entries.addAfter(NETHER_STEEL_HELMET, NETHER_STEEL_CHESTPLATE);
+            entries.addAfter(NETHER_STEEL_CHESTPLATE, NETHER_STEEL_LEGGINGS);
+            entries.addAfter(NETHER_STEEL_LEGGINGS, NETHER_STEEL_BOOTS);
+            entries.addAfter(NETHER_STEEL_BOOTS, ECHO_STEEL_HELMET);
+            entries.addAfter(ECHO_STEEL_HELMET, ECHO_STEEL_CHESTPLATE);
+            entries.addAfter(ECHO_STEEL_CHESTPLATE, ECHO_STEEL_LEGGINGS);
+            entries.addAfter(ECHO_STEEL_LEGGINGS, ECHO_STEEL_BOOTS);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, BLACK_APPLE);
-            fabricItemGroupEntries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, GOLDEN_STEAK);
-            fabricItemGroupEntries.addAfter(Items.BREAD, HONEY_BREAD);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
+            entries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, BLACK_APPLE);
+            entries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, GOLDEN_STEAK);
+            entries.addAfter(Items.BREAD, HONEY_BREAD);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.addAfter(Items.WOODEN_HOE, WOODEN_HAMMER);
-            fabricItemGroupEntries.addAfter(Items.STONE_HOE, STONE_HAMMER);
-            fabricItemGroupEntries.addAfter(Items.IRON_HOE, IRON_HAMMER);
-            fabricItemGroupEntries.addAfter(Items.GOLDEN_HOE, GOLDEN_HAMMER);
-            fabricItemGroupEntries.addAfter(Items.DIAMOND_HOE, DIAMOND_HAMMER);
-            fabricItemGroupEntries.addAfter(Items.NETHERITE_HOE, NETHERITE_HAMMER);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.addAfter(Items.WOODEN_HOE, WOODEN_HAMMER);
+            entries.addAfter(Items.STONE_HOE, STONE_HAMMER);
+            entries.addAfter(Items.IRON_HOE, IRON_HAMMER);
+            entries.addAfter(Items.GOLDEN_HOE, GOLDEN_HAMMER);
+            entries.addAfter(Items.DIAMOND_HOE, DIAMOND_HAMMER);
+            entries.addAfter(Items.NETHERITE_HOE, NETHERITE_HAMMER);
 
-            fabricItemGroupEntries.addAfter(NETHERITE_HAMMER, NETHER_STEEL_PICKAXE);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_PICKAXE, NETHER_STEEL_HAMMER);
-            fabricItemGroupEntries.addAfter(NETHER_STEEL_HAMMER, ECHO_STEEL_HAMMER);
-            fabricItemGroupEntries.addAfter(Items.ELYTRA, ECHO_REINFORCED_ELYTRA);
+            entries.addAfter(NETHERITE_HAMMER, NETHER_STEEL_PICKAXE);
+            entries.addAfter(NETHER_STEEL_PICKAXE, NETHER_STEEL_HAMMER);
+            entries.addAfter(NETHER_STEEL_HAMMER, ECHO_STEEL_HAMMER);
+            entries.addAfter(Items.ELYTRA, ECHO_REINFORCED_ELYTRA);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+            entries.addAfter(Items.ARMOR_STAND, STATUE);
         });
     }
 }
