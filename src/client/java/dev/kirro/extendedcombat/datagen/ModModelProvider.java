@@ -28,7 +28,8 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-        generator.register(ModItems.HANDLE, Models.GENERATED);
+        generator.register(ModItems.NETHER_STEEL_HANDLE, Models.GENERATED);
+        generator.register(ModItems.WOODEN_HANDLE, Models.GENERATED);
         generator.register(ModItems.STATUE, Models.GENERATED);
         generator.register(ModItems.NETHER_STEEL_INGOT, Models.GENERATED);
         generator.register(ModItems.ECHO_STEEL_INGOT, Models.GENERATED);

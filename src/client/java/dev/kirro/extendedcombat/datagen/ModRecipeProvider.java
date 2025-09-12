@@ -7,7 +7,6 @@ import dev.kirro.extendedcombat.potion.ModPotions;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-import net.minecraft.component.ComponentType;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
@@ -16,12 +15,10 @@ import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.LingeringPotionItem;
 import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
@@ -35,8 +32,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(RecipeExporter exporter) {
 
+        // nether steel block recipe
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.NETHER_STEEL_BLOCK, ModItems.NETHER_STEEL_INGOT);
 
+        // ingot from block recipe
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_INGOT, 4)
+                .input(ModBlocks.NETHER_STEEL_BLOCK)
+                .criterion(hasItem(ModBlocks.NETHER_STEEL_BLOCK), conditionsFromItem(ModBlocks.NETHER_STEEL_BLOCK))
+                .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_ingot_from_block"));
+
+        // nether steel item recipes
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.NETHER_STEEL_UPGRADE), Ingredient.ofItems(Items.NETHERITE_BOOTS), Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.NETHER_STEEL_BOOTS)
                 .criterion(hasItem(ModItems.NETHER_STEEL_UPGRADE), conditionsFromItem(ModItems.NETHER_STEEL_UPGRADE))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_boots_smithing"));
@@ -61,6 +66,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.NETHER_STEEL_INGOT), conditionsFromItem(ModItems.NETHER_STEEL_INGOT))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_upgrade_smithing"));
 
+        // echo steel item recipes
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.ECHO_STEEL_UPGRADE), Ingredient.ofItems(ModItems.NETHER_STEEL_HELMET), Ingredient.ofItems(ModItems.ECHO_STEEL_INGOT), RecipeCategory.MISC, ModItems.ECHO_STEEL_HELMET)
                 .criterion(hasItem(ModItems.ECHO_STEEL_INGOT), conditionsFromItem(ModItems.ECHO_STEEL_INGOT))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "echo_steel_helmet_smithing"));
@@ -85,7 +91,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.ECHO_STEEL_INGOT), conditionsFromItem(ModItems.ECHO_STEEL_INGOT))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "echo_reinforced_elytra_smithing"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.HANDLE)
+        // miscellaneous item recipes
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_HANDLE)
                 .pattern("GLN")
                 .pattern("LNL")
                 .pattern("NLG")
@@ -111,32 +118,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('D', Items.COBBLED_DEEPSLATE)
                 .criterion(hasItem(Items.SOUL_SOIL), conditionsFromItem(Items.SOUL_SOIL))
                 .offerTo(exporter);
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.NETHER_STEEL_GREATSWORD)
-                .pattern(" IN")
-                .pattern("GNI")
-                .pattern("HG ")
-                .input('I', Items.NETHERITE_INGOT)
-                .input('G', Items.GOLD_INGOT)
-                .input('H', ModItems.HANDLE)
-                .input('N', ModItems.NETHER_STEEL_INGOT)
-                .criterion(hasItem(ModItems.NETHER_STEEL_INGOT), conditionsFromItem(ModItems.NETHER_STEEL_INGOT))
-                .offerTo(exporter);
-
-        ItemStack potion = new ItemStack(Items.LINGERING_POTION);
-        PotionContentsComponent.createStack(potion.getItem(), Potions.POISON);
-        Item poison = potion.getItem();
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.POISON_DAGGER)
-                .pattern(" PD")
-                .pattern(" D ")
-                .pattern("E  ")
-                .input('E', Items.ECHO_SHARD)
-                .input('D', Items.DISC_FRAGMENT_5)
-                .input('P', poison)
-                .criterion(hasItem(Items.ECHO_SHARD), conditionsFromItem(Items.ECHO_SHARD))
-                .offerTo(exporter);
-
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_INGOT)
                 .pattern("MMM")
@@ -167,13 +148,97 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.SEAT, 3)
-                        .pattern("LLL")
-                        .pattern("PPP")
-                        .input('L', Items.LEATHER)
-                        .input('P', Items.OAK_SLAB)
-                        .criterion(hasItem(Items.OAK_SLAB), conditionsFromItem(Items.OAK_SLAB))
-                        .offerTo(exporter);
+                .pattern("LLL")
+                .pattern("PPP")
+                .input('L', Items.LEATHER)
+                .input('P', Items.OAK_SLAB)
+                .criterion(hasItem(Items.OAK_SLAB), conditionsFromItem(Items.OAK_SLAB))
+                .offerTo(exporter);
 
+        // weapon recipes
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.WOODEN_GREATSWORD)
+                .pattern(" II")
+                .pattern("III")
+                .pattern("HI ")
+                .input('I', ItemTags.PLANKS)
+                .input('H', ModItems.WOODEN_HANDLE)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.STONE_GREATSWORD)
+                .pattern(" II")
+                .pattern("III")
+                .pattern("HI ")
+                .input('I', ItemTags.STONE_TOOL_MATERIALS)
+                .input('H', ModItems.WOODEN_HANDLE)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.IRON_GREATSWORD)
+                .pattern(" II")
+                .pattern("III")
+                .pattern("HI ")
+                .input('I', Items.IRON_INGOT)
+                .input('H', ModItems.WOODEN_HANDLE)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.GOLDEN_GREATSWORD)
+                .pattern(" II")
+                .pattern("III")
+                .pattern("HI ")
+                .input('I', Items.GOLD_INGOT)
+                .input('H', ModItems.WOODEN_HANDLE)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.DIAMOND_GREATSWORD)
+                .pattern(" II")
+                .pattern("III")
+                .pattern("HI ")
+                .input('I', Items.DIAMOND)
+                .input('H', ModItems.WOODEN_HANDLE)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.ofItems(ModItems.DIAMOND_GREATSWORD), Ingredient.ofItems(Items.NETHERITE_INGOT), RecipeCategory.COMBAT, ModItems.NETHERITE_GREATSWORD)
+                .criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT))
+                .offerTo(exporter, "netherite_greatsword_smithing");
+
+        //SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.NETHER_STEEL_UPGRADE), Ingredient.ofItems(ModItems.NETHERITE_GREATSWORD), Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.NETHER_STEEL_GREATSWORD)
+        //        .criterion(hasItem(ModItems.NETHER_STEEL_INGOT), conditionsFromItem(ModItems.NETHER_STEEL_INGOT))
+        //        .offerTo(exporter, "nether_steel_greatsword_smithing");
+
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.ECHO_STEEL_UPGRADE), Ingredient.ofItems(ModItems.NETHER_STEEL_GREATSWORD), Ingredient.ofItems(ModItems.ECHO_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.ECHO_STEEL_GREATSWORD)
+                .criterion(hasItem(ModItems.ECHO_STEEL_INGOT), conditionsFromItem(ModItems.ECHO_STEEL_INGOT))
+                .offerTo(exporter, "echo_steel_greatsword_smithing");
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.NETHER_STEEL_GREATSWORD)
+                .pattern(" IN")
+                .pattern("GNI")
+                .pattern("HG ")
+                .input('I', Items.NETHERITE_INGOT)
+                .input('G', Items.GOLD_INGOT)
+                .input('H', ModItems.NETHER_STEEL_HANDLE)
+                .input('N', ModItems.NETHER_STEEL_INGOT)
+                .criterion(hasItem(ModItems.NETHER_STEEL_INGOT), conditionsFromItem(ModItems.NETHER_STEEL_INGOT))
+                .offerTo(exporter);
+
+        ItemStack potion = new ItemStack(Items.LINGERING_POTION);
+        PotionContentsComponent.createStack(potion.getItem(), Potions.POISON);
+        Item poison = potion.getItem();
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.POISON_DAGGER)
+                .pattern(" PD")
+                .pattern(" D ")
+                .pattern("E  ")
+                .input('E', Items.ECHO_SHARD)
+                .input('D', Items.DISC_FRAGMENT_5)
+                .input('P', poison)
+                .criterion(hasItem(Items.ECHO_SHARD), conditionsFromItem(Items.ECHO_SHARD))
+                .offerTo(exporter);
+
+        // food recipes
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.GOLDEN_STEAK)
                 .pattern("GGG")
                 .pattern("GSG")
@@ -192,9 +257,10 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
                 .offerTo(exporter);
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.STRING, 4)
-                .input(ItemTags.WOOL)
-                .criterion(hasItem(Items.WHITE_WOOL), conditionsFromItem(Items.WHITE_WOOL))
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.HONEY_BREAD)
+                .input(Items.BREAD)
+                .input(Items.HONEY_BOTTLE)
+                .criterion(hasItem(Items.BREAD), conditionsFromItem(Items.BREAD))
                 .offerTo(exporter);
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, Items.BREAD)
@@ -204,13 +270,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.WHEAT), conditionsFromItem(Items.WHEAT))
                 .offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, Items.PAPER)
+        // QOL recipes
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PAPER)
                 .pattern("  O")
                 .pattern(" OO")
                 .input('O', Items.SUGAR_CANE)
                 .criterion(hasItem(Items.SUGAR_CANE), conditionsFromItem(Items.SUGAR_CANE))
                 .offerTo(exporter);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STRING, 4)
+                .input(ItemTags.WOOL)
+                .criterion(hasItem(Items.WHITE_WOOL), conditionsFromItem(Items.WHITE_WOOL))
+                .offerTo(exporter);
+
+        // hammer recipes
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.WOODEN_HAMMER)
                 .pattern("PPP")
                 .pattern("PSP")
@@ -260,18 +333,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.ECHO_STEEL_UPGRADE), Ingredient.ofItems(ModItems.NETHER_STEEL_HAMMER), Ingredient.ofItems(ModItems.ECHO_STEEL_INGOT), RecipeCategory.TOOLS, ModItems.ECHO_STEEL_HAMMER)
                 .criterion(hasItem(ModItems.ECHO_STEEL_INGOT), conditionsFromItem(ModItems.ECHO_STEEL_INGOT))
                 .offerTo(exporter, ExtendedCombat.id("echo_steel_hammer_smithing"));
-
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_INGOT, 4)
-                .input(ModBlocks.NETHER_STEEL_BLOCK)
-                .criterion(hasItem(ModBlocks.NETHER_STEEL_BLOCK), conditionsFromItem(ModBlocks.NETHER_STEEL_BLOCK))
-                .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_ingot_from_block"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.HONEY_BREAD)
-                .input(Items.BREAD)
-                .input(Items.HONEY_BOTTLE)
-                .criterion(hasItem(Items.BREAD), conditionsFromItem(Items.BREAD))
-                .offerTo(exporter);
     }
 
     public static void registerPotionRecipes() {

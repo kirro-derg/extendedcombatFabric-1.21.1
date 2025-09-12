@@ -3,7 +3,8 @@
 
   "item.extendedcombat.nether_steel_ingot": "Nether Steel Ingot",
   "item.extendedcombat.echo_steel_ingot": "Echo Steel Ingot",
-  "item.extendedcombat.handle": "Sturdy Handle",
+  "item.extendedcombat.nether_steel_handle": "Nether Steel Handle",
+  "item.extendedcombat.wooden_handle": "Wooden Handle",
   "item.extendedcombat.nether_steel_upgrade": "Nether Steel Upgrade Template",
   "item.extendedcombat.echo_steel_upgrade": "Echo Steel Upgrade Template",
   "item.extendedcombat.statue": "Statue",
@@ -16,6 +17,8 @@
   "item.extendedcombat.netherite_greatsword": "Netherite Greatsword",
   "item.extendedcombat.nether_steel_greatsword": "Nether Steel Greatsword",
   "item.extendedcombat.echo_steel_greatsword": "Echo Steel Greatsword",
+
+  "item.extendedcombat.poison_dagger": "Poison Dagger",
 
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
   "item.extendedcombat.wooden_hammer": "Wooden Hammer",

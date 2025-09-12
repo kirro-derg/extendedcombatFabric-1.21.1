@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.mixin.client;
 
 import dev.kirro.extendedcombat.item.custom.GreatswordItem;
 import dev.kirro.extendedcombat.item.custom.PickSwordItem;
+import dev.kirro.extendedcombat.item.custom.ScaledItem;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;

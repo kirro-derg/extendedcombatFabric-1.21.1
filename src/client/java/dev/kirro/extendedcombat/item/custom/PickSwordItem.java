@@ -70,12 +70,12 @@ public class PickSwordItem extends GreatswordItem {
         return true;
     }
 
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (attacker instanceof ServerPlayerEntity player) {
-            ServerWorld world = (ServerWorld) attacker.getWorld();
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_NETHERITE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + player.getRandom().nextGaussian() / 10f));
-        }
-        return true;
-    }
+    //@Override
+    //public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    //    if (attacker instanceof ServerPlayerEntity player) {
+    //        ServerWorld world = (ServerWorld) attacker.getWorld();
+    //        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_NETHERITE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + player.getRandom().nextGaussian() / 10f));
+    //    }
+    //    return true;
+    //}
 }

@@ -8,7 +8,7 @@ public class ModFoodComponents {
     public static final FoodComponent BLACK_APPLE = new FoodComponent.Builder()
             .nutrition(6)
             .saturationModifier(1.2f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1.0f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0f)
             .build();
     public static final FoodComponent GOLDEN_STEAK = new FoodComponent.Builder()
             .nutrition(8)

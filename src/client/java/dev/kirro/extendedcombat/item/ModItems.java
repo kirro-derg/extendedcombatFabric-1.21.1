@@ -12,7 +12,8 @@ import net.minecraft.util.Rarity;
 public class ModItems {
     public static Item NETHER_STEEL_INGOT = registerItem("nether_steel_ingot", new Item(new Item.Settings().fireproof()));
     public static Item ECHO_STEEL_INGOT = registerItem("echo_steel_ingot", new Item(new Item.Settings().fireproof()));
-    public static final Item HANDLE = registerItem("handle", new Item(new Item.Settings().fireproof()));
+    public static final Item WOODEN_HANDLE = registerItem("wooden_handle", new Item(new Item.Settings()));
+    public static final Item NETHER_STEEL_HANDLE = registerItem("nether_steel_handle", new Item(new Item.Settings().fireproof()));
     public static final Item NETHER_STEEL_UPGRADE = registerItem("nether_steel_upgrade", new Item(new Item.Settings().fireproof()));
     public static final Item ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade", new Item(new Item.Settings().fireproof()));
     public static final Item STATUE = registerItem("statue", new StatueItem(new Item.Settings()));
@@ -115,12 +116,20 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addAfter(Items.NETHERITE_INGOT, NETHER_STEEL_INGOT);
             entries.addAfter(NETHER_STEEL_INGOT, ECHO_STEEL_INGOT);
-            entries.addAfter(Items.STICK, HANDLE);
+            entries.addAfter(Items.STICK, WOODEN_HANDLE);
+            entries.addAfter(WOODEN_HANDLE, NETHER_STEEL_HANDLE);
             entries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, NETHER_STEEL_UPGRADE);
             entries.addAfter(NETHER_STEEL_UPGRADE, ECHO_STEEL_UPGRADE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
-            entries.addAfter(Items.NETHERITE_SWORD, NETHER_STEEL_GREATSWORD);
+            entries.addAfter(Items.WOODEN_SWORD, WOODEN_GREATSWORD);
+            entries.addAfter(Items.STONE_SWORD, STONE_GREATSWORD);
+            entries.addAfter(Items.IRON_SWORD, IRON_GREATSWORD);
+            entries.addAfter(Items.GOLDEN_SWORD, GOLDEN_GREATSWORD);
+            entries.addAfter(Items.DIAMOND_SWORD, DIAMOND_GREATSWORD);
+            entries.addAfter(Items.NETHERITE_SWORD, NETHERITE_GREATSWORD);
+            entries.addAfter(NETHERITE_GREATSWORD, NETHER_STEEL_GREATSWORD);
+            entries.addAfter(NETHER_STEEL_GREATSWORD, ECHO_STEEL_GREATSWORD);
             entries.addAfter(Items.WIND_CHARGE, POISON_DAGGER);
             entries.addAfter(Items.NETHERITE_BOOTS, NETHER_STEEL_HELMET);
             entries.addAfter(NETHER_STEEL_HELMET, NETHER_STEEL_CHESTPLATE);

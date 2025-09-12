@@ -18,9 +18,11 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.NETHER_STEEL_INGOT);
                         entries.add(ModItems.ECHO_STEEL_INGOT);
-                        entries.add(ModItems.HANDLE);
+                        entries.add(ModItems.WOODEN_HANDLE);
+                        entries.add(ModItems.NETHER_STEEL_HANDLE);
                         entries.add(ModItems.NETHER_STEEL_UPGRADE);
                         entries.add(ModItems.ECHO_STEEL_UPGRADE);
+                        entries.add(ModItems.POISON_DAGGER);
 
                         entries.add(ModBlocks.NETHER_STEEL_BLOCK);
                         entries.add(ModBlocks.WARDING_STONE);
@@ -29,8 +31,17 @@ public class ModItemGroups {
                         entries.add(ModBlocks.HEAVY_DOOR);
                         entries.add(ModItems.STATUE);
 
+                        entries.add(ModItems.WOODEN_GREATSWORD);
+                        entries.add(ModItems.STONE_GREATSWORD);
+                        entries.add(ModItems.IRON_GREATSWORD);
+                        entries.add(ModItems.GOLDEN_GREATSWORD);
+                        entries.add(ModItems.DIAMOND_GREATSWORD);
+                        entries.add(ModItems.NETHERITE_GREATSWORD);
                         entries.add(ModItems.NETHER_STEEL_GREATSWORD);
+                        entries.add(ModItems.ECHO_STEEL_GREATSWORD);
+
                         entries.add(ModItems.NETHER_STEEL_PICKAXE);
+
                         entries.add(ModItems.WOODEN_HAMMER);
                         entries.add(ModItems.STONE_HAMMER);
                         entries.add(ModItems.IRON_HAMMER);
