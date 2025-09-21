@@ -1,6 +1,5 @@
 package dev.kirro.extendedcombat.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +11,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -20,7 +18,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -31,7 +28,7 @@ public class FramedGlassPanelBlock extends Block implements Waterloggable {
     public static final DirectionProperty FACING = Properties.FACING;
 
     private static final Map<Direction, VoxelShape> BASE = new EnumMap<>(Direction.class);
-    private static final Map<Direction, VoxelShape> SPECIAL = new EnumMap<>(Direction.class);
+    private static final Map<Direction, VoxelShape> HOLDING = new EnumMap<>(Direction.class);
 
     static {
         BASE.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f / 16.0f));
@@ -41,12 +38,12 @@ public class FramedGlassPanelBlock extends Block implements Waterloggable {
         BASE.put(Direction.UP, VoxelShapes.cuboid(0.0f, 15.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
         BASE.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f / 16.0f, 1.0f));
 
-        SPECIAL.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 8.0f / 16.0f));
-        SPECIAL.put(Direction.SOUTH, VoxelShapes.cuboid(0.0f, 0.0f, 8.0 / 16.0f, 1.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.EAST, VoxelShapes.cuboid(8.0f / 16.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.WEST, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 8.0f / 16.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.UP, VoxelShapes.cuboid(0.0f, 8.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
-        SPECIAL.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 8.0f / 16.0f, 1.0f));
+        HOLDING.put(Direction.NORTH, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 8.0f / 16.0f));
+        HOLDING.put(Direction.SOUTH, VoxelShapes.cuboid(0.0f, 0.0f, 8.0 / 16.0f, 1.0f, 1.0f, 1.0f));
+        HOLDING.put(Direction.EAST, VoxelShapes.cuboid(8.0f / 16.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        HOLDING.put(Direction.WEST, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 8.0f / 16.0f, 1.0f, 1.0f));
+        HOLDING.put(Direction.UP, VoxelShapes.cuboid(0.0f, 8.0f / 16.0f, 0.0f, 1.0f, 1.0f, 1.0f));
+        HOLDING.put(Direction.DOWN, VoxelShapes.cuboid(0.0f, 0.0f, 0.0f, 1.0f, 8.0f / 16.0f, 1.0f));
     }
 
 
@@ -72,7 +69,7 @@ public class FramedGlassPanelBlock extends Block implements Waterloggable {
             isHoldingBlock = main.isOf(this.asItem()) || off.isOf(this.asItem());
         }
 
-        return  isHoldingBlock ? SPECIAL.get(dir) : BASE.get(dir);
+        return  isHoldingBlock ? HOLDING.get(dir) : BASE.get(dir);
     }
 
     @Override

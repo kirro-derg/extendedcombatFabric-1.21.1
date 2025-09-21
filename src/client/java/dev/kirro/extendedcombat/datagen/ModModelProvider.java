@@ -9,6 +9,7 @@ import net.minecraft.data.client.*;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,6 +25,8 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHER_STEEL_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ECHO_STEEL_BLOCK);
+        blockStateModelGenerator.registerCrop(ModBlocks.BLACK_APPLE_BUSH, Properties.AGE_3, 0, 1, 2, 3);
     }
 
     @Override
@@ -46,17 +49,18 @@ public class ModModelProvider extends FabricModelProvider {
         generator.register(ModItems.NETHER_STEEL_HAMMER, Models.HANDHELD);
         generator.register(ModItems.ECHO_STEEL_HAMMER, Models.HANDHELD);
         generator.register(ModItems.BLACK_APPLE, Models.GENERATED);
+        generator.register(ModItems.BLACK_APPLE_SEED, Models.GENERATED);
         generator.register(ModItems.GOLDEN_STEAK, Models.GENERATED);
         generator.register(ModItems.HONEY_BREAD, Models.GENERATED);
 
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.WOODEN_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.STONE_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.IRON_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.GOLDEN_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.DIAMOND_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.NETHERITE_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.NETHER_STEEL_GREATSWORD, generator);
-        createBigWeapon(GREATSWORD_TEMPLATE, ModItems.ECHO_STEEL_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.WOODEN_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.STONE_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.IRON_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.GOLDEN_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.DIAMOND_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.NETHERITE_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.NETHER_STEEL_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.ECHO_STEEL_GREATSWORD, generator);
 
         generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_BOOTS);
         generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_LEGGINGS);
@@ -75,19 +79,18 @@ public class ModModelProvider extends FabricModelProvider {
         return new Model(Optional.of(ExtendedCombat.id(parent)), Optional.ofNullable(variant), keys);
     }
 
-    private void createBigWeapon(Model template, Item item, ItemModelGenerator generator) {
-        registerHandheld(template, Registries.ITEM.getId(item), generator);
-        registerInventory(template, Registries.ITEM.getId(item), generator);
+    private void createItemVariants(Model template, Item item, ItemModelGenerator generator) {
+        registerHandheldVariant(template, Registries.ITEM.getId(item), generator);
+        registerInventoryVariant(Registries.ITEM.getId(item), generator);
     }
 
-    private void registerHandheld(Model template, Identifier id, ItemModelGenerator generator) {
+    private void registerHandheldVariant(Model template, Identifier id, ItemModelGenerator generator) {
         Identifier modelName = idWithSuffix(id, "_handheld");
         Identifier textureName = idWithSuffix(id, "_handheld");
-
         template.upload(modelName, TextureMap.layer0(textureName), generator.writer);
     }
 
-    private void registerInventory(Model template, Identifier id, ItemModelGenerator generator) {
+    private void registerInventoryVariant(Identifier id, ItemModelGenerator generator) {
         Identifier modelName = id(id);
         Identifier textureName = id(id);
         Models.HANDHELD.upload(modelName, TextureMap.layer0(textureName), generator.writer);

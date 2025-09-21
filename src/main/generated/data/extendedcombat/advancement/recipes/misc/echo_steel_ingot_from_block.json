@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_obsidian": {
+    "has_echo_steel_block": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:obsidian"
+            "items": "extendedcombat:echo_steel_block"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "extendedcombat:black_apple"
+        "recipe": "extendedcombat:echo_steel_ingot_from_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_obsidian"
+      "has_echo_steel_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "extendedcombat:black_apple"
+      "extendedcombat:echo_steel_ingot_from_block"
     ]
   }
 }

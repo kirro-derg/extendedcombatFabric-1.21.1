@@ -30,7 +30,7 @@ public class StatueRenderer extends LivingEntityRenderer<StatueEntity, BasicStat
                 context.getModelManager()
         ));
         this.addFeature(new SleeveFeatureRenderer<>(this,
-                new BasicStatueModel(context.getPart(ModEntityModelLayers.PLAYER_INNER_ARMOR))));
+                new BasicStatueModel(context.getPart(ModEntityModelLayers.PLAYER_SLEEVES))));
         this.addFeature(new HeldItemFeatureRenderer<>(this, context.getHeldItemRenderer()));
         this.addFeature(new ElytraFeatureRenderer<>(this, context.getModelLoader()));
         this.addFeature(new ModElytraFeatureRenderer<>(this, context.getModelLoader()));

@@ -21,6 +21,7 @@
   "item.extendedcombat.poison_dagger": "Poison Dagger",
 
   "item.extendedcombat.nether_steel_pickaxe": "Nether Steel Pickaxe",
+
   "item.extendedcombat.wooden_hammer": "Wooden Hammer",
   "item.extendedcombat.stone_hammer": "Stone Hammer",
   "item.extendedcombat.iron_hammer": "Iron Hammer",
@@ -30,16 +31,19 @@
   "item.extendedcombat.nether_steel_hammer": "Nether Steel Hammer",
   "item.extendedcombat.echo_steel_hammer": "Echo Steel Hammer",
 
+  "item.extendedcombat.black_apple_seed": "Black Apple Seed",
   "item.extendedcombat.black_apple": "Black Apple",
   "item.extendedcombat.golden_steak": "Golden Steak",
   "item.extendedcombat.honey_bread": "Honey Bread",
 
   "block.extendedcombat.nether_steel_block": "Block of Nether Steel",
+  "block.extendedcombat.echo_steel_block": "Block of Echo Steel",
   "block.extendedcombat.warding_stone": "Warding Stone",
   "block.extendedcombat.framed_glass_panel": "Framed Glass Panel",
   "block.extendedcombat.flat_block": "Flat Block",
   "block.extendedcombat.heavy_door": "Heavy Door",
   "block.extendedcombat.seat_block": "Seat",
+  "block.extendedcombat.black_apple_bush": "Black Apple Bush",
 
   "tooltip.extendedcombat.warding_stone_ln1": "Once placed, this stone will disable",
   "tooltip.extendedcombat.warding_stone_ln2": "mob spawning in a 55 block radius",
@@ -64,6 +68,7 @@
   "enchantment.extendedcombat.stealth": "Stealth",
   "enchantment.extendedcombat.keepsake": "Keepsake",
   "enchantment.extendedcombat.burst": "Burst",
+  "enchantment.extendedcombat.concussion": "Concussion",
 
   "effect.extendedcombat.shrinking": "Shrinking",
 
@@ -100,9 +105,16 @@
   "extendedcombat.midnightconfig.title": "Common Settings",
   "extendedcombat.midnightconfig.disableDurability": "Disable Durability",
   "extendedcombat.midnightconfig.xpRepairActive": "XP Repair",
-  "extendedcombat.midnightconfig.airMobilityActive": "Increase Mobility In Air",
+  "extendedcombat.midnightconfig.airMovementActive": "Increase Movement speed In Air",
   "extendedcombat.midnightconfig.category.client": "Client Settings",
   "extendedcombat.midnightconfig.allowDuplicateKeybinds": "Allow Duplicate Keybinds",
   "extendedcombat.midnightconfig.wardingStoneActiveRadius": "Warding Stone Active Radius",
-  "extendedcombat.midnightconfig.showArmorSleeves": "Show Armor Sleeves"
+  "extendedcombat.midnightconfig.showArmorSleeves": "Show Armor Sleeves",
+  "extendedcombat.midnightconfig.category.model_system": "Model System",
+  "extendedcombat.midnightconfig.namespacesDescription": "Enter namespaces to be checked for item suffixes here.",
+  "extendedcombat.midnightconfig.namespaces": "Acceptable Namespaces",
+  "extendedcombat.midnightconfig.suffixesDescription": "Enter suffixes of items to have a handheld model loaded here. \nFull item ids may be entered as well, for example: \"netherite_sword\".",
+  "extendedcombat.midnightconfig.suffixes": "Acceptable Item Suffixes",
+  "extendedcombat.midnightconfig.acceptableItemsDescription": "Enter a list of items that can have their model loaded here, this replaces the need for adding items to a tag",
+  "extendedcombat.midnightconfig.acceptableItems": "Acceptable Items"
 }

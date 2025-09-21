@@ -7,34 +7,24 @@ import dev.kirro.extendedcombat.enchantment.custom.DashEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.DashParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.DashPayload;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
-import dev.kirro.extendedcombat.tags.ModItemTags;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity player;
-    private boolean refresh = false;
-    private static boolean usedMidair = false;
-    private int cooldown = 0, lastCooldown = 0;
-    private static int immunityTicks = 0;
-
-    private boolean hasDash = false, wasPressingKey = false;
+    private boolean canRecharge = false, hasDash = false, wasPressingKey = false;
+    private int cooldown = 0, lastCooldown = 0, immunityTicks = 0;
 
     public DashBehavior(PlayerEntity player) {
         this.player = player;
@@ -42,14 +32,14 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
 
     @Override
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        refresh = nbtCompound.getBoolean("Refresh");
+        canRecharge = nbtCompound.getBoolean("CanRecharge");
         cooldown = nbtCompound.getInt("Cooldown");
         lastCooldown = nbtCompound.getInt("LastCooldown");
     }
 
     @Override
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbtCompound.putBoolean("Refresh", refresh);
+        nbtCompound.putBoolean("CanRecharge", canRecharge);
         nbtCompound.putInt("Cooldown", cooldown);
         nbtCompound.putInt("LastCooldown", lastCooldown);
     }
@@ -57,24 +47,22 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
     @Override
     public void tick() {
         int playerCooldown = DashEnchantmentEffect.getCooldown(player);
+        ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
         hasDash = playerCooldown > 0;
         if (hasDash) {
-            if (!refresh) {
-                if (player.isOnGround() || EnchantmentHelper.hasAnyEnchantmentsWith(player.getEquippedStack(EquipmentSlot.CHEST), ModEnchantmentEffectComponentTypes.BURST)) {
-                    refresh = true;
+            if (!canRecharge) {
+                if (player.isOnGround() || EnchantmentHelper.hasAnyEnchantmentsWith(chest, ModEnchantmentEffectComponentTypes.BURST)) {
+                    canRecharge = true;
                 }
             } else if (cooldown > 0) {
                 cooldown--;
             }
         } else {
-            refresh = false;
+            canRecharge = false;
             setCooldown(0);
         }
         if (immunityTicks > 0) {
             immunityTicks--;
-        }
-        if (immunityTicks == 0) {
-            usedMidair = false;
         }
     }
 
@@ -85,11 +73,12 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
             boolean pressingKey = ExtendedCombatClient.DASH.isPressed();
             ItemStack stack = player.getEquippedStack(EquipmentSlot.CHEST);
             ItemStack offhandStack = player.getOffHandStack();
-            if (pressingKey && !wasPressingKey && canUse() && !stack.isIn(ModItemTags.ELYTRA_ENCHANTABLE)) {
+            boolean hasBurst = EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.BURST);
+            if (pressingKey && !wasPressingKey && canUse() && !hasBurst) {
                 use();
                 DashParticlePayload.addParticles(player);
                 DashPayload.send();
-            } else if (pressingKey && !wasPressingKey && canUseWithElytra() && EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.BURST) && offhandStack.isOf(Items.GUNPOWDER)) {
+            } else if (pressingKey && !wasPressingKey && canUseWithElytra() && hasBurst && offhandStack.isOf(Items.GUNPOWDER)) {
                 useWithElytra(offhandStack);
                 DashParticlePayload.addParticles(player);
                 DashPayload.send();
@@ -127,69 +116,60 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
 
     public boolean canUseWithElytra() {
         ItemStack offhandItem = player.getOffHandStack();
-        boolean hasCorrectAmountOfGunpowder = offhandItem.getCount() >= BurstEnchantmentEffect.getLevel(player);
-        return cooldown == 0 && !player.isOnGround() && ExtendedCombatUtil.isGroundedElytra(player) && hasCorrectAmountOfGunpowder;
+        boolean hasCorrectAmount = offhandItem.getCount() >= BurstEnchantmentEffect.getLevel(player);
+        return cooldown == 0 && !player.isOnGround() && ExtendedCombatUtil.isGroundedElytra(player) && hasCorrectAmount;
     }
 
     public void use() {
         reset();
-        usedMidair = true;
-        setImmunityTicks(20);
+        setImmunityTicks(6);
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.5f;
         float strength = DashEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
-        if (player.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA)) {
-            Vec3d velocity2 = velocity.multiply(5);
-            player.setVelocity(velocity2.getX(), velocity2.getY(), velocity2.getZ());
-        } else {
-            player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
-        }
+        player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
         player.fallDistance = 0;
         player.velocityModified = true;
-        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), 1.0f, 1.0f);
+        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), volume, 1.0f);
     }
 
-    public void useWithElytra(ItemStack off) {
+    public void useWithElytra(ItemStack offhand) {
         resetWithElytra();
-        usedMidair = true;
-        setImmunityTicks(0);
-        if (!player.isCreative()) {
-            useGunpowder(off);
-        }
+        setImmunityTicks(3);
+        useGunpowder(offhand);
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.5f;
         float strength = BurstEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
         player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
         player.fallDistance = 0;
         player.velocityModified = true;
-        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), 1.0f, 1.0f);
+        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), volume, 1.0f);
     }
 
     private void useGunpowder(ItemStack offhand) {
         if (offhand.isOf(Items.GUNPOWDER)) {
-            offhand.decrement(BurstEnchantmentEffect.getLevel(player));
+            offhand.decrementUnlessCreative(BurstEnchantmentEffect.getLevel(player), player);
         }
     }
 
-    public static boolean wasUsedMidair() {
-        return usedMidair;
+    private boolean hasStealth(ItemStack chest) {
+        return EnchantmentHelper.hasAnyEnchantmentsWith(chest, ModEnchantmentEffectComponentTypes.STEALTH);
     }
 
     public void setImmunityTicks(int ticks) {
         immunityTicks = ticks;
     }
 
-    public static int getImmunityTicks() {
+    public int getImmunityTicks() {
         return immunityTicks;
     }
 
     public void reset() {
         setCooldown(DashEnchantmentEffect.getCooldown(player));
-        refresh = false;
-        usedMidair = false;
+        canRecharge = false;
     }
 
     public void resetWithElytra() {
         setCooldown(DashEnchantmentEffect.getCooldown(player) * 2);
-        refresh = false;
-        usedMidair = false;
+        canRecharge = false;
     }
 }

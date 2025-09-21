@@ -25,17 +25,17 @@ import net.minecraft.util.math.ColorHelper;
 
 @Environment(EnvType.CLIENT)
 public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
-    private final A innerModel;
+    private final A sleeveModel;
 
-    public SleeveFeatureRenderer(FeatureRendererContext<T, M> context, A innerModel) {
+    public SleeveFeatureRenderer(FeatureRendererContext<T, M> context, A sleeveModel) {
         super(context);
-        this.innerModel = innerModel;
+        this.sleeveModel = sleeveModel;
     }
 
     public void render(
-            MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l
+            MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T entity, float f, float g, float h, float j, float k, float l
     ) {
-        this.renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, this.getModel(EquipmentSlot.CHEST));
+        this.renderArmor(matrixStack, vertexConsumerProvider, entity, EquipmentSlot.CHEST, i, this.sleeveModel);
     }
 
     private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model) {
@@ -45,7 +45,7 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
                 this.getContextModel().copyBipedStateTo(model);
                 this.setVisible(model, armorSlot);
                 int i = stack.isIn(ItemTags.DYEABLE) ? ColorHelper.Argb.fullAlpha(DyedColorComponent.getColor(stack, -6265536)) : -1;
-                this.renderArmorParts(matrices, vertexConsumers, light, model, i, getTexture(stack));
+                this.renderSleeves(matrices, vertexConsumers, light, model, i, getTextureId(stack));
                 if (stack.hasGlint()) {
                     this.renderGlint(matrices, vertexConsumers, light, model);
                 }
@@ -57,17 +57,13 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
                     this.getContextModel().copyBipedStateTo(model);
                     this.setVisible(model, armorSlot);
                     int i = stack.isIn(ItemTags.DYEABLE) ? ColorHelper.Argb.fullAlpha(DyedColorComponent.getColor(stack, -6265536)) : -1;
-                    this.renderArmorParts(matrices, vertexConsumers, light, model, i, getTexture(stack));
+                    this.renderSleeves(matrices, vertexConsumers, light, model, i, getTextureId(stack));
                     if (stack.hasGlint()) {
                         this.renderGlint(matrices, vertexConsumers, light, model);
                     }
                 }
             }
         }
-    }
-
-    public Identifier getTexture(ItemStack stack) {
-        return getTextureId(stack);
     }
 
     private Identifier getTextureId(ItemStack stack) {
@@ -86,16 +82,12 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
         }
     }
 
-    private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model, int i, Identifier identifier) {
+    private void renderSleeves(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model, int i, Identifier identifier) {
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(identifier));
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, i);
     }
 
     private void renderGlint(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model) {
         model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getArmorEntityGlint()), light, OverlayTexture.DEFAULT_UV);
-    }
-
-    private A getModel(EquipmentSlot slot) {
-        return this.innerModel;
     }
 }

@@ -24,7 +24,7 @@ public class ModelValidator {
         Path modelPath = modelsPath.get();
         System.out.println("[ExtendedCombat] Validating scaled item models...");
 
-        for (RegistryEntry<Item> entry : Registries.ITEM.iterateEntries(ModItemTags.SCALED_ITEMS)) {
+        for (RegistryEntry<Item> entry : Registries.ITEM.iterateEntries(ModItemTags.GREATSWORDS)) {
             Identifier itemId = Registries.ITEM.getId(entry.value());
             String modelName = itemId.getPath() + suffix;
             Path modelFile = modelPath.resolve(modelName + ".json");

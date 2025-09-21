@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "N": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " LN",
+    "LNL",
+    "NL "
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedcombat:wooden_handle"
+  }
+}

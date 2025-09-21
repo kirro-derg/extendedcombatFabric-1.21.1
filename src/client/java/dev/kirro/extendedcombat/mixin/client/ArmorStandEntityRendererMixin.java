@@ -23,7 +23,7 @@ public abstract class ArmorStandEntityRendererMixin extends LivingEntityRenderer
     @Inject(method = "<init>", at = @At("TAIL"))
     public void extendedcombat$armorSleeves(EntityRendererFactory.Context context, CallbackInfo ci) {
         this.addFeature(new SleeveFeatureRenderer<>(this,
-                new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.PLAYER_INNER_ARMOR))));
+                new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.PLAYER_SLEEVES))));
         this.addFeature(new ModElytraFeatureRenderer<>(this,
                 context.getModelLoader()));
     }

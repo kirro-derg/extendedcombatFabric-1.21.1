@@ -3,6 +3,7 @@ package dev.kirro.extendedcombat.mixin.client;
 import dev.kirro.extendedcombat.item.custom.GreatswordItem;
 import dev.kirro.extendedcombat.item.custom.PickSwordItem;
 import dev.kirro.extendedcombat.item.custom.ScaledItem;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -19,7 +20,7 @@ public class TwoHandedGreatswordMixin {
     private static void extendedcombat$getArmPoseDR(AbstractClientPlayerEntity player, Hand hand,
                                                     CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
         ItemStack itemStack = player.getMainHandStack();
-        if (itemStack.getItem() instanceof GreatswordItem) {
+        if (itemStack.isIn(ModItemTags.GREATSWORDS)) {
             cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
         }
     }

@@ -28,6 +28,7 @@ public abstract class ItemStackMixin {
     private <T extends LivingEntity> void extendedcombat$disablesDurability(int amount, ServerWorld world, @Nullable ServerPlayerEntity player, Consumer<Item> breakCallback, CallbackInfo ci) {
         ItemStack stack = (ItemStack) (Object) this;
         if (player != null && ExtendedCombatUtil.isUnbreakable(stack) || EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.KEEPSAKE)) {
+            stack.setDamage(0);
             Criteria.ITEM_DURABILITY_CHANGED.trigger(player, stack, getDamage());
         }
     }

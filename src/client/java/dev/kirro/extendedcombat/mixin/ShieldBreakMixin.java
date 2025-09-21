@@ -1,5 +1,6 @@
 package dev.kirro.extendedcombat.mixin;
 
+import dev.kirro.extendedcombat.item.custom.GreatswordItem;
 import dev.kirro.extendedcombat.item.custom.PickSwordItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ public abstract class ShieldBreakMixin {
 
     @Inject(method = "disablesShield", at = @At("HEAD"), cancellable = true)
     protected void disablesShield(CallbackInfoReturnable<Boolean> cir) {
-        if (this.getMainHandStack().getItem() instanceof PickSwordItem) {
+        if (this.getMainHandStack().getItem() instanceof GreatswordItem) {
             cir.setReturnValue(true);
         }
     }

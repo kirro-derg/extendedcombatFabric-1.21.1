@@ -14,6 +14,8 @@ import net.minecraft.item.Item;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
+import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
@@ -41,6 +43,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SEAT);
         addDrop(ModBlocks.FLAT_BLOCK);
         addDrop(ModBlocks.NETHER_STEEL_BLOCK);
+        addDrop(ModBlocks.ECHO_STEEL_BLOCK);
         addDrop(ModBlocks.HEAVY_DOOR, doorDrops(ModBlocks.HEAVY_DOOR));
         addDrop(ModBlocks.WARDING_STONE, dropsWithProperty(ModBlocks.WARDING_STONE, WardingStoneBlock.HALF, DoubleBlockHalf.LOWER));
     }
@@ -61,13 +64,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
             if (LootTables.ABANDONED_MINESHAFT_CHEST.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.5f)) // 50% drop rate
+                        .conditionally(RandomChanceLootCondition.builder(0.75f)) // 75% drop rate
                         .with(ItemEntry.builder(ModItems.GOLDEN_STEAK)) // item being dropped
                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 3.0f)).build());
 
                 tableBuilder.pool(poolBuilder.build());
             }
-
             if (LootTables.NETHER_BRIDGE_CHEST.equals(key)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))

@@ -4,8 +4,11 @@ import dev.kirro.extendedcombat.datagen.*;
 import dev.kirro.extendedcombat.enchantment.ModEnchantments;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.data.MetadataProvider;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.text.Text;
 
 public class ExtendedCombatDataGenerator implements DataGeneratorEntrypoint {
 	@Override

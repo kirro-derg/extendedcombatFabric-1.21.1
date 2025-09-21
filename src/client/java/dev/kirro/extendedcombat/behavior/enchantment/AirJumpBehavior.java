@@ -1,14 +1,16 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
-import dev.kirro.ModConfig;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.enchantment.custom.AirJumpEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpPayload;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundEvents;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
@@ -16,7 +18,7 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity player;
-    private boolean refresh = false, canUse = false;
+    private boolean canRecharge = false, canUse = false;
     private int cooldown = 0, lastCooldown = 0, jumpCooldown = 10, jumpAmount = 0, ticksInAir = 0, maxJumps;
 
 
@@ -26,7 +28,7 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
 
     @Override
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        refresh = nbtCompound.getBoolean("Refresh");
+        canRecharge = nbtCompound.getBoolean("CanRecharge");
         cooldown = nbtCompound.getInt("Cooldown");
         lastCooldown = nbtCompound.getInt("LastCooldown");
         jumpCooldown = nbtCompound.getInt("JumpCooldown");
@@ -36,7 +38,7 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
 
     @Override
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbtCompound.putBoolean("Refresh", refresh);
+        nbtCompound.putBoolean("CanRecharge", canRecharge);
         nbtCompound.putInt("Cooldown", cooldown);
         nbtCompound.putInt("LastCooldown", lastCooldown);
         nbtCompound.putInt("JumpCooldown", jumpCooldown);
@@ -50,9 +52,9 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
         maxJumps = AirJumpEnchantmentEffect.getJumpAmount(player);
         canUse = maxJumps > 0;
         if (canUse) {
-            if (!refresh) {
+            if (!canRecharge) {
                 if (player.isOnGround()) {
-                    refresh = true;
+                    canRecharge = true;
                 }
             } else if (playerCooldown > 0) {
                 cooldown--;
@@ -70,7 +72,7 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
                 ticksInAir++;
             }
         } else {
-            refresh = false;
+            canRecharge = false;
             setCooldown(0);
             jumpCooldown = 0;
             jumpAmount = 0;
@@ -124,16 +126,20 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
 
     public void use() {
         float strength = AirJumpEnchantmentEffect.getAirJumpStrength(player);
-
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.5f;
         player.jump();
         player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * strength, player.getVelocity().getZ());
-        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), 2.0f, 1.0f);
+        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), volume, 1.0f);
         if (cooldown == 0 || jumpAmount == maxJumps) {
             setCooldown(AirJumpEnchantmentEffect.getCooldown(player));
         }
-        refresh = false;
+        canRecharge = false;
         jumpCooldown = AirJumpEnchantmentEffect.getJumpCooldown(player);
         jumpAmount--;
+    }
+
+    private boolean hasStealth(ItemStack chest) {
+        return EnchantmentHelper.hasAnyEnchantmentsWith(chest, ModEnchantmentEffectComponentTypes.STEALTH);
     }
 
     public void reset() {

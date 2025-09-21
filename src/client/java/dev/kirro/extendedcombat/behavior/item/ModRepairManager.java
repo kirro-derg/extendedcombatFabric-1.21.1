@@ -35,6 +35,5 @@ public class ModRepairManager {
                 if (xpAmount <= 0) break;
             }
         }
-
     }
 }

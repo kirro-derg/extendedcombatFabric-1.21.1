@@ -8,7 +8,8 @@
       "ShieldBreakMixin",
       "ItemStackMixin",
       "ArmorStandMixin",
-      "potion.misc.EnchantmentHelperMixin",
+      "potion.vulnerability.EnchantmentHelperMixin",
+      "potion.concussion.EntityMixin",
       "enchantment.airjump.LivingEntityMixin",
       "enchantment.dash.LivingEntityMixin",
       "enchantment.blink.ArmorFeatureRendererMixin",
@@ -18,7 +19,8 @@
       "enchantment.obscurity.EndermanEntityMixin",
       "enchantment.vanity.ArmorFeatureRendererMixin",
       "enchantment.stealth.EntityMixin",
-      "potion.shrinking.LivingEntityMixin"
+      "potion.shrinking.LivingEntityMixin",
+      "airMovement.PlayerEntityMixin"
 	],
 	"client": [
       "client.ItemRendererMixin",

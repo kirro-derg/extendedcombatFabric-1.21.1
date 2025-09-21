@@ -2,8 +2,10 @@ package dev.kirro.extendedcombat.block;
 
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.block.custom.*;
+import dev.kirro.extendedcombat.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -22,6 +24,9 @@ public class ModBlocks {
     public static final Block NETHER_STEEL_BLOCK = registerBlock("nether_steel_block",
             new Block(AbstractBlock.Settings.create().strength(100f, 1200f)
                     .requiresTool().sounds(BlockSoundGroup.NETHERITE)));
+    public static final Block ECHO_STEEL_BLOCK = registerBlock("echo_steel_block",
+            new Block(AbstractBlock.Settings.create().strength(100f, 1200f)
+                    .requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
 
     public static final Block WARDING_STONE = registerBlock("warding_stone",
             new WardingStoneBlock(AbstractBlock.Settings.create().strength(6f)
@@ -39,7 +44,7 @@ public class ModBlocks {
             new FlatBlock(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().luminance(state -> 15)));
     public static final Block FRAMED_GLASS_PANEL = registerBlock("framed_glass_panel",
             new FramedGlassPanelBlock(AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque()));
-    public static final Block GLASS_PANEL = registerBlock("_stained_glass_panel",
+    public static final Block _STAINED_GLASS_PANEL = registerBlock("_stained_glass_panel",
             new FramedGlassPanelBlock(AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque()));
     public static final Block SEAT = registerBlock("seat_block",
             new SeatBlock(AbstractBlock.Settings.create().strength(2f).nonOpaque()
@@ -49,8 +54,15 @@ public class ModBlocks {
             new HeavyDoor(BlockSetType.CHERRY, AbstractBlock.Settings.create().strength(25f)
                     .requiresTool().sounds(BlockSoundGroup.METAL)));
 
+    public static final Block BLACK_APPLE_BUSH = registerBlockWithoutItem("black_apple_bush",
+            new BlackAppleBushBlock(AbstractBlock.Settings.create().strength(0).sounds(BlockSoundGroup.SWEET_BERRY_BUSH).ticksRandomly().noCollision().pistonBehavior(PistonBehavior.DESTROY)));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, Identifier.of(ExtendedCombat.MOD_ID, name), block);
+    }
+
+    private static Block registerBlockWithoutItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(ExtendedCombat.MOD_ID, name), block);
     }
 
@@ -62,19 +74,20 @@ public class ModBlocks {
     public static void registerModBlocks() {
         ExtendedCombat.LOGGER.info("Registering blocks for" + ExtendedCombat.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.add(ModBlocks.NETHER_STEEL_BLOCK);
-            fabricItemGroupEntries.add(ModBlocks.FRAMED_GLASS_PANEL);
-            fabricItemGroupEntries.add(ModBlocks.FLAT_BLOCK);
-            fabricItemGroupEntries.add(ModBlocks.HEAVY_DOOR);
-            fabricItemGroupEntries.add(ModBlocks.SEAT);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+            entries.add(ModBlocks.NETHER_STEEL_BLOCK);
+            entries.add(ModBlocks.ECHO_STEEL_BLOCK);
+            entries.add(ModBlocks.FRAMED_GLASS_PANEL);
+            entries.add(ModBlocks.FLAT_BLOCK);
+            entries.add(ModBlocks.HEAVY_DOOR);
+            entries.add(ModBlocks.SEAT);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.add(ModBlocks.HEAVY_DOOR);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+            entries.add(ModBlocks.HEAVY_DOOR);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(fabricItemGroupEntries -> {
-            fabricItemGroupEntries.add(ModBlocks.WARDING_STONE);
-            fabricItemGroupEntries.add(ModBlocks.SEAT);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
+            entries.add(ModBlocks.WARDING_STONE);
+            entries.add(ModBlocks.SEAT);
         });
     }
 }

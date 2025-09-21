@@ -26,6 +26,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.STEALTH)
                 .add(Enchantments.MENDING)
                 .add(ModEnchantments.BURST)
+                .add(ModEnchantments.CONCUSSION)
         ;
 
         getOrCreateTagBuilder(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET)

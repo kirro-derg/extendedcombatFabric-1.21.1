@@ -1,9 +1,18 @@
 package dev.kirro;
 
+import com.google.common.collect.Lists;
+import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.util.DuplicateKeyBindsMode;
+import dev.kirro.extendedcombat.util.ModItemModels;
 import eu.midnightdust.lib.config.MidnightConfig;
+import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 public class ModConfig extends MidnightConfig {
+    public static final String client = "client";
+    public static final String model_system = "model_system";
+
     // common
     @Entry
     public static boolean disableDurability = false;
@@ -15,14 +24,29 @@ public class ModConfig extends MidnightConfig {
     public static boolean xpRepairActive = true;
 
     @Entry
-    public static boolean airMobilityActive = true;
+    public static boolean airMovementActive = true;
 
     // client
-    @Entry(category = "client")
+    @Entry(category = client)
     public static boolean showArmorSleeves = true;
 
-    @Entry(category = "client")
+    @Entry(category = client)
     public static DuplicateKeyBindsMode allowDuplicateKeybinds = DuplicateKeyBindsMode.MOVEMENT;
+
+    // model system
+    @Comment(category = model_system, centered = true)
+    public static Comment acceptableItemsDescription;
+    @Entry(category = model_system)
+    public static List<Identifier> acceptableItems = Lists.newArrayList(
+            ModItemModels.getItemId(ModItems.WOODEN_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.STONE_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.IRON_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.GOLDEN_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.DIAMOND_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.NETHERITE_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.NETHER_STEEL_GREATSWORD.getDefaultStack()),
+            ModItemModels.getItemId(ModItems.ECHO_STEEL_GREATSWORD.getDefaultStack())
+    );
 
     static {
         MidnightConfig.init(ExtendedCombat.MOD_ID, ModConfig.class);

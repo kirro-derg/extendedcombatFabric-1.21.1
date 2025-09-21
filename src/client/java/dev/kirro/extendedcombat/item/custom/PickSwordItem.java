@@ -34,7 +34,7 @@ public class PickSwordItem extends GreatswordItem {
     public PickSwordItem(ToolMaterial material, Item.Settings settings) {
         super(material, settings);
         DefaultItemComponentEvents.MODIFY.register(context -> context.modify(
-                Predicate.isEqual(ModItems.NETHER_STEEL_GREATSWORD),
+                Predicate.isEqual(this),
                 ((builder, item) -> builder.add(DataComponentTypes.TOOL, createToolComponent()))
         ));
 
@@ -64,18 +64,4 @@ public class PickSwordItem extends GreatswordItem {
                 )
                 .build();
     }
-
-    @Override
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        return true;
-    }
-
-    //@Override
-    //public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-    //    if (attacker instanceof ServerPlayerEntity player) {
-    //        ServerWorld world = (ServerWorld) attacker.getWorld();
-    //        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_NETHERITE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + player.getRandom().nextGaussian() / 10f));
-    //    }
-    //    return true;
-    //}
 }

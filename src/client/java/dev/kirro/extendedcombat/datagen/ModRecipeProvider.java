@@ -32,14 +32,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(RecipeExporter exporter) {
 
-        // nether steel block recipe
+        // metal block recipes
         offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.NETHER_STEEL_BLOCK, ModItems.NETHER_STEEL_INGOT);
 
-        // ingot from block recipe
+        offer2x2CompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ECHO_STEEL_BLOCK, ModItems.ECHO_STEEL_INGOT);
+
+        // ingot from block recipes
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_INGOT, 4)
                 .input(ModBlocks.NETHER_STEEL_BLOCK)
                 .criterion(hasItem(ModBlocks.NETHER_STEEL_BLOCK), conditionsFromItem(ModBlocks.NETHER_STEEL_BLOCK))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_ingot_from_block"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ECHO_STEEL_INGOT, 4)
+                .input(ModBlocks.ECHO_STEEL_BLOCK)
+                .criterion(hasItem(ModBlocks.ECHO_STEEL_BLOCK), conditionsFromItem(ModBlocks.ECHO_STEEL_BLOCK))
+                .offerTo(exporter, ExtendedCombat.id("echo_steel_ingot_from_block"));
 
         // nether steel item recipes
         SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.NETHER_STEEL_UPGRADE), Ingredient.ofItems(Items.NETHERITE_BOOTS), Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT), RecipeCategory.COMBAT, ModItems.NETHER_STEEL_BOOTS)
@@ -92,6 +99,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "echo_reinforced_elytra_smithing"));
 
         // miscellaneous item recipes
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.WOODEN_HANDLE)
+                .pattern(" LN")
+                .pattern("LNL")
+                .pattern("NL ")
+                .input('N', Items.STICK)
+                .input('L', Items.LEATHER)
+                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+                .offerTo(exporter);
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_HANDLE)
                 .pattern("GLN")
                 .pattern("LNL")
@@ -110,6 +126,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.SPRUCE_LOG), conditionsFromItem(Items.SPRUCE_LOG))
                 .offerTo(exporter);
 
+        // ∴ᔑ∷↸╎リ⊣  ᓭℸ ̣ 𝙹リᒷ
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.WARDING_STONE)
                 .pattern("DDD")
                 .pattern("DSD")
@@ -248,14 +265,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                 .offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BLACK_APPLE)
+        /*ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.BLACK_APPLE)
                 .pattern("OOO")
                 .pattern("OAO")
                 .pattern("OOO")
                 .input('O', Items.OBSIDIAN)
                 .input('A', Items.APPLE)
                 .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
-                .offerTo(exporter);
+                .offerTo(exporter);*/
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.HONEY_BREAD)
                 .input(Items.BREAD)
@@ -271,7 +288,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter);
 
         // QOL recipes
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PAPER)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PAPER, 3)
                 .pattern("  O")
                 .pattern(" OO")
                 .input('O', Items.SUGAR_CANE)
@@ -281,6 +298,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.STRING, 4)
                 .input(ItemTags.WOOL)
                 .criterion(hasItem(Items.WHITE_WOOL), conditionsFromItem(Items.WHITE_WOOL))
+                .offerTo(exporter);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BLACK_APPLE_SEED, 4)
+                .input(ModItems.BLACK_APPLE)
+                .criterion(hasItem(ModItems.BLACK_APPLE), conditionsFromItem(ModItems.BLACK_APPLE))
                 .offerTo(exporter);
 
         // hammer recipes

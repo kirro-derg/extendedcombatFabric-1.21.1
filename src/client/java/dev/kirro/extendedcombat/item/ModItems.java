@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.item;
 
 import dev.kirro.ExtendedCombat;
+import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.custom.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
@@ -42,8 +43,8 @@ public class ModItems {
             new PickSwordItem(ModToolMaterials.NETHER_STEEL, new Item.Settings().fireproof()
                     .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.7f))));
     public static final Item ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
-            new GreatswordItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof()
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.7f))));
+            new AxeSwordItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof()
+                    .attributeModifiers(AxeSwordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.7f))));
 
     public static final Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             new ModPickaxeItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
@@ -69,10 +70,10 @@ public class ModItems {
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.NETHERITE, 1f, -3.8f))));
     public static final Item NETHER_STEEL_HAMMER = registerItem("nether_steel_hammer",
             new HammerItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
-                    .attributeModifiers(MiningToolItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 4, -3.8f))));
+                    .attributeModifiers(MiningToolItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 1f, -3.8f))));
     public static final Item ECHO_STEEL_HAMMER = registerItem("echo_steel_hammer",
             new HammerItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof()
-                    .attributeModifiers(MiningToolItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 4f, -3.8f))));
+                    .attributeModifiers(MiningToolItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 1f, -3.8f))));
 
 
     public static final Item NETHER_STEEL_HELMET = registerItem("nether_steel_helmet",
@@ -100,6 +101,8 @@ public class ModItems {
 
     public static final Item BLACK_APPLE = registerItem("black_apple",
             new Item(new Item.Settings().rarity(Rarity.UNCOMMON).food(ModFoodComponents.BLACK_APPLE)));
+    public static final Item BLACK_APPLE_SEED = registerItem("black_apple_seed",
+            new AliasedBlockItem(ModBlocks.BLACK_APPLE_BUSH, new Item.Settings().food(ModFoodComponents.BLACK_APPLE_SEED)));
     public static final Item GOLDEN_STEAK = registerItem("golden_steak",
             new Item(new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.GOLDEN_STEAK)));
     public static final Item HONEY_BREAD = registerItem("honey_bread",

@@ -19,16 +19,17 @@ import dev.kirro.extendedcombat.villager.ModPOI;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,8 +53,6 @@ public class ExtendedCombat implements ModInitializer {
 
 		ModPOI.registerPOIs();
 
-
-
 		ModEntities.registerModEntities();
 
         ModStatusEffects.registerStatusEffects();
@@ -65,24 +64,16 @@ public class ExtendedCombat implements ModInitializer {
 		registerEvents();
 		registerPayloads();
 
-
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
 				XPRepairTracker.tick(player);
 			}
 		});
 
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-		});
-
 		FabricDefaultAttributeRegistry.register(ModEntities.STATUE, StatueEntity.createAttributes());
-
-
 	}
 
 	private void registerEvents() {
-		// config
-		MultiplyMovementSpeedEvent.EVENT.register(new AirMobilityEvent());
         // item
         PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
 		// enchantment

@@ -25,7 +25,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.MACE)
         ;
 
-        getOrCreateTagBuilder(ModItemTags.SCALED_ITEMS)
+        getOrCreateTagBuilder(ModItemTags.GREATSWORDS)
                 .add(ModItems.WOODEN_GREATSWORD)
                 .add(ModItems.STONE_GREATSWORD)
                 .add(ModItems.IRON_GREATSWORD)

@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 public class ModItemGroups {
     public static final ItemGroup EXTENDEDCOMBAT_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(ExtendedCombat.MOD_ID, "extended_combat_items"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.NETHER_STEEL_GREATSWORD))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.NETHER_STEEL_BLOCK))
                     .displayName(Text.translatable("itemgroup.extended_combat_items"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.NETHER_STEEL_INGOT);
@@ -25,6 +25,7 @@ public class ModItemGroups {
                         entries.add(ModItems.POISON_DAGGER);
 
                         entries.add(ModBlocks.NETHER_STEEL_BLOCK);
+                        entries.add(ModBlocks.ECHO_STEEL_BLOCK);
                         entries.add(ModBlocks.WARDING_STONE);
                         entries.add(ModBlocks.FLAT_BLOCK);
                         entries.add(ModBlocks.FRAMED_GLASS_PANEL);

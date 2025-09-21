@@ -17,14 +17,10 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.function.Supplier;
@@ -34,9 +30,11 @@ public class ExtendedCombatClient implements ClientModInitializer {
     @Override
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FRAMED_GLASS_PANEL, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLACK_APPLE_BUSH, RenderLayer.getCutout());
 
         FabricLoader.getInstance().getModContainer(ExtendedCombat.MOD_ID).ifPresent(modContainer -> {
             ResourceManagerHelper.registerBuiltinResourcePack(ExtendedCombat.id("extendedcombat_programmer_art"), modContainer, ResourcePackActivationType.NORMAL);
+            ResourceManagerHelper.registerBuiltinResourcePack(ExtendedCombat.id("template_handheld_pack"), modContainer, ResourcePackActivationType.NORMAL);
         });
 
 		ModEntityModelLayers.registerLayerDefinitions();
@@ -44,8 +42,6 @@ public class ExtendedCombatClient implements ClientModInitializer {
 
 		registerEvents();
 		registerPayloads();
-
-
     }
 
 	public static final KeyBinding DASH = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(

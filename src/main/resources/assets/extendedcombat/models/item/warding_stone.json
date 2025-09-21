@@ -1,5 +1,6 @@
 {
-	"parent": "extendedcombat:block/warding_stone",
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "extendedcombat:block/warding_stone_lower",
 		"particle": "extendedcombat:block/warding_stone_lower"

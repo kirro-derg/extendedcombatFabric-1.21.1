@@ -17,28 +17,31 @@ import net.minecraft.util.Identifier;
 
 public class ModEnchantments {
     public static final RegistryKey<Enchantment> DASH =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "dash"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("dash"));
 
     public static final RegistryKey<Enchantment> AIR_JUMP =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "air_jump"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("air_jump"));
 
     public static final RegistryKey<Enchantment> BLINK =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "blink"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("blink"));
 
     public static final RegistryKey<Enchantment> OBSCURITY =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "obscurity"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("obscurity"));
 
     public static final RegistryKey<Enchantment> VANITY =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "vanity"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("vanity"));
 
     public static final RegistryKey<Enchantment> STEALTH =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "stealth"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("stealth"));
 
     public static final RegistryKey<Enchantment> KEEPSAKE =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "keepsake"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("keepsake"));
 
     public static final RegistryKey<Enchantment> BURST =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, Identifier.of(ExtendedCombat.MOD_ID, "burst"));
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("burst"));
+
+    public static final RegistryKey<Enchantment> CONCUSSION =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("concussion"));
 
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
@@ -119,8 +122,8 @@ public class ModEnchantments {
                 items.getOrThrow(ModItemTags.KEEPSAKE_ENCHANTABLE),
                 2,
                 1,
-                Enchantment.leveledCost(25, 25),
-                Enchantment.leveledCost(75, 75),
+                Enchantment.leveledCost(25, 10),
+                Enchantment.leveledCost(75, 10),
                 AttributeModifierSlot.ANY, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.KEEPSAKE,
                         new KeepsakeEnchantmentEffect(
@@ -131,13 +134,25 @@ public class ModEnchantments {
                 items.getOrThrow(ModItemTags.ELYTRA_ENCHANTABLE),
                 2,
                 3,
-                Enchantment.leveledCost(25, 25),
-                Enchantment.leveledCost(75, 75),
+                Enchantment.leveledCost(25, 10),
+                Enchantment.leveledCost(75, 10),
                 AttributeModifierSlot.CHEST, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.BURST,
                         new BurstEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.05f, 0.5f))
                         )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.ELYTRA_EXCLUSIVE_SET))));
+
+        registerable.register(CONCUSSION, createCustom(CONCUSSION.getValue(),
+                items.getOrThrow(ModItemTags.GREATSWORDS),
+                5,
+                3,
+                Enchantment.leveledCost(5, 1),
+                Enchantment.leveledCost(20, 1),
+                AttributeModifierSlot.MAINHAND, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.CONCUSSION,
+                        new ConcussionEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
+                        ))));
     }
 
     public interface EffectsAdder {

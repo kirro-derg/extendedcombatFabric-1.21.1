@@ -12,8 +12,8 @@ import net.minecraft.registry.tag.TagKey;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    NETHER_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 8124, 20.0F, 7F, 44, () -> Ingredient.ofItems(Items.NETHERITE_INGOT)),
-    ECHO_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 9124, 23.0f, 8f, 44, () -> Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT));
+    NETHER_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 8124, 20.0F, 7F, 44, () -> Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT)),
+    ECHO_STEEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 9124, 23.0f, 8f, 44, () -> Ingredient.ofItems(ModItems.ECHO_STEEL_INGOT));
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;

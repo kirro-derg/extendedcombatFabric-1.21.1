@@ -17,7 +17,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.FLAT_BLOCK)
+                .add(ModBlocks.FRAMED_GLASS_PANEL)
                 .add(ModBlocks.NETHER_STEEL_BLOCK)
+                .add(ModBlocks.ECHO_STEEL_BLOCK)
                 .add(ModBlocks.WARDING_STONE)
                 .setReplace(false)
         ;
@@ -29,6 +31,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.NETHER_STEEL_BLOCK)
+                .add(ModBlocks.ECHO_STEEL_BLOCK)
                 .setReplace(false)
         ;
     }

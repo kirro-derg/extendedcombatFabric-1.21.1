@@ -47,10 +47,10 @@ public class ExtendedCombatUtil {
     }
 
     public static boolean isGroundedElytra(LivingEntity living) {
-        return isGroundedElytra(living, false);
+        return isGroundedElytra(living, true);
     }
 
-    public static boolean inAir(Entity entity, double distanceFromGround) {
-        return entity.getWorld().raycast(new RaycastContext(entity.getPos(), entity.getPos().add(0, -distanceFromGround, 0), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, entity)).getType() == HitResult.Type.MISS;
+    public static boolean inAir(Entity entity, double altitude) {
+        return entity.getWorld().raycast(new RaycastContext(entity.getPos(), entity.getPos().add(0, -altitude, 0), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, entity)).getType() == HitResult.Type.MISS;
     }
 }

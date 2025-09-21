@@ -1,17 +1,24 @@
 package dev.kirro.extendedcombat.mixin.potion.shrinking;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.kirro.extendedcombat.effects.ModStatusEffects;
-import dev.kirro.extendedcombat.effects.custom.ShrinkingStatusEffect;
 import dev.kirro.extendedcombat.item.ModItems;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import virtuoel.pehkui.api.ScaleTypes;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -35,17 +42,17 @@ public class LivingEntityMixin {
 
     @Unique
     private boolean wearingNetherSteel(LivingEntity entity) {
-        return entity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.NETHER_STEEL_HELMET) &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(ModItems.NETHER_STEEL_CHESTPLATE) &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(ModItems.NETHER_STEEL_LEGGINGS) &&
-                entity.getEquippedStack(EquipmentSlot.FEET).isOf(ModItems.NETHER_STEEL_BOOTS);
+        return entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ModItemTags.NETHER_STEEL_WEARABLES) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ModItemTags.NETHER_STEEL_WEARABLES) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ModItemTags.NETHER_STEEL_WEARABLES) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.NETHER_STEEL_WEARABLES);
     }
 
     @Unique
     private boolean wearingEchoSteel(LivingEntity entity) {
-        return entity.getEquippedStack(EquipmentSlot.HEAD).isOf(ModItems.ECHO_STEEL_HELMET) &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(ModItems.ECHO_STEEL_CHESTPLATE) &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(ModItems.ECHO_STEEL_LEGGINGS) &&
-                entity.getEquippedStack(EquipmentSlot.FEET).isOf(ModItems.ECHO_STEEL_BOOTS);
+        return entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ModItemTags.ECHO_WEARABLES) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ModItemTags.ECHO_WEARABLES) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ModItemTags.ECHO_WEARABLES) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.ECHO_WEARABLES) ;
     }
 }

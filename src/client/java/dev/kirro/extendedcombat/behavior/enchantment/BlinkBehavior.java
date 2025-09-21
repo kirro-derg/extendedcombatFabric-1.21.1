@@ -8,7 +8,6 @@ import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundEvents;
@@ -17,7 +16,7 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponent {
     private final LivingEntity player;
-    private boolean refresh = false, hasBlink = false, wasPressingKey = false, invisible = false;
+    private boolean canRecharge = false, hasBlink = false, wasPressingKey = false, invisible = false;
     private int cooldown = 0, lastCooldown = 0, duration = 0;
 
     public BlinkBehavior(LivingEntity player) {
@@ -28,7 +27,7 @@ public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponen
 
     @Override
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        refresh = nbtCompound.getBoolean("Refresh");
+        canRecharge = nbtCompound.getBoolean("CanRecharge");
         cooldown = nbtCompound.getInt("Cooldown");
         lastCooldown = nbtCompound.getInt("LastCooldown");
         invisible = nbtCompound.getBoolean("Invisible");
@@ -36,7 +35,7 @@ public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponen
 
     @Override
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
-        nbtCompound.putBoolean("Refresh", refresh);
+        nbtCompound.putBoolean("CanRecharge", canRecharge);
         nbtCompound.putInt("Cooldown", cooldown);
         nbtCompound.putInt("LastCooldown", lastCooldown);
         nbtCompound.putBoolean("Invisible", invisible);
@@ -47,15 +46,15 @@ public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponen
         int playerCooldown = BlinkEnchantmentEffect.getCooldown(player);
         hasBlink = playerCooldown > 0;
         if (hasBlink) {
-            if (!refresh) {
+            if (!canRecharge) {
                 if (!player.isInvisible()) {
-                    refresh = true;
+                    canRecharge = true;
                 }
             } else if (cooldown > 0) {
                 cooldown--;
             }
         } else {
-            refresh = false;
+            canRecharge = false;
             setCooldown(0);
         }
         if (duration > 0) {
@@ -134,7 +133,7 @@ public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponen
 
     public void reset() {
         setCooldown(BlinkEnchantmentEffect.getCooldown(player));
-        refresh = false;
+        canRecharge = false;
         setInvisible(false);
         setDuration(BlinkEnchantmentEffect.getUsageDuration(player));
     }

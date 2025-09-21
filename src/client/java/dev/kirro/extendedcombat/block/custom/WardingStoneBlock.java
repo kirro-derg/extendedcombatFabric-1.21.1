@@ -14,7 +14,6 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.*;
@@ -79,12 +78,6 @@ public class WardingStoneBlock extends Block {
         }
     }
 
-    public static void placeAt(WorldAccess world, BlockState state, BlockPos pos, int flags) {
-        BlockPos blockPos = pos.up();
-        world.setBlockState(pos, withWaterloggedState(world, pos, state.with(HALF, DoubleBlockHalf.LOWER)), flags);
-        world.setBlockState(blockPos, withWaterloggedState(world, blockPos, state.with(HALF, DoubleBlockHalf.UPPER)), flags);
-    }
-
     public static BlockState withWaterloggedState(WorldView world, BlockPos pos, BlockState state) {
         return state.contains(Properties.WATERLOGGED) ? state.with(Properties.WATERLOGGED, world.isWater(pos)) : state;
     }
@@ -92,8 +85,10 @@ public class WardingStoneBlock extends Block {
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient) {
-            if (player.isCreative()) {
+            if (player.isCreative() || !player.canHarvest(state)) {
                 onBreakInCreative(world, pos, state, player);
+            } else {
+                dropStacks(state, world, pos, null, player, player.getMainHandStack());
             }
         }
 
@@ -122,7 +117,4 @@ public class WardingStoneBlock extends Block {
         builder.add(HALF);
     }
 
-    public long getRenderingSeed(BlockState state, BlockPos pos) {
-        return MathHelper.hashCode(pos.getX(), pos.down(state.get(HALF) == DoubleBlockHalf.LOWER ? 0 : 1).getY(), pos.getZ());
-    }
 }

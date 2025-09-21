@@ -1,7 +1,9 @@
 {
   "values": [
     "extendedcombat:flat_block",
+    "extendedcombat:framed_glass_panel",
     "extendedcombat:nether_steel_block",
+    "extendedcombat:echo_steel_block",
     "extendedcombat:warding_stone"
   ]
 }

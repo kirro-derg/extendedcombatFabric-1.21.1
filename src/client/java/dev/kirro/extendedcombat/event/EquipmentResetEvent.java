@@ -39,24 +39,26 @@ public class EquipmentResetEvent implements ServerEntityEvents.EquipmentChange {
                     behavior.sync();
                 }
             }
-            if (wearingNetherSteel(livingEntity)) {
-                if (livingEntity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
-                    ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(0.85f);
-                } else {
-                    ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(1.25f);
-                }
-            } else if (wearingEchoSteel(livingEntity)) {
-                if (livingEntity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
-                    ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(0.95f);
-                } else {
-                    ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(1.5f);
-                }
-            } else if (!wearingEchoSteel(livingEntity) && !wearingNetherSteel(livingEntity)) {
-                if (livingEntity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
-                    ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(0.75f);
-                } else {
-                    ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(1.0f);
-                }
+
+        }
+
+        if (wearingNetherSteel(livingEntity)) {
+            if (livingEntity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
+                ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(0.85f);
+            } else {
+                ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(1.25f);
+            }
+        } else if (wearingEchoSteel(livingEntity)) {
+            if (livingEntity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
+                ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(0.95f);
+            } else {
+                ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(1.5f);
+            }
+        } else if (!wearingEchoSteel(livingEntity) && !wearingNetherSteel(livingEntity)) {
+            if (livingEntity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
+                ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(0.75f);
+            } else {
+                ScaleTypes.BASE.getScaleData(livingEntity).setTargetScale(1.0f);
             }
         }
     }
