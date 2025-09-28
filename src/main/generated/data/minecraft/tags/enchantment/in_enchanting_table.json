@@ -7,6 +7,8 @@
     "extendedcombat:vanity",
     "extendedcombat:stealth",
     "minecraft:mending",
-    "extendedcombat:burst"
+    "extendedcombat:burst",
+    "extendedcombat:concussion",
+    "extendedcombat:fluid_walker"
   ]
 }

@@ -81,9 +81,9 @@ public class EquipmentResetEvent implements ServerEntityEvents.EquipmentChange {
         ItemStack leggings = entity.getEquippedStack(EquipmentSlot.LEGS);
         ItemStack boots = entity.getEquippedStack(EquipmentSlot.FEET);
 
-        return helmet.isIn(ModItemTags.ECHO_WEARABLES)
-                && chestplate.isIn(ModItemTags.ECHO_WEARABLES)
-                && leggings.isIn(ModItemTags.ECHO_WEARABLES)
-                && boots.isIn(ModItemTags.ECHO_WEARABLES);
+        return helmet.isIn(ModItemTags.ECHO_STEEL_WEARABLES)
+                && chestplate.isIn(ModItemTags.ECHO_STEEL_WEARABLES)
+                && leggings.isIn(ModItemTags.ECHO_STEEL_WEARABLES)
+                && boots.isIn(ModItemTags.ECHO_STEEL_WEARABLES);
     }
 }

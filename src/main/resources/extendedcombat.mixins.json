@@ -4,10 +4,12 @@
 	"package": "dev.kirro.extendedcombat.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-      "WardingStoneDisableSpawnMixin",
+      "block.HostileEntityMixin",
+      "block.BatEntityMixin",
       "ShieldBreakMixin",
       "ItemStackMixin",
       "ArmorStandMixin",
+      "EntityMixin",
       "potion.vulnerability.EnchantmentHelperMixin",
       "potion.concussion.EntityMixin",
       "enchantment.airjump.LivingEntityMixin",
@@ -20,7 +22,8 @@
       "enchantment.vanity.ArmorFeatureRendererMixin",
       "enchantment.stealth.EntityMixin",
       "potion.shrinking.LivingEntityMixin",
-      "airMovement.PlayerEntityMixin"
+      "airMovement.PlayerEntityMixin",
+      "enchantment.fluidWalker.LivingEntityMixin"
 	],
 	"client": [
       "client.ItemRendererMixin",

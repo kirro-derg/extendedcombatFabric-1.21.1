@@ -43,6 +43,9 @@ public class ModEnchantments {
     public static final RegistryKey<Enchantment> CONCUSSION =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("concussion"));
 
+    public static final RegistryKey<Enchantment> FLUID_WALKER =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("fluid_walker"));
+
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
         effectsAdder.addEffects(builder);
@@ -89,7 +92,7 @@ public class ModEnchantments {
                         new BlinkEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(10)),
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(5))
-                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET))));
+                        ))));
 
         registerable.register(OBSCURITY, create(OBSCURITY.getValue(),
                 items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
@@ -116,7 +119,7 @@ public class ModEnchantments {
                         ModEnchantmentEffectComponentTypes.STEALTH,
                         new StealthEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
-                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET))));
+                        ))));
 
         registerable.register(KEEPSAKE, createCustom(KEEPSAKE.getValue(),
                 items.getOrThrow(ModItemTags.KEEPSAKE_ENCHANTABLE),
@@ -140,18 +143,30 @@ public class ModEnchantments {
                         ModEnchantmentEffectComponentTypes.BURST,
                         new BurstEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.05f, 0.5f))
-                        )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.ELYTRA_EXCLUSIVE_SET))));
+                        ))));
 
         registerable.register(CONCUSSION, createCustom(CONCUSSION.getValue(),
                 items.getOrThrow(ModItemTags.GREATSWORDS),
                 5,
                 3,
                 Enchantment.leveledCost(5, 1),
-                Enchantment.leveledCost(20, 1),
+                Enchantment.leveledCost(10, 1),
                 AttributeModifierSlot.MAINHAND, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.CONCUSSION,
                         new ConcussionEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1))
+                        ))));
+
+        registerable.register(FLUID_WALKER, createCustom(FLUID_WALKER.getValue(),
+                items.getOrThrow(ModItemTags.FLUID_WALKER_ENCHANTABLE),
+                5,
+                3,
+                Enchantment.leveledCost(5, 5),
+                Enchantment.leveledCost(10, 5),
+                AttributeModifierSlot.FEET, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.FLUID_WALKER,
+                        new FluidWalkerEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(2.5f, 0.5f))
                         ))));
     }
 

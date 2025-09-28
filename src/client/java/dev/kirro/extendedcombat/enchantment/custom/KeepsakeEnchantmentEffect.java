@@ -12,6 +12,6 @@ import net.minecraft.util.math.Vec3d;
 
 public record KeepsakeEnchantmentEffect(EnchantmentValueEffect noDurability) {
         public static final Codec<KeepsakeEnchantmentEffect> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                EnchantmentValueEffect.CODEC.fieldOf("enchanted").forGetter(KeepsakeEnchantmentEffect::noDurability)
+                EnchantmentValueEffect.CODEC.fieldOf("noDurability").forGetter(KeepsakeEnchantmentEffect::noDurability)
         ).apply(instance, KeepsakeEnchantmentEffect::new));
 }

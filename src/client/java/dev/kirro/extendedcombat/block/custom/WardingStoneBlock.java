@@ -1,6 +1,8 @@
 package dev.kirro.extendedcombat.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import dev.kirro.ModConfig;
+import dev.kirro.extendedcombat.villager.ModPOI;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.DoubleBlockHalf;
@@ -9,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -17,6 +20,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.*;
+import net.minecraft.world.poi.PointOfInterestStorage;
 import org.jetbrains.annotations.Nullable;
 
 public class WardingStoneBlock extends Block {
@@ -115,6 +119,25 @@ public class WardingStoneBlock extends Block {
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HALF);
+    }
+
+    public static boolean isNearby(WorldAccess world, BlockPos pos, boolean original) {
+        int radius = ModConfig.wardingStoneActiveRadius;
+
+        if (!(world instanceof ServerWorld serverWorld)) {
+            return original;
+        }
+
+        PointOfInterestStorage poiStorage = serverWorld.getPointOfInterestStorage();
+
+        boolean nearby = poiStorage.getInCircle(
+                registryEntry -> registryEntry.value() == ModPOI.WARDING_STONE_POI,
+                pos,
+                radius,
+                PointOfInterestStorage.OccupationStatus.ANY
+        ).findAny().isPresent();
+
+        return original && !nearby;
     }
 
 }

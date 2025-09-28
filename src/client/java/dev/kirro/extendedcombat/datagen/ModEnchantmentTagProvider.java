@@ -27,18 +27,15 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(Enchantments.MENDING)
                 .add(ModEnchantments.BURST)
                 .add(ModEnchantments.CONCUSSION)
+                .add(ModEnchantments.FLUID_WALKER)
         ;
 
         getOrCreateTagBuilder(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET)
-                .add(ModEnchantments.STEALTH, ModEnchantments.BLINK)
+                .add(ModEnchantments.BLINK)
         ;
 
         getOrCreateTagBuilder(ModEnchantmentTags.DURABILITY_EXCLUSIVE_SET)
                 .add(ModEnchantments.KEEPSAKE, Enchantments.MENDING)
-        ;
-
-        getOrCreateTagBuilder(ModEnchantmentTags.ELYTRA_EXCLUSIVE_SET)
-                .add(ModEnchantments.BURST, Enchantments.MENDING, ModEnchantments.KEEPSAKE)
         ;
     }
 }

@@ -26,7 +26,6 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHER_STEEL_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ECHO_STEEL_BLOCK);
-        blockStateModelGenerator.registerCrop(ModBlocks.BLACK_APPLE_BUSH, Properties.AGE_3, 0, 1, 2, 3);
     }
 
     @Override
@@ -48,8 +47,8 @@ public class ModModelProvider extends FabricModelProvider {
         generator.register(ModItems.NETHERITE_HAMMER, Models.HANDHELD);
         generator.register(ModItems.NETHER_STEEL_HAMMER, Models.HANDHELD);
         generator.register(ModItems.ECHO_STEEL_HAMMER, Models.HANDHELD);
-        generator.register(ModItems.BLACK_APPLE, Models.GENERATED);
         generator.register(ModItems.BLACK_APPLE_SEED, Models.GENERATED);
+        generator.register(ModItems.BLACK_APPLE, Models.GENERATED);
         generator.register(ModItems.GOLDEN_STEAK, Models.GENERATED);
         generator.register(ModItems.HONEY_BREAD, Models.GENERATED);
 

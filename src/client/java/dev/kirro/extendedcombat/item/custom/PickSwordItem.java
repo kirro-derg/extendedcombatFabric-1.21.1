@@ -44,7 +44,7 @@ public class PickSwordItem extends GreatswordItem {
         return new ToolComponent(
                 List.of(ToolComponent.Rule.ofAlwaysDropping(List.of(Blocks.COBWEB, ModBlocks.NETHER_STEEL_BLOCK, ModBlocks.WARDING_STONE), 6.5f),
                         ToolComponent.Rule.ofAlwaysDropping(BlockTags.PICKAXE_MINEABLE, 6.5f),
-                        ToolComponent.Rule.of(BlockTags.SWORD_EFFICIENT, 1.5f),
+                        ToolComponent.Rule.of(BlockTags.SWORD_EFFICIENT, 6.5f),
                         ToolComponent.Rule.of(BlockTags.PICKAXE_MINEABLE, 6.5f),
                         ToolComponent.Rule.of(BlockTags.WOOL, 15f)), 1.0f, 2
         );

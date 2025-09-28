@@ -9,10 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class AirMovementBehavior implements CommonTickingComponent {
     private final PlayerEntity player;
-    private int resetDelay = 0, airTime = 0;
+    private int resetDelay = 0, airTime = 0, multiplierTicks = 0;
+    private final int multiplyAfter = 10;
 
     public AirMovementBehavior(PlayerEntity player) {
         this.player = player;
@@ -22,6 +24,12 @@ public class AirMovementBehavior implements CommonTickingComponent {
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         resetDelay = nbt.getInt("ResetDelay");
         airTime = nbt.getInt("AirTime");
+    }
+
+    private float scaleModifier() {
+        float maxMovementMultiplier = 3.5f;
+        float armorScalars = ScaleTypes.BASE.getScaleData(player).getScale() <= 1.25f ? maxMovementMultiplier - 0.5f : maxMovementMultiplier - 1.0f;
+        return ScaleTypes.BASE.getScaleData(player).getScale() == 1.0f ? maxMovementMultiplier : armorScalars;
     }
 
     @Override
@@ -46,6 +54,9 @@ public class AirMovementBehavior implements CommonTickingComponent {
                 }
             } else if (ExtendedCombatUtil.inAir(player, 1)) {
                 airTime++;
+                if (airTime >= 10) {
+                    multiplierTicks++;
+                }
             }
             if (player.hasStatusEffect(StatusEffects.SPEED)) {
                 delayReset();
@@ -65,8 +76,11 @@ public class AirMovementBehavior implements CommonTickingComponent {
     }
 
     public float movementMultiplier(float original) {
-        float multiply = getAirTime() >= 5 ? 2.0f : 1.0f;
-        return original * multiply;
+        float maxMovementMultiplier = scaleModifier();
+        float multiply = getAirTime() >= multiplyAfter ? multiplierTicks : 1.0f;
+        float scaleMultiplier = getAirTime() >= multiplyAfter ? 1.5f : 1.0f;
+        float scaleModifier = ScaleTypes.BASE.getScaleData(player).getScale() > 1.0 ? multiply : multiply * scaleMultiplier;
+        return original * Math.min(maxMovementMultiplier, scaleModifier);
     }
 
     public void delayReset() {
@@ -75,6 +89,6 @@ public class AirMovementBehavior implements CommonTickingComponent {
 
     public void bypassAirTimeDelay() {
         resetDelay = 3;
-        airTime = 5;
+        airTime = multiplyAfter;
     }
 }

@@ -49,7 +49,7 @@ public class EchoSteelArmorItem extends ModArmorItem {
     }
 
     private void evaluateArmorEffects(LivingEntity entity) {
-            if (hasCorrectArmorOn(entity)) {
+            if (hasCorrectArmorOn(entity) && !entity.hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 20, 1, false, false, false));
             }
     }
@@ -76,9 +76,9 @@ public class EchoSteelArmorItem extends ModArmorItem {
         ItemStack chestplate = (entity.getEquippedStack(EquipmentSlot.CHEST));
         ItemStack helmet = (entity.getEquippedStack(EquipmentSlot.HEAD));
 
-        return helmet.isIn(ModItemTags.ECHO_WEARABLES)
-                && chestplate.isIn(ModItemTags.ECHO_WEARABLES)
-                && leggings.isIn(ModItemTags.ECHO_WEARABLES)
-                && boots.isIn(ModItemTags.ECHO_WEARABLES);
+        return helmet.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && chestplate.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && leggings.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && boots.isIn(ModItemTags.FLAME_RESISTANT_ARMOR);
     }
 }

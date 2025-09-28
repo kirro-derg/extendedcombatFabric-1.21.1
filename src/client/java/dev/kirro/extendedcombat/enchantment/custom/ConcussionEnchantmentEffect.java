@@ -7,7 +7,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.effect.EnchantmentValueEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import org.apache.commons.lang3.mutable.MutableFloat;
 import org.apache.commons.lang3.mutable.MutableInt;
 
 public record ConcussionEnchantmentEffect(EnchantmentValueEffect duration) {
@@ -15,8 +14,7 @@ public record ConcussionEnchantmentEffect(EnchantmentValueEffect duration) {
             EnchantmentValueEffect.CODEC.fieldOf("duration").forGetter(ConcussionEnchantmentEffect::duration)
     ).apply(instance, ConcussionEnchantmentEffect::new));
 
-
-    public static int getLevel(LivingEntity entity) {
+    public static int getDuration(LivingEntity entity) {
         MutableInt mutableFloat = new MutableInt(0);
         for (ItemStack stack : entity.getHandItems()) {
             EnchantmentHelper.forEachEnchantment(stack, ((enchantment, level) ->  {
@@ -27,6 +25,6 @@ public record ConcussionEnchantmentEffect(EnchantmentValueEffect duration) {
             }));
         }
 
-        return mutableFloat.intValue() * 10;
+        return mutableFloat.intValue() * 20;
     }
 }

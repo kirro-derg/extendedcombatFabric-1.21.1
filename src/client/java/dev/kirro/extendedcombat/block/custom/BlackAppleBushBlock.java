@@ -27,6 +27,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class BlackAppleBushBlock extends ModBushBlock implements Fertilizable {
     public static final MapCodec<BlackAppleBushBlock> CODEC = createCodec(BlackAppleBushBlock::new);
@@ -66,19 +67,12 @@ public class BlackAppleBushBlock extends ModBushBlock implements Fertilizable {
     @Override
     protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int i = state.get(AGE);
-        if (i < 3 && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9) {
+        if (i < 3 && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 0) {
            if (!world.getBlockState(pos.up()).isOf(Blocks.TRIPWIRE)) {
                BlockState blockState = state.with(AGE, i + 1);
                world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(blockState));
            }
-        }
-    }
-
-    @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
-            entity.slowMovement(state, new Vec3d(0.97F, 0.75, 0.97F));
         }
     }
 

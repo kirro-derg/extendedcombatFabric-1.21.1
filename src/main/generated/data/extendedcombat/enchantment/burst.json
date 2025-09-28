@@ -15,7 +15,6 @@
       }
     }
   },
-  "exclusive_set": "#extendedcombat:exclusive_set/elytra",
   "max_cost": {
     "base": 75,
     "per_level_above_first": 10

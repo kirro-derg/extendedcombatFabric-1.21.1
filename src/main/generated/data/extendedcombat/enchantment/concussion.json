@@ -12,7 +12,7 @@
     }
   },
   "max_cost": {
-    "base": 20,
+    "base": 10,
     "per_level_above_first": 1
   },
   "max_level": 3,

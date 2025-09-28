@@ -20,7 +20,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(ModItemTags.PERSISTENT_DURABILITY)
+        getOrCreateTagBuilder(ModItemTags.ALWAYS_HAS_DURABILITY)
                 .add(Items.SHIELD)
                 .add(Items.MACE)
         ;
@@ -49,8 +49,17 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
 
         getOrCreateTagBuilder(ModItemTags.REPAIRABLE_ITEMS)
-                .addTag(ModItemTags.ECHO_WEARABLES)
+                .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
                 .addTag(ModItemTags.ECHO_ITEMS)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.FLUID_WALKER_ENCHANTABLE)
+                .addTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.FLAME_RESISTANT_ARMOR)
+                .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
+                .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
         ;
 
         getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_WEARABLES)
@@ -66,7 +75,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHER_STEEL_HAMMER)
         ;
 
-        getOrCreateTagBuilder(ModItemTags.ECHO_WEARABLES)
+        getOrCreateTagBuilder(ModItemTags.ECHO_STEEL_WEARABLES)
                 .add(ModItems.ECHO_STEEL_BOOTS)
                 .add(ModItems.ECHO_STEEL_LEGGINGS)
                 .add(ModItems.ECHO_STEEL_CHESTPLATE)

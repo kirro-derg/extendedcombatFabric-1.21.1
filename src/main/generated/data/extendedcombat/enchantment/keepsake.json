@@ -5,7 +5,7 @@
   },
   "effects": {
     "extendedcombat:keepsake": {
-      "enchanted": {
+      "noDurability": {
         "type": "minecraft:add",
         "value": 1.0
       }

@@ -6,6 +6,7 @@ import dev.kirro.extendedcombat.enchantment.custom.ConcussionEnchantmentEffect;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -42,10 +43,12 @@ public class GreatswordItem extends SwordItem implements ScaledItem {
 
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (attacker instanceof PlayerEntity player && player.getMainHandStack().isOf(this) && !((PlayerEntity) attacker).getItemCooldownManager().isCoolingDown(this)) {
+        if (attacker.getMainHandStack().isOf(this) && !((PlayerEntity) attacker).getItemCooldownManager().isCoolingDown(this)) {
             if (EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.CONCUSSION)) {
-                target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.CONCUSSION, ConcussionEnchantmentEffect.getLevel(attacker)), null);
-                ((PlayerEntity) attacker).getItemCooldownManager().set(this, 80);
+                target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.CONCUSSION, ConcussionEnchantmentEffect.getDuration(attacker)), null);
+                target.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, ConcussionEnchantmentEffect.getDuration(attacker)), null);
+                target.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, ConcussionEnchantmentEffect.getDuration(attacker)), null);
+                ((PlayerEntity) attacker).getItemCooldownManager().set(this, ConcussionEnchantmentEffect.getDuration(attacker));
             }
         }
     }

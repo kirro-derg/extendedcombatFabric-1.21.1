@@ -20,7 +20,7 @@ public class ModFoodComponents {
             .nutrition(8)
             .saturationModifier(1.7f)
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 120 * 20, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2 * 60 * 20, 1), 1.0F)
             .alwaysEdible()
             .build();
     public static final FoodComponent HONEY_BREAD = new FoodComponent.Builder()

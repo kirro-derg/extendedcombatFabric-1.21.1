@@ -15,7 +15,6 @@
       }
     }
   },
-  "exclusive_set": "#extendedcombat:exclusive_set/combat",
   "max_cost": {
     "base": 20,
     "per_level_above_first": 6

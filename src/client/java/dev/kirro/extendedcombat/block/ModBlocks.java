@@ -2,7 +2,6 @@ package dev.kirro.extendedcombat.block;
 
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.block.custom.*;
-import dev.kirro.extendedcombat.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -21,14 +20,14 @@ import java.util.List;
 
 public class ModBlocks {
 
-    public static final Block NETHER_STEEL_BLOCK = registerBlock("nether_steel_block",
+    public static final Block NETHER_STEEL_BLOCK = registerBlockWithItem("nether_steel_block",
             new Block(AbstractBlock.Settings.create().strength(100f, 1200f)
                     .requiresTool().sounds(BlockSoundGroup.NETHERITE)));
-    public static final Block ECHO_STEEL_BLOCK = registerBlock("echo_steel_block",
+    public static final Block ECHO_STEEL_BLOCK = registerBlockWithItem("echo_steel_block",
             new Block(AbstractBlock.Settings.create().strength(100f, 1200f)
                     .requiresTool().sounds(BlockSoundGroup.SCULK_CATALYST)));
 
-    public static final Block WARDING_STONE = registerBlock("warding_stone",
+    public static final Block WARDING_STONE = registerBlockWithItem("warding_stone",
             new WardingStoneBlock(AbstractBlock.Settings.create().strength(6f)
                     .sounds(BlockSoundGroup.DEEPSLATE_BRICKS).nonOpaque().luminance(state -> 4)) {
                 @Override
@@ -40,30 +39,30 @@ public class ModBlocks {
                 }
             });
 
-    public static final Block FLAT_BLOCK = registerBlock("flat_block",
+    public static final Block FLAT_BLOCK = registerBlockWithItem("flat_block",
             new FlatBlock(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque().luminance(state -> 15)));
-    public static final Block FRAMED_GLASS_PANEL = registerBlock("framed_glass_panel",
+    public static final Block FRAMED_GLASS_PANEL = registerBlockWithItem("framed_glass_panel",
             new FramedGlassPanelBlock(AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque()));
-    public static final Block _STAINED_GLASS_PANEL = registerBlock("_stained_glass_panel",
+    public static final Block _STAINED_GLASS_PANEL = registerBlockWithItem("_stained_glass_panel",
             new FramedGlassPanelBlock(AbstractBlock.Settings.copy(Blocks.GLASS).nonOpaque()));
-    public static final Block SEAT = registerBlock("seat_block",
+    public static final Block SEAT = registerBlockWithItem("seat_block",
             new SeatBlock(AbstractBlock.Settings.create().strength(2f).nonOpaque()
                     .sounds(BlockSoundGroup.WOOD)));
 
-    public static final Block HEAVY_DOOR = registerBlock("heavy_door",
+    public static final Block HEAVY_DOOR = registerBlockWithItem("heavy_door",
             new HeavyDoor(BlockSetType.CHERRY, AbstractBlock.Settings.create().strength(25f)
                     .requiresTool().sounds(BlockSoundGroup.METAL)));
 
     public static final Block BLACK_APPLE_BUSH = registerBlockWithoutItem("black_apple_bush",
-            new BlackAppleBushBlock(AbstractBlock.Settings.create().strength(0).sounds(BlockSoundGroup.SWEET_BERRY_BUSH).ticksRandomly().noCollision().pistonBehavior(PistonBehavior.DESTROY)));
+            new BlackAppleBushBlock(AbstractBlock.Settings.create().strength(0.05f).sounds(BlockSoundGroup.SWEET_BERRY_BUSH).ticksRandomly().noCollision().pistonBehavior(PistonBehavior.DESTROY)));
 
-    private static Block registerBlock(String name, Block block) {
+    private static Block registerBlockWithItem(String name, Block block) {
         registerBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, Identifier.of(ExtendedCombat.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, ExtendedCombat.id(name), block);
     }
 
     private static Block registerBlockWithoutItem(String name, Block block) {
-        return Registry.register(Registries.BLOCK, Identifier.of(ExtendedCombat.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, ExtendedCombat.id(name), block);
     }
 
     private static void registerBlockItem(String name, Block block) {
@@ -75,19 +74,19 @@ public class ModBlocks {
         ExtendedCombat.LOGGER.info("Registering blocks for" + ExtendedCombat.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
-            entries.add(ModBlocks.NETHER_STEEL_BLOCK);
-            entries.add(ModBlocks.ECHO_STEEL_BLOCK);
-            entries.add(ModBlocks.FRAMED_GLASS_PANEL);
-            entries.add(ModBlocks.FLAT_BLOCK);
-            entries.add(ModBlocks.HEAVY_DOOR);
-            entries.add(ModBlocks.SEAT);
+            entries.add(NETHER_STEEL_BLOCK);
+            entries.add(ECHO_STEEL_BLOCK);
+            entries.add(FRAMED_GLASS_PANEL);
+            entries.add(FLAT_BLOCK);
+            entries.add(HEAVY_DOOR);
+            entries.add(SEAT);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
-            entries.add(ModBlocks.HEAVY_DOOR);
+            entries.add(HEAVY_DOOR);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
-            entries.add(ModBlocks.WARDING_STONE);
-            entries.add(ModBlocks.SEAT);
+            entries.add(WARDING_STONE);
+            entries.add(SEAT);
         });
     }
 }

@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "type": "fluid_tag",
+      "amount": 250,
+      "fluidTag": "c:honey"
+    }
+  ],
+  "results": [
+    {
+      "id": "extendedcombat:honey_bread"
+    }
+  ]
+}

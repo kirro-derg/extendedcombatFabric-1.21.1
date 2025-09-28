@@ -90,9 +90,9 @@ public class NetherSteelArmorItem extends ModArmorItem {
         ItemStack chestplate = (entity.getEquippedStack(EquipmentSlot.CHEST));
         ItemStack helmet = (entity.getEquippedStack(EquipmentSlot.HEAD));
 
-        return helmet.isIn(ModItemTags.NETHER_STEEL_WEARABLES)
-                && chestplate.isIn(ModItemTags.NETHER_STEEL_WEARABLES)
-                && leggings.isIn(ModItemTags.NETHER_STEEL_WEARABLES)
-                && boots.isIn(ModItemTags.NETHER_STEEL_WEARABLES);
+        return helmet.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && chestplate.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && leggings.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
+                && boots.isIn(ModItemTags.FLAME_RESISTANT_ARMOR);
     }
 }
