@@ -3,7 +3,7 @@ package dev.kirro;
 import com.google.common.collect.Lists;
 import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.util.DuplicateKeyBindsMode;
-import dev.kirro.extendedcombat.util.ModItemModels;
+import dev.kirro.extendedcombat.util.ItemEntryIterator;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.minecraft.util.Identifier;
 
@@ -43,14 +43,14 @@ public class ModConfig extends MidnightConfig {
     public static Comment acceptableItemsDescription;
     @Entry(category = model_system)
     public static List<Identifier> acceptableItems = Lists.newArrayList(
-            ModItemModels.getItemId(ModItems.WOODEN_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.STONE_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.IRON_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.GOLDEN_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.DIAMOND_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.NETHERITE_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.NETHER_STEEL_GREATSWORD.getDefaultStack()),
-            ModItemModels.getItemId(ModItems.ECHO_STEEL_GREATSWORD.getDefaultStack())
+            ItemEntryIterator.getItemId(ModItems.WOODEN_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.STONE_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.IRON_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.GOLDEN_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.DIAMOND_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.NETHERITE_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.NETHER_STEEL_GREATSWORD.getDefaultStack()),
+            ItemEntryIterator.getItemId(ModItems.ECHO_STEEL_GREATSWORD.getDefaultStack())
     );
 
     static {

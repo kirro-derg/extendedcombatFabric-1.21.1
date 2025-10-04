@@ -10,6 +10,7 @@
       "ItemStackMixin",
       "ArmorStandMixin",
       "EntityMixin",
+      "PiglinBrainMixin",
       "potion.vulnerability.EnchantmentHelperMixin",
       "potion.concussion.EntityMixin",
       "enchantment.airjump.LivingEntityMixin",

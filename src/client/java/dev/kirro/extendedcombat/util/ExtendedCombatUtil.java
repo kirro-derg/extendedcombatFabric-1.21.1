@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.util;
 
 import dev.kirro.ModConfig;
+import dev.kirro.extendedcombat.effects.ModStatusEffects;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalFluidTags;
@@ -13,11 +14,15 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.RaycastContext;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class ExtendedCombatUtil {
 
@@ -65,7 +70,7 @@ public class ExtendedCombatUtil {
         if (entity.isSneaking()) {
             return true;
         }
-        return entity instanceof MobEntity && entity.getControllingPassenger() instanceof PlayerEntity player && !player.isSneaking();
+        return entity instanceof MobEntity && entity.getControllingPassenger() instanceof PlayerEntity player && player.isSneaking();
     }
 
     public static boolean canWalkOn(LivingEntity entity) {
@@ -76,11 +81,9 @@ public class ExtendedCombatUtil {
     }
 
     public static boolean isSubmerged(Entity entity) {
-        for (int i = 1; i < MathHelper.ceil(entity.getHeight()); i++) {
-            BlockState state = entity.getWorld().getBlockState(entity.getBlockPos().up(i));
-            if (!state.isOf(Blocks.BUBBLE_COLUMN) && state.getFluidState().isIn(FluidTags.WATER)) {
-                return true;
-            } else if (state.getFluidState().isIn(FluidTags.LAVA)) {
+        for (float i = 0.5f; i < entity.getHeight(); i+= 0.1f) {
+            FluidState state = entity.getWorld().getFluidState(BlockPos.ofFloored(entity.getPos().add(0, i, 0)));
+            if (!state.isEmpty()) {
                 return true;
             }
         }
@@ -97,5 +100,13 @@ public class ExtendedCombatUtil {
                 && chestplate.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
                 && leggings.isIn(ModItemTags.FLAME_RESISTANT_ARMOR)
                 && boots.isIn(ModItemTags.FLAME_RESISTANT_ARMOR);
+    }
+
+    public static void removeEffect(LivingEntity entity) {
+        if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && !isFlameResistant(entity)) {
+            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.0f);
+        } else if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && isFlameResistant(entity)) {
+            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.25f);
+        }
     }
 }

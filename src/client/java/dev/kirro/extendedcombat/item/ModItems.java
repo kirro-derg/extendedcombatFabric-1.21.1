@@ -10,102 +10,100 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
-public class ModItems {
-    public static Item NETHER_STEEL_INGOT = registerItem("nether_steel_ingot", new Item(new Item.Settings().fireproof()));
-    public static Item ECHO_STEEL_INGOT = registerItem("echo_steel_ingot", new Item(new Item.Settings().fireproof()));
-    public static final Item WOODEN_HANDLE = registerItem("wooden_handle", new Item(new Item.Settings()));
-    public static final Item NETHER_STEEL_HANDLE = registerItem("nether_steel_handle", new Item(new Item.Settings().fireproof()));
-    public static final Item NETHER_STEEL_UPGRADE = registerItem("nether_steel_upgrade", new Item(new Item.Settings().fireproof()));
-    public static final Item ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade", new Item(new Item.Settings().fireproof()));
-    public static final Item STATUE = registerItem("statue", new StatueItem(new Item.Settings()));
+public interface ModItems {
+    Item NETHER_STEEL_INGOT = registerItem("nether_steel_ingot", new Item(new Item.Settings().fireproof()));
+    Item ECHO_STEEL_INGOT = registerItem("echo_steel_ingot", new Item(new Item.Settings().fireproof()));
+    Item WOODEN_HANDLE = registerItem("wooden_handle", new Item(new Item.Settings()));
+    Item NETHER_STEEL_HANDLE = registerItem("nether_steel_handle", new Item(new Item.Settings().fireproof()));
+    Item NETHER_STEEL_UPGRADE = registerItem("nether_steel_upgrade", new Item(new Item.Settings().fireproof()));
+    Item ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade", new Item(new Item.Settings().fireproof()));
+    Item STATUE = registerItem("statue", new StatueItem(new Item.Settings()));
 
-    public static final Item POISON_DAGGER = registerItem("poison_dagger", new PoisonDaggerItem(new Item.Settings().maxDamage(3)));
+    Item POISON_DAGGER = registerItem("poison_dagger", new PoisonDaggerItem(new Item.Settings().maxDamage(3)));
 
-    public static final Item WOODEN_GREATSWORD = registerItem("wooden_greatsword",
+    Item WOODEN_GREATSWORD = registerItem("wooden_greatsword",
             new GreatswordItem(ToolMaterials.WOOD, new Item.Settings()
                     .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.WOOD, 7, -2.7f))));
-    public static final Item STONE_GREATSWORD = registerItem("stone_greatsword",
+    Item STONE_GREATSWORD = registerItem("stone_greatsword",
             new GreatswordItem(ToolMaterials.STONE, new Item.Settings()
                     .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.STONE, 7, -2.7f))));
-    public static final Item IRON_GREATSWORD = registerItem("iron_greatsword",
+    Item IRON_GREATSWORD = registerItem("iron_greatsword",
             new GreatswordItem(ToolMaterials.IRON, new Item.Settings()
                     .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.IRON, 7, -2.7f))));
-    public static final Item GOLDEN_GREATSWORD = registerItem("golden_greatsword",
+    Item GOLDEN_GREATSWORD = registerItem("golden_greatsword",
             new GreatswordItem(ToolMaterials.GOLD, new Item.Settings()
                     .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.GOLD, 7, -2.7f))));
-    public static final Item DIAMOND_GREATSWORD = registerItem("diamond_greatsword",
+    Item DIAMOND_GREATSWORD = registerItem("diamond_greatsword",
             new GreatswordItem(ToolMaterials.DIAMOND, new Item.Settings()
                     .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.DIAMOND, 7, -2.7f))));
-    public static final Item NETHERITE_GREATSWORD = registerItem("netherite_greatsword",
+    Item NETHERITE_GREATSWORD = registerItem("netherite_greatsword",
             new GreatswordItem(ToolMaterials.NETHERITE, new Item.Settings()
                     .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 7, -2.7f))));
-    public static final Item NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
+    Item NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
             new PickSwordItem(ModToolMaterials.NETHER_STEEL, new Item.Settings().fireproof()
                     .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.7f))));
-    public static final Item ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
+    Item ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
             new AxeSwordItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof()
                     .attributeModifiers(AxeSwordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.7f))));
 
-    public static final Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
+    Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             new ModPickaxeItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
                     .attributeModifiers(ModPickaxeItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 1, -2.8f))));
 
-    public static final Item WOODEN_HAMMER = registerItem("wooden_hammer",
+    Item WOODEN_HAMMER = registerItem("wooden_hammer",
             new HammerItem(ToolMaterials.WOOD, new Item.Settings()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.WOOD, 1f, -3.8f))));
-    public static final Item STONE_HAMMER = registerItem("stone_hammer",
+    Item STONE_HAMMER = registerItem("stone_hammer",
             new HammerItem(ToolMaterials.STONE, new Item.Settings()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.STONE, 1f, -3.8f))));
-    public static final Item IRON_HAMMER = registerItem("iron_hammer",
+    Item IRON_HAMMER = registerItem("iron_hammer",
             new HammerItem(ToolMaterials.IRON, new Item.Settings()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.IRON, 1f, -3.8f))));
-    public static final Item GOLDEN_HAMMER = registerItem("golden_hammer",
+    Item GOLDEN_HAMMER = registerItem("golden_hammer",
             new HammerItem(ToolMaterials.GOLD, new Item.Settings()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.GOLD, 1f, -3.8f))));
-    public static final Item DIAMOND_HAMMER = registerItem("diamond_hammer",
+    Item DIAMOND_HAMMER = registerItem("diamond_hammer",
             new HammerItem(ToolMaterials.DIAMOND, new Item.Settings()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.DIAMOND, 1f, -3.8f))));
-    public static final Item NETHERITE_HAMMER = registerItem("netherite_hammer",
+    Item NETHERITE_HAMMER = registerItem("netherite_hammer",
             new HammerItem(ToolMaterials.NETHERITE, new Item.Settings().fireproof()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ToolMaterials.NETHERITE, 1f, -3.8f))));
-    public static final Item NETHER_STEEL_HAMMER = registerItem("nether_steel_hammer",
+    Item NETHER_STEEL_HAMMER = registerItem("nether_steel_hammer",
             new HammerItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 1f, -3.8f))));
-    public static final Item ECHO_STEEL_HAMMER = registerItem("echo_steel_hammer",
+    Item ECHO_STEEL_HAMMER = registerItem("echo_steel_hammer",
             new HammerItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof()
                     .attributeModifiers(MiningToolItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 1f, -3.8f))));
 
 
-    public static final Item NETHER_STEEL_HELMET = registerItem("nether_steel_helmet",
+    Item NETHER_STEEL_HELMET = registerItem("nether_steel_helmet",
             new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(8124).fireproof()));
-    public static final Item NETHER_STEEL_CHESTPLATE = registerItem("nether_steel_chestplate",
-            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(8124).fireproof()
-                    .attributeModifiers(NetherSteelArmorItem.createAttributeModifiers(ModArmorMaterials.NETHER_STEEL.value(), -0.0f, -1.0f, 9, 3, -0.5f))));
-    public static final Item NETHER_STEEL_LEGGINGS = registerItem("nether_steel_leggings",
+    Item NETHER_STEEL_CHESTPLATE = registerItem("nether_steel_chestplate",
+            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(8124).fireproof()));
+    Item NETHER_STEEL_LEGGINGS = registerItem("nether_steel_leggings",
             new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(8124).fireproof()));
-    public static final Item NETHER_STEEL_BOOTS = registerItem("nether_steel_boots",
-            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(8124).fireproof()
-                    .attributeModifiers(NetherSteelArmorItem.createAttributeModifiers(ModArmorMaterials.NETHER_STEEL.value(), -0.3f, -0.0f, 4, 3, -0.5f))));
+    Item NETHER_STEEL_BOOTS = registerItem("nether_steel_boots",
+            new NetherSteelArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(8124).fireproof()));
 
-    public static final Item ECHO_STEEL_HELMET = registerItem("echo_steel_helmet",
+    Item ECHO_STEEL_HELMET = registerItem("echo_steel_helmet",
             new EchoSteelArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(9124).fireproof()));
-    public static final Item ECHO_STEEL_CHESTPLATE = registerItem("echo_steel_chestplate",
+    Item ECHO_STEEL_CHESTPLATE = registerItem("echo_steel_chestplate",
             new EchoSteelArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(9124).fireproof()));
-    public static final Item ECHO_STEEL_LEGGINGS = registerItem("echo_steel_leggings",
+    Item ECHO_STEEL_LEGGINGS = registerItem("echo_steel_leggings",
             new EchoSteelArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(9124).fireproof()));
-    public static final Item ECHO_STEEL_BOOTS = registerItem("echo_steel_boots",
+    Item ECHO_STEEL_BOOTS = registerItem("echo_steel_boots",
             new EchoSteelArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(9124).fireproof()));
 
-    public static final Item ECHO_REINFORCED_ELYTRA = registerItem("echo_reinforced_elytra",
+    Item ECHO_REINFORCED_ELYTRA = registerItem("echo_reinforced_elytra",
             new ModElytra(new Item.Settings().maxDamage(864).rarity(Rarity.RARE)));
 
-    public static final Item BLACK_APPLE = registerItem("black_apple",
+    Item BLACK_APPLE = registerItem("black_apple",
             new Item(new Item.Settings().rarity(Rarity.UNCOMMON).food(ModFoodComponents.BLACK_APPLE)));
-    public static final Item BLACK_APPLE_SEED = registerItem("black_apple_seed",
+    Item BLACK_APPLE_SEED = registerItem("black_apple_seed",
             new AliasedBlockItem(ModBlocks.BLACK_APPLE_BUSH, new Item.Settings().food(ModFoodComponents.BLACK_APPLE_SEED)));
-    public static final Item GOLDEN_STEAK = registerItem("golden_steak",
+    Item GOLDEN_STEAK = registerItem("golden_steak",
             new Item(new Item.Settings().rarity(Rarity.RARE).food(ModFoodComponents.GOLDEN_STEAK)));
-    public static final Item HONEY_BREAD = registerItem("honey_bread",
+    Item HONEY_BREAD = registerItem("honey_bread",
             new Item(new Item.Settings().food(ModFoodComponents.HONEY_BREAD)));
 
 
@@ -113,7 +111,7 @@ public class ModItems {
         return Registry.register(Registries.ITEM, Identifier.of(ExtendedCombat.MOD_ID, name), item);
     }
 
-    public static void registerModItems() {
+    static void registerModItems() {
         ExtendedCombat.LOGGER.info("Registering items for" + ExtendedCombat.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
@@ -144,8 +142,9 @@ public class ModItems {
             entries.addAfter(ECHO_STEEL_LEGGINGS, ECHO_STEEL_BOOTS);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
-            entries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, BLACK_APPLE);
             entries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, GOLDEN_STEAK);
+            entries.addAfter(GOLDEN_STEAK, BLACK_APPLE);
+            entries.addAfter(BLACK_APPLE, BLACK_APPLE_SEED);
             entries.addAfter(Items.BREAD, HONEY_BREAD);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {

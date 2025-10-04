@@ -3,9 +3,6 @@ package dev.kirro.extendedcombat.block.custom;
 import com.mojang.serialization.MapCodec;
 import dev.kirro.extendedcombat.item.ModItems;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,14 +17,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
-import virtuoel.pehkui.api.ScaleTypes;
 
 public class BlackAppleBushBlock extends ModBushBlock implements Fertilizable {
     public static final MapCodec<BlackAppleBushBlock> CODEC = createCodec(BlackAppleBushBlock::new);
@@ -115,6 +110,7 @@ public class BlackAppleBushBlock extends ModBushBlock implements Fertilizable {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
+        super.appendProperties(builder);
     }
 
     @Override

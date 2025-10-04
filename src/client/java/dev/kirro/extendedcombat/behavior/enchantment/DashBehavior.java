@@ -7,6 +7,7 @@ import dev.kirro.extendedcombat.enchantment.custom.DashEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.DashParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.DashPayload;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
+import dev.kirro.extendedcombat.sound.ModSounds;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -123,26 +124,26 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
     public void use() {
         reset();
         setImmunityTicks(6);
-        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.5f;
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.25f;
         float strength = DashEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
         player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
         player.fallDistance = 0;
         player.velocityModified = true;
-        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), volume, 1.0f);
+        player.playSound(ModSounds.DASH, volume, 1.0f);
     }
 
     public void useWithElytra(ItemStack offhand) {
         resetWithElytra();
         setImmunityTicks(3);
         useGunpowder(offhand);
-        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.5f;
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.25f;
         float strength = BurstEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
         player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
         player.fallDistance = 0;
         player.velocityModified = true;
-        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), volume, 1.0f);
+        player.playSound(ModSounds.DASH, volume, 1.0f);
     }
 
     private void useGunpowder(ItemStack offhand) {

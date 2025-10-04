@@ -27,9 +27,10 @@ public class AirMovementBehavior implements CommonTickingComponent {
     }
 
     private float scaleModifier() {
-        float maxMovementMultiplier = 3.5f;
-        float armorScalars = ScaleTypes.BASE.getScaleData(player).getScale() <= 1.25f ? maxMovementMultiplier - 0.5f : maxMovementMultiplier - 1.0f;
-        return ScaleTypes.BASE.getScaleData(player).getScale() == 1.0f ? maxMovementMultiplier : armorScalars;
+        float maxMovementMultiplier = 4.0f, scale = ScaleTypes.BASE.getScaleData(player).getScale();
+        float armorScalar = maxMovementMultiplier - 1.0f;
+        float baseScalars = scale < 1.0f ? maxMovementMultiplier : maxMovementMultiplier - 0.5f;
+        return scale > 1.0f ? armorScalar : baseScalars;
     }
 
     @Override

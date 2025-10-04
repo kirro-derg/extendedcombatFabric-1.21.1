@@ -1,7 +1,7 @@
 package dev.kirro.extendedcombat.mixin.client;
 
 import dev.kirro.ExtendedCombat;
-import dev.kirro.extendedcombat.util.ModItemModels;
+import dev.kirro.extendedcombat.util.ItemEntryIterator;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.util.ModelIdentifier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +18,7 @@ public abstract class ModelLoaderMixin {
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/model/ModelLoader;loadItemModel(Lnet/minecraft/client/util/ModelIdentifier;)V", ordinal = 1))
     private void onInit(CallbackInfo ci) {
         ExtendedCombat.LOGGER.info("Loading Baked Item Models:");
-        for (ModelIdentifier id : ModItemModels.getModels("_handheld")) {
+        for (ModelIdentifier id : ItemEntryIterator.getModels("_handheld")) {
             this.loadItemModel(id);
         }
         ExtendedCombat.LOGGER.info("Finished Loading Models.");

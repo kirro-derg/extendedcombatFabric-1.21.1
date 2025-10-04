@@ -65,7 +65,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.NETHER_STEEL_UPGRADE), conditionsFromItem(ModItems.NETHER_STEEL_UPGRADE))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_helmet_smithing"));
 
-        SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.NETHER_STEEL_UPGRADE), Ingredient.ofItems(Items.NETHERITE_PICKAXE), Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT), RecipeCategory.MISC, ModItems.NETHER_STEEL_UPGRADE)
+        SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.NETHER_STEEL_UPGRADE), Ingredient.ofItems(Items.NETHERITE_PICKAXE), Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT), RecipeCategory.MISC, ModItems.NETHER_STEEL_PICKAXE)
                 .criterion(hasItem(ModItems.NETHER_STEEL_UPGRADE), conditionsFromItem(ModItems.NETHER_STEEL_UPGRADE))
                 .offerTo(exporter, Identifier.of(ExtendedCombat.MOD_ID, "nether_steel_pickaxe_smithing"));
 
@@ -117,6 +117,26 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('G', Items.GOLD_INGOT)
                 .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                 .offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_STEEL_UPGRADE, 2)
+                .pattern("DND")
+                .pattern("DUD")
+                .pattern("DDD")
+                .input('D', Items.DIAMOND)
+                .input('N', Items.NETHERITE_SCRAP)
+                .input('U', ModItems.NETHER_STEEL_UPGRADE)
+                .criterion(hasItem(ModItems.NETHER_STEEL_UPGRADE), conditionsFromItem(ModItems.NETHER_STEEL_UPGRADE))
+                .offerTo(exporter, "nether_steel_upgrade_duplication");
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ECHO_STEEL_UPGRADE, 2)
+                .pattern("DED")
+                .pattern("DUD")
+                .pattern("DDD")
+                .input('D', Items.DIAMOND)
+                .input('E', Items.ECHO_SHARD)
+                .input('U', ModItems.ECHO_STEEL_UPGRADE)
+                .criterion(hasItem(ModItems.ECHO_STEEL_UPGRADE), conditionsFromItem(ModItems.ECHO_STEEL_UPGRADE))
+                .offerTo(exporter, "echo_steel_upgrade_duplication");
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.HEAVY_DOOR)
                 .pattern("SS ")

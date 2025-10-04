@@ -5,6 +5,7 @@ import dev.kirro.extendedcombat.enchantment.custom.BlinkEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
+import dev.kirro.extendedcombat.sound.ModSounds;
 import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
@@ -120,7 +121,7 @@ public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponen
         reset();
         sync();
         setInvisible(true);
-        player.playSound(SoundEvents.BLOCK_TRIAL_SPAWNER_AMBIENT_OMINOUS, 1.0f, 1.0f);
+        player.playSound(ModSounds.BLINK, 1.0f, 1.0f);
     }
 
     public void setDuration(int uDuration) {

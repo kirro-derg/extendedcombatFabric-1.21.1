@@ -21,6 +21,10 @@ public class ModSounds {
     public static final SoundEvent ECHO_STEEL_BLOCK_HIT = registerSoundEvent("echo_steel_block_hit");
     public static final SoundEvent ECHO_STEEL_BLOCK_FALL = registerSoundEvent("echo_steel_block_fall");
 
+    public static final SoundEvent DASH = registerSoundEvent("dash");
+    public static final SoundEvent AIR_JUMP = registerSoundEvent("air_jump");
+    public static final SoundEvent BLINK = registerSoundEvent("blink");
+
     public static final BlockSoundGroup NETHER_STEEL_BLOCK = new BlockSoundGroup(1f, 1f,
             NETHER_STEEL_BLOCK_BREAK,
             NETHER_STEEL_BLOCK_STEP,

@@ -105,6 +105,10 @@
 
   "key.categories.enchantments": "Enchantments",
 
+  "sounds.extendedcombat.dash": "Player Dashes",
+  "sounds.extendedcombat.air_jump": "Player Jumps Midair",
+  "sounds.extendedcombat.blink": "Player Blinks",
+
   "extendedcombat.midnightconfig.title": "Common Settings",
   "extendedcombat.midnightconfig.disableDurability": "Disable Durability",
   "extendedcombat.midnightconfig.xpRepairActive": "XP Repair",

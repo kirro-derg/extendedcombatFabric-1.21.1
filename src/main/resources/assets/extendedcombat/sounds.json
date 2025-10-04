@@ -1,0 +1,20 @@
+{
+  "dash": {
+    "subtitle": "sounds.extendedcombat.dash",
+    "sounds": [
+      "extendedcombat:dash"
+    ]
+  },
+  "air_jump": {
+    "subtitle": "sounds.extendedcombat.air_jump",
+    "sounds": [
+      "extendedcombat:air_jump"
+    ]
+  },
+  "blink": {
+    "subtitle": "sounds.extendedcombat.blink",
+    "sounds": [
+      "extendedcombat:blink"
+    ]
+  }
+}

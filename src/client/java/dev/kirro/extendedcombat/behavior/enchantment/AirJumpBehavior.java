@@ -5,6 +5,7 @@ import dev.kirro.extendedcombat.enchantment.custom.AirJumpEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.AirJumpPayload;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
+import dev.kirro.extendedcombat.sound.ModSounds;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
@@ -126,10 +127,10 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
 
     public void use() {
         float strength = AirJumpEnchantmentEffect.getAirJumpStrength(player);
-        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.5f;
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.25f;
         player.jump();
         player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * strength, player.getVelocity().getZ());
-        player.playSound(SoundEvents.ENTITY_WIND_CHARGE_WIND_BURST.value(), volume, 1.0f);
+        player.playSound(ModSounds.AIR_JUMP, volume, 1.0f);
         if (cooldown == 0 || jumpAmount == maxJumps) {
             setCooldown(AirJumpEnchantmentEffect.getCooldown(player));
         }

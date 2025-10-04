@@ -39,10 +39,6 @@ public class EchoSteelArmorItem extends ModArmorItem {
         if(!world.isClient()) {
             if (entity instanceof LivingEntity living && hasFullSuitOfArmorOn(living)) {
                 evaluateArmorEffects(living);
-                ItemStack head = living.getEquippedStack(EquipmentSlot.HEAD);
-                if (!EnchantmentHelper.hasAnyEnchantmentsWith(head, ModEnchantmentEffectComponentTypes.VANITY) && head.isOf(this)) {
-                    living.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 100, 0, false, false, false));
-                }
             }
             super.inventoryTick(stack, world, entity, slot, selected);
         }

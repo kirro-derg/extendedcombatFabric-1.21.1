@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.mixin.potion.shrinking;
 
 import dev.kirro.extendedcombat.effects.ModStatusEffects;
 import dev.kirro.extendedcombat.tags.ModItemTags;
+import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,34 +17,7 @@ public class LivingEntityMixin {
     @Inject(method = "updatePotionVisibility", at = @At("HEAD"))
     private void updatePotionVisibility(CallbackInfo ci) {
         if ((Object) this instanceof LivingEntity entity) {
-            removeEffect(entity);
+            ExtendedCombatUtil.removeEffect(entity);
         }
-    }
-
-    @Unique
-    public void removeEffect(LivingEntity entity) {
-        if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && !wearingEchoSteel(entity) && !wearingNetherSteel(entity)) {
-            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.0f);
-        } else if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && !wearingEchoSteel(entity) && wearingNetherSteel(entity)) {
-            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.25f);
-        } else if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && wearingEchoSteel(entity) && !wearingNetherSteel(entity)) {
-            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.5f);
-        }
-    }
-
-    @Unique
-    private boolean wearingNetherSteel(LivingEntity entity) {
-        return entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ModItemTags.NETHER_STEEL_WEARABLES) &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ModItemTags.NETHER_STEEL_WEARABLES) &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ModItemTags.NETHER_STEEL_WEARABLES) &&
-                entity.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.NETHER_STEEL_WEARABLES);
-    }
-
-    @Unique
-    private boolean wearingEchoSteel(LivingEntity entity) {
-        return entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ModItemTags.ECHO_STEEL_WEARABLES) &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ModItemTags.ECHO_STEEL_WEARABLES) &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ModItemTags.ECHO_STEEL_WEARABLES) &&
-                entity.getEquippedStack(EquipmentSlot.FEET).isIn(ModItemTags.ECHO_STEEL_WEARABLES) ;
     }
 }

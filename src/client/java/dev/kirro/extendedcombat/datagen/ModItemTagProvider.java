@@ -50,7 +50,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.REPAIRABLE_ITEMS)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
-                .addTag(ModItemTags.ECHO_ITEMS)
+                .addTag(ModItemTags.ECHO_STEEL_ITEMS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.FLUID_WALKER_ENCHANTABLE)
@@ -83,7 +83,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
         ;
 
-        getOrCreateTagBuilder(ModItemTags.ECHO_ITEMS)
+        getOrCreateTagBuilder(ModItemTags.ECHO_STEEL_ITEMS)
                 .add(ModItems.ECHO_STEEL_HAMMER)
                 .add(ModItems.ECHO_STEEL_GREATSWORD)
         ;
@@ -102,6 +102,13 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModItemTags.ELYTRA_ENCHANTABLE)
                 .add(Items.ELYTRA)
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
+        ;
+
+        getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED)
+                .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
+                .addTag(ModItemTags.NETHER_STEEL_TOOLS)
+                .addTag(ModItemTags.ECHO_STEEL_ITEMS)
+                .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
         ;
 
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)

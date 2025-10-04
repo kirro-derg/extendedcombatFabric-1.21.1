@@ -12,7 +12,7 @@ public interface ModItemTags {
     TagKey<Item> NETHER_STEEL_WEARABLES = create("nether_steel_wearables");
     TagKey<Item> NETHER_STEEL_TOOLS = create("nether_steel_tools");
     TagKey<Item> ECHO_STEEL_WEARABLES = create("echo_steel_wearables");
-    TagKey<Item> ECHO_ITEMS = create("echo_items");
+    TagKey<Item> ECHO_STEEL_ITEMS = create("echo_items");
     TagKey<Item> GREATSWORDS = create("greatswords");
     TagKey<Item> SLEEVED_ARMOR = create("sleeved_armor");
     TagKey<Item> ELYTRA_ENCHANTABLE = create("enchantable/elytra");

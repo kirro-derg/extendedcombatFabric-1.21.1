@@ -1,19 +1,13 @@
 package dev.kirro.extendedcombat.mixin.enchantment.fluidWalker;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import dev.kirro.extendedcombat.enchantment.custom.FluidWalkerEnchantmentEffect;
+import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
-import net.minecraft.fluid.Fluid;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -25,5 +19,16 @@ public abstract class LivingEntityMixin {
         if (ExtendedCombatUtil.canWalkOn((LivingEntity) (Object) this)) {
             cir.setReturnValue(true);
         }
+    }
+
+    @ModifyReturnValue(method = "computeFallDamage", at = @At(value = "RETURN"))
+    private int handFallDamage(int original) {
+        if ((Object) this instanceof PlayerEntity player) {
+            ItemStack stack = player.getEquippedStack(EquipmentSlot.FEET);
+            if (stack.isOf(ModItems.NETHER_STEEL_BOOTS) || stack.isOf(ModItems.ECHO_STEEL_BOOTS)) {
+                return (int) (original * 0.7f);
+            }
+        }
+        return original;
     }
 }

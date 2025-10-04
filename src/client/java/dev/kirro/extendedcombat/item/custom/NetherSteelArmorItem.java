@@ -22,36 +22,6 @@ public class NetherSteelArmorItem extends ModArmorItem {
         super(material, type, settings);
     }
 
-    public static AttributeModifiersComponent createAttributeModifiers(ArmorMaterial material, float fallDamageMultiplier, float burningTime, int armor, float toughness, float knockbackResistance) {
-        return AttributeModifiersComponent.builder()
-                .add(
-                        EntityAttributes.GENERIC_FALL_DAMAGE_MULTIPLIER,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, fallDamageMultiplier, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                        AttributeModifierSlot.FEET
-                )
-                .add(
-                        EntityAttributes.GENERIC_BURNING_TIME,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, burningTime, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE),
-                        AttributeModifierSlot.CHEST
-                )
-                .add(
-                        EntityAttributes.GENERIC_ARMOR,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, armor, EntityAttributeModifier.Operation.ADD_VALUE),
-                        AttributeModifierSlot.ANY
-                )
-                .add(
-                        EntityAttributes.GENERIC_ARMOR_TOUGHNESS,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, toughness, EntityAttributeModifier.Operation.ADD_VALUE),
-                        AttributeModifierSlot.CHEST
-                )
-                .add(
-                        EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
-                        new EntityAttributeModifier(BASE_ATTACK_DAMAGE_MODIFIER_ID, knockbackResistance, EntityAttributeModifier.Operation.ADD_VALUE),
-                        AttributeModifierSlot.CHEST
-                )
-                .build();
-    }
-
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if(!world.isClient()) {
