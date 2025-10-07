@@ -46,6 +46,9 @@ public class ModEnchantments {
     public static final RegistryKey<Enchantment> FLUID_WALKER =
             RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("fluid_walker"));
 
+    public static final RegistryKey<Enchantment> SWIFTNESS =
+            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("swiftness"));
+
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
         effectsAdder.addEffects(builder);
@@ -53,7 +56,7 @@ public class ModEnchantments {
     }
 
     public static Enchantment createCustom(Identifier id, RegistryEntryList<Item> supportedItems, int weight, int maxLevel, Enchantment.Cost minCost, Enchantment.Cost maxCost, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
-        Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, weight, maxLevel, minCost, maxCost, 4, slot));
+        Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, weight, maxLevel, minCost, maxCost, 2, slot));
         effectsAdder.addEffects(builder);
         return builder.build(id);
     }
@@ -166,7 +169,19 @@ public class ModEnchantments {
                 AttributeModifierSlot.FEET, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.FLUID_WALKER,
                         new FluidWalkerEnchantmentEffect(
-                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(2.5f, 0.5f))
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.3f, 0.4f))
+                        ))));
+
+        registerable.register(SWIFTNESS, createCustom(SWIFTNESS.getValue(),
+                items.getOrThrow(ModItemTags.SWIFTNESS_ENCHANTABLE),
+                5,
+                1,
+                Enchantment.leveledCost(5, 5),
+                Enchantment.leveledCost(10, 5),
+                AttributeModifierSlot.LEGS, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.SWIFTNESS,
+                        new SwiftnessEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(0.5f))
                         ))));
     }
 

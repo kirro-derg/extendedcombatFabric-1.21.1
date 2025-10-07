@@ -11,6 +11,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,6 +23,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
+import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
@@ -79,6 +81,10 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
             bipedModel.rightArm.visible = true;
             bipedModel.leftArm.visible = true;
             bipedModel.body.visible = false;
+            if (bipedModel instanceof PlayerEntityModel<?> playerModel) {
+                playerModel.leftSleeve.visible = false;
+                playerModel.rightSleeve.visible = false;
+            }
         }
     }
 

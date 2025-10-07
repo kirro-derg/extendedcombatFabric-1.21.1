@@ -44,11 +44,12 @@ public class GreatswordItem extends SwordItem implements ScaledItem {
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker.getMainHandStack().isOf(this) && !((PlayerEntity) attacker).getItemCooldownManager().isCoolingDown(this)) {
+            int duration = ConcussionEnchantmentEffect.getDuration(attacker);
             if (EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.CONCUSSION)) {
-                target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.CONCUSSION, ConcussionEnchantmentEffect.getDuration(attacker)), null);
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, ConcussionEnchantmentEffect.getDuration(attacker)), null);
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, ConcussionEnchantmentEffect.getDuration(attacker)), null);
-                ((PlayerEntity) attacker).getItemCooldownManager().set(this, ConcussionEnchantmentEffect.getDuration(attacker));
+                target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.CONCUSSION, duration), null);
+                target.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, duration), null);
+                target.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, duration), null);
+                ((PlayerEntity) attacker).getItemCooldownManager().set(this, duration * 3);
             }
         }
     }

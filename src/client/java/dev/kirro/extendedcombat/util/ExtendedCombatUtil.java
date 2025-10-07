@@ -4,9 +4,7 @@ import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.effects.ModStatusEffects;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.tags.ModItemTags;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalFluidTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -15,12 +13,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.RaycastContext;
 import virtuoel.pehkui.api.ScaleTypes;
 
@@ -75,15 +71,25 @@ public class ExtendedCombatUtil {
 
     public static boolean canWalkOn(LivingEntity entity) {
         return !crouching(entity)
-                && !isSubmerged(entity)
+                && !isSubmergedPartial(entity)
                 && EnchantmentHelper.hasAnyEnchantmentsWith(entity.getEquippedStack(EquipmentSlot.FEET), ModEnchantmentEffectComponentTypes.FLUID_WALKER)
                 && !entity.isSubmergedInWater();
     }
 
-    public static boolean isSubmerged(Entity entity) {
+    public static boolean isSubmergedPartial(Entity entity) {
         for (float i = 0.5f; i < entity.getHeight(); i+= 0.1f) {
             FluidState state = entity.getWorld().getFluidState(BlockPos.ofFloored(entity.getPos().add(0, i, 0)));
-            if (!state.isEmpty()) {
+            if (!state.isEmpty() && !state.isOf(Fluids.EMPTY)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isTouchingFluid(Entity entity) {
+        for (float i = 0.0f; i < entity.getHeight(); i+= 0.1f) {
+            FluidState state = entity.getWorld().getFluidState(BlockPos.ofFloored(entity.getPos().add(0, i, 0)));
+            if (!state.isEmpty() && !state.isOf(Fluids.EMPTY)) {
                 return true;
             }
         }
@@ -102,11 +108,17 @@ public class ExtendedCombatUtil {
                 && boots.isIn(ModItemTags.FLAME_RESISTANT_ARMOR);
     }
 
+    public static boolean hasEnchantmentOfType(LivingEntity entity, ComponentType<?> type) {
+        for (ItemStack stack : entity.getArmorItems()) {
+            return EnchantmentHelper.hasAnyEnchantmentsWith(stack, type);
+        }
+        return false;
+    }
+
+
     public static void removeEffect(LivingEntity entity) {
-        if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && !isFlameResistant(entity)) {
+        if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
             ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.0f);
-        } else if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING) && isFlameResistant(entity)) {
-            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.25f);
         }
     }
 }

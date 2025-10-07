@@ -17,6 +17,7 @@ public interface ModItemTags {
     TagKey<Item> SLEEVED_ARMOR = create("sleeved_armor");
     TagKey<Item> ELYTRA_ENCHANTABLE = create("enchantable/elytra");
     TagKey<Item> FLUID_WALKER_ENCHANTABLE = create("enchantable/fluid_walker");
+    TagKey<Item> SWIFTNESS_ENCHANTABLE = create("enchantable/swiftness");
     TagKey<Item> FLAME_RESISTANT_ARMOR = create("flame_resistant_armor");
 
     private static TagKey<Item> create(String id) {

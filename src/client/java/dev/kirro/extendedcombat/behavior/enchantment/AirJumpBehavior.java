@@ -127,7 +127,7 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
 
     public void use() {
         float strength = AirJumpEnchantmentEffect.getAirJumpStrength(player);
-        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.25f;
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.05f : 0.25f;
         player.jump();
         player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * strength, player.getVelocity().getZ());
         player.playSound(ModSounds.AIR_JUMP, volume, 1.0f);

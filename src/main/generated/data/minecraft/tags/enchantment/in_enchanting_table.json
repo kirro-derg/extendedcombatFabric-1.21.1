@@ -9,6 +9,7 @@
     "minecraft:mending",
     "extendedcombat:burst",
     "extendedcombat:concussion",
-    "extendedcombat:fluid_walker"
+    "extendedcombat:fluid_walker",
+    "extendedcombat:swiftness"
   ]
 }

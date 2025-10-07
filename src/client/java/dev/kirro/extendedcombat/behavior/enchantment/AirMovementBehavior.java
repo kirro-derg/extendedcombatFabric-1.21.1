@@ -1,7 +1,10 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.ModConfig;
+import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
+import dev.kirro.extendedcombat.enchantment.custom.SwiftnessEnchantmentEffect;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,12 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
-import virtuoel.pehkui.api.ScaleTypes;
 
 public class AirMovementBehavior implements CommonTickingComponent {
     private final PlayerEntity player;
     private int resetDelay = 0, airTime = 0, multiplierTicks = 0;
     private final int multiplyAfter = 10;
+    private final float maxMovementMultiplier = 3.0f;
 
     public AirMovementBehavior(PlayerEntity player) {
         this.player = player;
@@ -24,13 +27,6 @@ public class AirMovementBehavior implements CommonTickingComponent {
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {
         resetDelay = nbt.getInt("ResetDelay");
         airTime = nbt.getInt("AirTime");
-    }
-
-    private float scaleModifier() {
-        float maxMovementMultiplier = 4.0f, scale = ScaleTypes.BASE.getScaleData(player).getScale();
-        float armorScalar = maxMovementMultiplier - 1.0f;
-        float baseScalars = scale < 1.0f ? maxMovementMultiplier : maxMovementMultiplier - 0.5f;
-        return scale > 1.0f ? armorScalar : baseScalars;
     }
 
     @Override
@@ -55,12 +51,9 @@ public class AirMovementBehavior implements CommonTickingComponent {
                 }
             } else if (ExtendedCombatUtil.inAir(player, 1)) {
                 airTime++;
-                if (airTime >= 10) {
+                if (airTime >= multiplyAfter) {
                     multiplierTicks++;
                 }
-            }
-            if (player.hasStatusEffect(StatusEffects.SPEED)) {
-                delayReset();
             }
 
         } else {
@@ -72,23 +65,23 @@ public class AirMovementBehavior implements CommonTickingComponent {
         return airTime;
     }
 
-    public void resetTicksInAir() {
+    public void resetAirTime() {
         airTime = 0;
     }
 
     public float movementMultiplier(float original) {
-        float maxMovementMultiplier = scaleModifier();
-        float multiply = getAirTime() >= multiplyAfter ? multiplierTicks : 1.0f;
-        float scaleMultiplier = getAirTime() >= multiplyAfter ? 1.5f : 1.0f;
-        float scaleModifier = ScaleTypes.BASE.getScaleData(player).getScale() > 1.0 ? multiply : multiply * scaleMultiplier;
-        return original * Math.min(maxMovementMultiplier, scaleModifier);
+        float multiplier = getAirTime() >= multiplyAfter ? multiplierTicks : 1.0f;
+        float multiply = EnchantmentHelper.hasAnyEnchantmentsWith(player.getEquippedStack(EquipmentSlot.LEGS), ModEnchantmentEffectComponentTypes.SWIFTNESS)
+                ? 0.5f
+                : 0.0f;
+        return original * Math.min(maxMovementMultiplier + multiply, multiplier);
     }
 
     public void delayReset() {
         resetDelay = 3;
     }
 
-    public void bypassAirTimeDelay() {
+    public void bypass() {
         resetDelay = 3;
         airTime = multiplyAfter;
     }

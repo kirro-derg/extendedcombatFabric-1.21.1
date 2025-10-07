@@ -20,9 +20,10 @@ public class ModEnchantmentEffectComponentTypes {
     public static final ComponentType<KeepsakeEnchantmentEffect> KEEPSAKE = register("keepsake", builder -> builder.codec(KeepsakeEnchantmentEffect.CODEC));
     public static final ComponentType<ConcussionEnchantmentEffect> CONCUSSION = register("concussion", builder -> builder.codec(ConcussionEnchantmentEffect.CODEC));
     public static final ComponentType<FluidWalkerEnchantmentEffect> FLUID_WALKER = register("fluid_walker", builder -> builder.codec(FluidWalkerEnchantmentEffect.CODEC));
+    public static final ComponentType<SwiftnessEnchantmentEffect> SWIFTNESS = register("swiftness", builder -> builder.codec(SwiftnessEnchantmentEffect.CODEC));
 
     private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
-        return Registry.register(Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, Identifier.of(ExtendedCombat.MOD_ID, id), builderOperator.apply(ComponentType.builder()).build());
+        return Registry.register(Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, ExtendedCombat.id(id), builderOperator.apply(ComponentType.builder()).build());
     }
 
     public static void register() {

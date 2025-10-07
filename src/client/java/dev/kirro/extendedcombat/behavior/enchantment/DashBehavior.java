@@ -1,6 +1,7 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.ExtendedCombatClient;
+import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.enchantment.custom.BurstEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.custom.DashEnchantmentEffect;
@@ -12,12 +13,12 @@ import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
@@ -50,9 +51,10 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
         int playerCooldown = DashEnchantmentEffect.getCooldown(player);
         ItemStack chest = player.getEquippedStack(EquipmentSlot.CHEST);
         hasDash = playerCooldown > 0;
+        boolean recharge = EnchantmentHelper.hasAnyEnchantmentsWith(chest, ModEnchantmentEffectComponentTypes.BURST) && player.isFallFlying();
         if (hasDash) {
             if (!canRecharge) {
-                if (player.isOnGround() || EnchantmentHelper.hasAnyEnchantmentsWith(chest, ModEnchantmentEffectComponentTypes.BURST)) {
+                if (player.isOnGround() || recharge) {
                     canRecharge = true;
                 }
             } else if (cooldown > 0) {
@@ -124,7 +126,7 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
     public void use() {
         reset();
         setImmunityTicks(6);
-        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.25f;
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.05f : 0.25f;
         float strength = DashEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
         player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
@@ -137,7 +139,7 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
         resetWithElytra();
         setImmunityTicks(3);
         useGunpowder(offhand);
-        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.03f : 0.25f;
+        float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.05f : 0.25f;
         float strength = BurstEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
         player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());

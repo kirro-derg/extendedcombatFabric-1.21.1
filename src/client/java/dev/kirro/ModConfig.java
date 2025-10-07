@@ -26,11 +26,6 @@ public class ModConfig extends MidnightConfig {
     @Entry
     public static boolean airMovementActive = true;
 
-    @Entry
-    public static List<String> disabledEnchantments = Lists.newArrayList(
-            "minecraft:thorns"
-    );
-
     // client
     @Entry(category = client)
     public static boolean showArmorSleeves = true;

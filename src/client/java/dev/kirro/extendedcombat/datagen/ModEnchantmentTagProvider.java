@@ -28,6 +28,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.BURST)
                 .add(ModEnchantments.CONCUSSION)
                 .add(ModEnchantments.FLUID_WALKER)
+                .add(ModEnchantments.SWIFTNESS)
         ;
 
         getOrCreateTagBuilder(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET)

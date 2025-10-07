@@ -45,8 +45,8 @@ public class ModEntityModelLayers {
         EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.STATUE, StatueModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.STATUE_INNER_ARMOR, () -> StatueModel.getTexturedModelData(new Dilation(0.5f)));
         EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.STATUE_OUTER_ARMOR, () -> StatueModel.getTexturedModelData(new Dilation(1.0f)));
-        EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.PLAYER_SLEEVES, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), false), 24, 16));
-        EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.PLAYER_SLIM_SLEEVES, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), true), 24, 16));
+        EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.PLAYER_SLEEVES, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.1f), false), 24, 16));
+        EntityModelLayerRegistry.registerModelLayer(ModEntityModelLayers.PLAYER_SLIM_SLEEVES, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.1f), true), 24, 16));
         EntityRendererRegistry.register(ModEntities.STATUE, StatueRenderer::new);
     }
 }

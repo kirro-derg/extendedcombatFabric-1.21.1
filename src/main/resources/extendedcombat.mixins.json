@@ -37,7 +37,8 @@
       "duplicates.GameOptionsMixin",
       "duplicates.KeyBindingMixin",
       "client.PlayerEntityRendererMixin",
-      "client.ArmorStandEntityRendererMixin"
+      "client.ArmorStandEntityRendererMixin",
+      "client.PlayerEntityMixin"
     ],
 	"injectors": {
 		"defaultRequire": 1

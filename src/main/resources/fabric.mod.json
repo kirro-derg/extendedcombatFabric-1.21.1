@@ -43,10 +43,12 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"extendedcombat:air_jump",
-			"extendedcombat:air_movement",
-			"extendedcombat:blink",
-			"extendedcombat:dash"
+          "extendedcombat:air_jump",
+          "extendedcombat:air_movement",
+          "extendedcombat:blink",
+          "extendedcombat:dash",
+          "extendedcombat:area_knockback",
+          "extendedcombat:fluid_movement"
 		]
 	}
 }

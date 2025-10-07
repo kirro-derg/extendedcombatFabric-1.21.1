@@ -57,6 +57,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
         ;
 
+        getOrCreateTagBuilder(ModItemTags.SWIFTNESS_ENCHANTABLE)
+                .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+        ;
+
         getOrCreateTagBuilder(ModItemTags.FLAME_RESISTANT_ARMOR)
                 .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
@@ -168,6 +172,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.AXES)
+                .add(ModItems.ECHO_STEEL_GREATSWORD)
                 .setReplace(false)
         ;
         getOrCreateTagBuilder(ItemTags.SHOVELS)
@@ -184,6 +189,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_STEEL_GREATSWORD)
                 .setReplace(false)
         ;
+
         getOrCreateTagBuilder(ItemTags.HOES)
                 .setReplace(false)
         ;
