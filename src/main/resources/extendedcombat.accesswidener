@@ -8,3 +8,4 @@ accessible method net/minecraft/enchantment/EnchantmentHelper forEachEnchantment
 accessible field net/minecraft/entity/EntityDimensions fixed Z
 accessible method net/minecraft/util/Identifier <init> (Ljava/lang/String;Ljava/lang/String;)V
 accessible field net/minecraft/client/render/entity/model/EntityModelLayers LAYERS Ljava/util/Set;
+accessible method net/minecraft/entity/LivingEntity onStatusEffectRemoved (Lnet/minecraft/entity/effect/StatusEffectInstance;)V

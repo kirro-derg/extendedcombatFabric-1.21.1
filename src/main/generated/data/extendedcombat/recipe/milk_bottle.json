@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_bottle"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "pattern": [
+    "   ",
+    "GMG",
+    " G "
+  ],
+  "result": {
+    "count": 3,
+    "id": "extendedcombat:milk_bottle"
+  }
+}

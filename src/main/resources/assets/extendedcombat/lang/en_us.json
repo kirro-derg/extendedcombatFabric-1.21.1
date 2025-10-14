@@ -36,6 +36,10 @@
   "item.extendedcombat.golden_steak": "Golden Steak",
   "item.extendedcombat.honey_bread": "Honey Bread",
 
+  "item.extendedcombat.milk_bottle": "Milk",
+  "item.extendedcombat.sweet_berry_milk_bottle": "Sweet Berry Milk",
+  "item.extendedcombat.chocolate_milk_bottle": "Chocolate Milk",
+
   "block.extendedcombat.nether_steel_block": "Block of Nether Steel",
   "block.extendedcombat.echo_steel_block": "Block of Echo Steel",
   "block.extendedcombat.warding_stone": "Warding Stone",
@@ -48,6 +52,10 @@
   "tooltip.extendedcombat.warding_stone_ln1": "Once placed, this stone will disable",
   "tooltip.extendedcombat.warding_stone_ln2": "mob spawning in a 55 block radius",
   "tooltip.extendedcombat.warding_stone_ln3": "around itself",
+
+  "tooltip.milk_bottle.milk": "Removes Neutral Status Effects",
+  "tooltip.milk_bottle.sweet_berry_milk": "Removes Harmful Status Effects",
+  "tooltip.milk_bottle.chocolate_milk": "Removes Beneficial Status Effects",
 
   "item.extendedcombat.nether_steel_helmet": "Nether Steel Helmet",
   "item.extendedcombat.nether_steel_chestplate": "Nether Steel Chestplate",
@@ -117,6 +125,7 @@
   "extendedcombat.midnightconfig.category.client": "Client Settings",
   "extendedcombat.midnightconfig.allowDuplicateKeybinds": "Allow Duplicate Keybinds",
   "extendedcombat.midnightconfig.wardingStoneActiveRadius": "Warding Stone Active Radius",
+  "extendedcombat.midnightconfig.wardingStonePacifiesMobs": "Warding Stone Pacifies Mobs",
   "extendedcombat.midnightconfig.showArmorSleeves": "Show Armor Sleeves",
   "extendedcombat.midnightconfig.category.model_system": "Model System",
   "extendedcombat.midnightconfig.namespacesDescription": "Enter namespaces to be checked for item suffixes here.",

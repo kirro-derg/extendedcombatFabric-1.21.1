@@ -1,11 +1,12 @@
 {
 	"required": true,
 	"minVersion": "0.8",
-	"package": "dev.kirro.extendedcombat.mixin",
+	"package": "dev.kirro.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
       "block.HostileEntityMixin",
       "block.BatEntityMixin",
+      "block.ActiveTargetGoalMixin",
       "ShieldBreakMixin",
       "ItemStackMixin",
       "ArmorStandMixin",
@@ -24,7 +25,8 @@
       "enchantment.stealth.EntityMixin",
       "potion.shrinking.LivingEntityMixin",
       "airMovement.PlayerEntityMixin",
-      "enchantment.fluidWalker.LivingEntityMixin"
+      "enchantment.fluidWalker.LivingEntityMixin",
+      "enchantment.fluidWalker.PowderSnowBlockMixin"
 	],
 	"client": [
       "client.ItemRendererMixin",
@@ -38,7 +40,8 @@
       "duplicates.KeyBindingMixin",
       "client.PlayerEntityRendererMixin",
       "client.ArmorStandEntityRendererMixin",
-      "client.PlayerEntityMixin"
+      "client.PlayerEntityMixin",
+      "enchantment.fluidWalker.BackgroundRendererMixin"
     ],
 	"injectors": {
 		"defaultRequire": 1
