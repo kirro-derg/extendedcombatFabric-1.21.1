@@ -7,32 +7,25 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.*;
-import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import org.jetbrains.annotations.Nullable;
 
 public class WardingStoneBlock extends Block {
     public static final MapCodec<WardingStoneBlock> CODEC = createCodec(WardingStoneBlock::new);
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
-    public static final BooleanProperty TOGGLED = Properties.LIT;
-    public static boolean toggled = false;
 
     @Override
     public MapCodec<? extends WardingStoneBlock> getCodec() {
@@ -41,7 +34,7 @@ public class WardingStoneBlock extends Block {
 
     public WardingStoneBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()).with(HALF, DoubleBlockHalf.LOWER).with(TOGGLED, false));
+        this.setDefaultState((this.stateManager.getDefaultState()).with(HALF, DoubleBlockHalf.LOWER));
     }
 
     @Override
@@ -80,15 +73,6 @@ public class WardingStoneBlock extends Block {
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        BlockState blockState = state.with(TOGGLED, toggled);
-        setToggledState();
-        world.setBlockState(pos, blockState);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
-        return ActionResult.success(world.isClient);
-    }
-
-    @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         if (state.get(HALF) != DoubleBlockHalf.UPPER) {
             return super.canPlaceAt(state, world, pos);
@@ -96,14 +80,6 @@ public class WardingStoneBlock extends Block {
             BlockState blockState = world.getBlockState(pos.down());
             return blockState.isOf(this) && blockState.get(HALF) == DoubleBlockHalf.LOWER;
         }
-    }
-
-    public static boolean getToggledState() {
-        return toggled;
-    }
-
-    public static void setToggledState() {
-        toggled = !getToggledState();
     }
 
     public static BlockState withWaterloggedState(WorldView world, BlockPos pos, BlockState state) {
@@ -143,7 +119,6 @@ public class WardingStoneBlock extends Block {
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HALF);
-        builder.add(TOGGLED);
     }
 
     public static boolean isNearby(WorldAccess world, BlockPos pos, boolean original) {
@@ -165,11 +140,14 @@ public class WardingStoneBlock extends Block {
         return original && !nearby;
     }
 
-    public static boolean canPacify(ServerWorld world, BlockPos pos, MobEntity entity) {
+    public static boolean canPacify(WorldAccess world, BlockPos pos) {
         int radius = ModConfig.wardingStoneActiveRadius;
 
+        if (!(world instanceof ServerWorld serverWorld)) {
+            return false;
+        }
 
-        return world.getPointOfInterestStorage().getInCircle(
+        return serverWorld.getPointOfInterestStorage().getInCircle(
                 entry -> entry.value() == ModPOI.WARDING_STONE_POI,
                 pos,
                 radius,

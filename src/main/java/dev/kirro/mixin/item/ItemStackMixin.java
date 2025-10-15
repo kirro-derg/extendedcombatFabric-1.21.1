@@ -1,4 +1,4 @@
-package dev.kirro.mixin;
+package dev.kirro.mixin.item;
 
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
@@ -24,11 +24,14 @@ public abstract class ItemStackMixin {
     @Shadow
     public abstract int getDamage();
 
+    @Shadow
+    public abstract void setDamage(int damage);
+
     @Inject(method = "damage(ILnet/minecraft/server/world/ServerWorld;Lnet/minecraft/server/network/ServerPlayerEntity;Ljava/util/function/Consumer;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isDamageable()Z"))
     private <T extends LivingEntity> void extendedcombat$disablesDurability(int amount, ServerWorld world, @Nullable ServerPlayerEntity player, Consumer<Item> breakCallback, CallbackInfo ci) {
         ItemStack stack = (ItemStack) (Object) this;
         if (player != null && ExtendedCombatUtil.isUnbreakable(stack) || EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.KEEPSAKE)) {
-            stack.setDamage(0);
+            this.setDamage(0);
             Criteria.ITEM_DURABILITY_CHANGED.trigger(player, stack, getDamage());
         }
     }

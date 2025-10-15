@@ -1,4 +1,4 @@
-package dev.kirro.mixin;
+package dev.kirro.mixin.item;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PiglinBrain;

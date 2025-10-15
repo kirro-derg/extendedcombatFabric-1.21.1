@@ -16,7 +16,7 @@ public class TwoHandedGreatswordMixin {
     @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
     private static void extendedcombat$getArmPoseDR(AbstractClientPlayerEntity player, Hand hand,
                                                     CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-        ItemStack itemStack = player.getMainHandStack();
+        ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isIn(ModItemTags.GREATSWORDS)) {
             cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_HOLD);
         }

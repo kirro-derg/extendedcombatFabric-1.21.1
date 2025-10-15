@@ -1,4 +1,4 @@
-package dev.kirro.mixin;
+package dev.kirro.mixin.item;
 
 import dev.kirro.extendedcombat.item.custom.GreatswordItem;
 import net.minecraft.entity.LivingEntity;

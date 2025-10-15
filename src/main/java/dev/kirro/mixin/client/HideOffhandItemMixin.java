@@ -20,9 +20,7 @@ public class HideOffhandItemMixin {
                               Arm arm, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light,
                               CallbackInfo ci) {
         if (!entity.isUsingItem()) {
-            if ((entity.getMainArm() == Arm.RIGHT && arm == Arm.LEFT) && entity.getMainHandStack().getItem()
-            instanceof GreatswordItem) {ci.cancel();return;}
-            if ((entity.getMainArm() == Arm.LEFT && arm == Arm.LEFT) && entity.getMainHandStack().getItem()
+            if (arm.equals(entity.getMainArm().getOpposite()) && entity.getMainHandStack().getItem()
             instanceof GreatswordItem) {ci.cancel();}
         }
     }

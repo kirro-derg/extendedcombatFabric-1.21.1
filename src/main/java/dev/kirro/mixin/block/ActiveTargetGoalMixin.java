@@ -1,45 +1,68 @@
 package dev.kirro.mixin.block;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.kirro.extendedcombat.block.custom.WardingStoneBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.TrackTargetGoal;
-import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.WardenEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ActiveTargetGoal.class)
 public abstract class ActiveTargetGoalMixin extends TrackTargetGoal {
-
-
     @Shadow
     @Nullable
     protected LivingEntity targetEntity;
+
+    @Shadow
+    public abstract void setTargetEntity(@Nullable LivingEntity targetEntity);
 
     public ActiveTargetGoalMixin(MobEntity mob, boolean checkVisibility) {
         super(mob, checkVisibility);
     }
 
-    @Inject(method = "canStart", at = @At("RETURN"), cancellable = true)
-    private void canStart(CallbackInfoReturnable<Boolean> cir) {
-        if (this.targetEntity instanceof PlayerEntity player) {
-            World world = player.getWorld();
-            if (world instanceof ServerWorld serverWorld) {
-                if (!(this.mob instanceof WardenEntity || !(this.mob instanceof WitherEntity))) {
-                    if (WardingStoneBlock.canPacify(serverWorld, this.mob.getBlockPos(), this.mob)) {
-                        cir.setReturnValue(false);
-                    }
-                }
+    @ModifyReturnValue(method = "canStart", at = @At("RETURN"))
+    private boolean canTrack(boolean original) {
+        if (this.targetEntity != null) {
+            WorldAccess world = this.targetEntity.getWorld();
+            return !WardingStoneBlock.canPacify(world, this.mob.getBlockPos());
+        }
+        return original;
+    }
+
+    @Inject(method = "findClosestTarget", at = @At("HEAD"), cancellable = true)
+    private void target(CallbackInfo ci) {
+        if (this.targetEntity != null) {
+            WorldAccess world = this.mob.getWorld();
+            if (WardingStoneBlock.canPacify(world, this.mob.getBlockPos())) {
+                ci.cancel();
             }
+        }
+    }
+
+    @Inject(method = "start", at = @At("HEAD"), cancellable = true)
+    private void start(CallbackInfo ci) {
+        if (this.targetEntity != null) {
+            WorldAccess world = this.mob.getWorld();
+            if (WardingStoneBlock.canPacify(world, this.mob.getBlockPos())) {
+                ci.cancel();
+            }
+        }
+    }
+
+    @Inject(method = "setTargetEntity", at = @At("HEAD"))
+    private void setTargetEntity(LivingEntity targetEntity, CallbackInfo ci) {
+        WorldAccess world = this.mob.getWorld();
+        if (WardingStoneBlock.canPacify(world, this.mob.getBlockPos())) {
+            setTargetEntity(null);
+        } else {
+            setTargetEntity(targetEntity);
         }
     }
 }

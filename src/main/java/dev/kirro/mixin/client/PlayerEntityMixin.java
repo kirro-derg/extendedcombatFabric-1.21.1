@@ -22,7 +22,7 @@ public abstract class PlayerEntityMixin {
         ItemStack stack = this.getEquippedStack(EquipmentSlot.CHEST);
         boolean hasSleeves = (stack.isIn(ModItemTags.SLEEVED_ARMOR) && ModConfig.showArmorSleeves);
         boolean hideHeadOverlay = false;
-        boolean hideArmOverlay = hasSleeves;
+        boolean hideArmOverlay = false;
         boolean hideChestOverlay = false;
         boolean hideLegOverlay = false;
         switch (modelPart) {
