@@ -3,9 +3,7 @@ package dev.kirro.extendedcombat.sound;
 import dev.kirro.ExtendedCombat;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 public class ModSounds {
@@ -24,6 +22,12 @@ public class ModSounds {
     public static final SoundEvent DASH = registerSoundEvent("dash");
     public static final SoundEvent AIR_JUMP = registerSoundEvent("air_jump");
     public static final SoundEvent BLINK = registerSoundEvent("blink");
+
+    public static final SoundEvent HOOD_RAISE = registerSoundEvent("hood_raise");
+    public static final SoundEvent HOOD_LOWER = registerSoundEvent("hood_lower");
+
+    public static final SoundEvent MASK_EQUIP = registerSoundEvent("mask_equip");
+    public static final SoundEvent MASK_UNEQUIP = registerSoundEvent("mask_unequip");
 
 //    public static final BlockSoundGroup NETHER_STEEL_BLOCK = new BlockSoundGroup(1f, 1f,
 //            NETHER_STEEL_BLOCK_BREAK,

@@ -13,11 +13,11 @@ public class ModFoodComponents {
     public static final FoodComponent BLACK_APPLE_SEED = new FoodComponent.Builder()
             .nutrition(2)
             .saturationModifier(1.0f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 10 * 20, 1), 1.0f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.WITHER, 5 * 20, 1), 1.0f)
             .alwaysEdible()
             .build();
     public static final FoodComponent GOLDEN_STEAK = new FoodComponent.Builder()
-            .nutrition(8)
+            .nutrition(10)
             .saturationModifier(1.7f)
             .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1), 1.0F)
             .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2 * 60 * 20, 1), 1.0F)
@@ -29,5 +29,4 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 20), 1.0f)
             .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 3 * 20), 0.01f)
             .build();
-
 }

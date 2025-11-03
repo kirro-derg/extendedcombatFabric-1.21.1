@@ -29,7 +29,6 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-        generator.register(ModItems.NETHER_STEEL_HANDLE, Models.GENERATED);
         generator.register(ModItems.WOODEN_HANDLE, Models.GENERATED);
         generator.register(ModItems.STATUE, Models.GENERATED);
         generator.register(ModItems.NETHER_STEEL_INGOT, Models.GENERATED);
@@ -72,6 +71,14 @@ public class ModModelProvider extends FabricModelProvider {
         generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_LEGGINGS);
         generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_CHESTPLATE);
         generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_HELMET);
+
+        generator.registerArmor((ArmorItem) ModItems.WOOL_CLOAK);
+        generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_CLOAK);
+        generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_CLOAK);
+
+        generator.registerArmor((ArmorItem) ModItems.HUNTER_MASK);
+        generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_MASK);
+        generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_MASK);
 
         generator.register(ModItems.ECHO_REINFORCED_ELYTRA, Models.GENERATED);
     }

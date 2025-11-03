@@ -47,7 +47,7 @@
           "extendedcombat:air_movement",
           "extendedcombat:blink",
           "extendedcombat:dash",
-          "extendedcombat:area_knockback",
+          "extendedcombat:hide_hood",
           "extendedcombat:fluid_movement"
 		]
 	}

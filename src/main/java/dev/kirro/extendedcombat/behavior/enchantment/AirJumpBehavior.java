@@ -13,7 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.sound.SoundEvents;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
@@ -131,6 +130,7 @@ public class AirJumpBehavior implements AutoSyncedComponent, CommonTickingCompon
         player.jump();
         player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * strength, player.getVelocity().getZ());
         player.playSound(ModSounds.AIR_JUMP, volume, 1.0f);
+        player.fallDistance = 0;
         if (cooldown == 0 || jumpAmount == maxJumps) {
             setCooldown(AirJumpEnchantmentEffect.getCooldown(player));
         }

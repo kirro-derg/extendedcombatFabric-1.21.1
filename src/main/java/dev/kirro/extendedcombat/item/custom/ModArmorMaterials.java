@@ -9,6 +9,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -37,6 +38,16 @@ public class ModArmorMaterials {
                 map.put(ArmorItem.Type.BODY, 13);
             }), 44, SoundEvents.ITEM_ARMOR_EQUIP_WOLF, () -> Ingredient.ofItems(ModItems.NETHER_STEEL_INGOT),
                     List.of(new ArmorMaterial.Layer(Identifier.of(ExtendedCombat.MOD_ID, "echo_steel"))), 5, 0.7f));
+
+    public static final RegistryEntry<ArmorMaterial> WOOL = registerArmorMaterials("wool",
+            () -> new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 3);
+                map.put(ArmorItem.Type.LEGGINGS, 6);
+                map.put(ArmorItem.Type.CHESTPLATE, 8);
+                map.put(ArmorItem.Type.HELMET, 3);
+                map.put(ArmorItem.Type.BODY, 11);
+            }), 25, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, () -> Ingredient.fromTag(ItemTags.WOOL),
+                    List.of(new ArmorMaterial.Layer(ExtendedCombat.id("wool"))), 3.0f, 0.1f));
 
     public static RegistryEntry<ArmorMaterial> registerArmorMaterials(String name, Supplier<ArmorMaterial> material) {
         return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(ExtendedCombat.MOD_ID, name), material.get());

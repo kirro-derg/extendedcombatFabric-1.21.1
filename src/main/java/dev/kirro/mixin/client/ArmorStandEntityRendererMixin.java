@@ -1,6 +1,7 @@
 package dev.kirro.mixin.client;
 
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
+import dev.kirro.extendedcombat.entity.render.model.CloakFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.SleeveFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.ModElytraFeatureRenderer;
 import net.minecraft.client.render.entity.ArmorStandEntityRenderer;
@@ -26,5 +27,8 @@ public abstract class ArmorStandEntityRendererMixin extends LivingEntityRenderer
                 new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.PLAYER_SLEEVES))));
         this.addFeature(new ModElytraFeatureRenderer<>(this,
                 context.getModelLoader()));
+        this.addFeature(new CloakFeatureRenderer<>(this,
+                new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.CLOAK_INNER)),
+                new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.CLOAK_OUTER))));
     }
 }

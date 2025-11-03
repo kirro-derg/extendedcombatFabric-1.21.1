@@ -1,0 +1,14 @@
+{
+  "values": [
+    "extendedcombat:dash",
+    "extendedcombat:air_jump",
+    "extendedcombat:blink",
+    "extendedcombat:obscurity",
+    "extendedcombat:vanity",
+    "extendedcombat:stealth",
+    "extendedcombat:burst",
+    "extendedcombat:concussion",
+    "extendedcombat:fluid_walker",
+    "extendedcombat:swiftness"
+  ]
+}

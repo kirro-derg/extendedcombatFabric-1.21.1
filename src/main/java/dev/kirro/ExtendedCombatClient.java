@@ -8,6 +8,7 @@ import dev.kirro.extendedcombat.entity.render.ChairRenderer;
 import dev.kirro.extendedcombat.event.AirJumpHud;
 import dev.kirro.extendedcombat.event.BlinkHud;
 import dev.kirro.extendedcombat.event.DashHud;
+import dev.kirro.extendedcombat.item.payload.HideHoodServerPayload;
 import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -54,6 +55,11 @@ public class ExtendedCombatClient implements ClientModInitializer {
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_B,
 			"key.categories.enchantments")));
+    public static final KeyBinding HIDE_HOOD = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "key.extendedcombat.hide_hood",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_H,
+            "key.categories.misc")));
 
 	private static KeyBinding registerKeyBinding(Supplier<KeyBinding> supplier) {
 		KeyBinding keyBinding = supplier.get();
@@ -74,5 +80,6 @@ public class ExtendedCombatClient implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(DashParticlePayload.ID, new DashParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkParticlePayload.ID, new BlinkParticlePayload.Reciever());
 		ClientPlayNetworking.registerGlobalReceiver(BlinkSyncPayload.ID, BlinkSyncPayload::handle);
+        ClientPlayNetworking.registerGlobalReceiver(HideHoodServerPayload.ID, new HideHoodServerPayload.Receiver());
 	}
 }

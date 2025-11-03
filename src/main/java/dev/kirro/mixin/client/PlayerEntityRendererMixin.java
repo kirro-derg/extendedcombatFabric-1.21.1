@@ -3,6 +3,8 @@ package dev.kirro.mixin.client;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
+import dev.kirro.extendedcombat.entity.render.model.CloakFeatureRenderer;
+import dev.kirro.extendedcombat.entity.render.model.MaskFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.ModElytraFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.SleeveFeatureRenderer;
 import dev.kirro.extendedcombat.tags.ModItemTags;
@@ -49,6 +51,11 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
                 new ArmorEntityModel<>(ctx.getPart(slim ? ModEntityModelLayers.PLAYER_SLIM_SLEEVES : ModEntityModelLayers.PLAYER_SLEEVES))));
         this.addFeature(new ModElytraFeatureRenderer<>(this,
                 ctx.getModelLoader()));
+        this.addFeature(new CloakFeatureRenderer<>(this,
+                new ArmorEntityModel<>(ctx.getPart(slim ? ModEntityModelLayers.CLOAK_INNER_SLIM : ModEntityModelLayers.CLOAK_INNER)),
+                new ArmorEntityModel<>(ctx.getPart(ModEntityModelLayers.CLOAK_OUTER))));
+        this.addFeature(new MaskFeatureRenderer<>(this,
+                new ArmorEntityModel<>(ctx.getPart(ModEntityModelLayers.MASK))));
     }
 
     @Inject(method = "renderArm", at = @At("HEAD"), cancellable = true)
@@ -66,9 +73,22 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             playerEntityModel.setAngles(player, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
             arm.pitch = 0.0F;
             Identifier identifier = getTextureId(getArmor(player));
-            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntitySolid(player.getSkinTextures().texture())), light, OverlayTexture.DEFAULT_UV);
+            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTextures().texture())), light, OverlayTexture.DEFAULT_UV);
+            //arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV);
             sleeve.pitch = 0.0F;
             sleeve.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV, i);
+        } else if (getArmor(player).isIn(ModItemTags.CLOAK)) {
+            ci.cancel();
+            PlayerEntityModel<AbstractClientPlayerEntity> playerEntityModel = this.getModel();
+            this.setModelPose(player);
+            playerEntityModel.handSwingProgress = 0.0F;
+            playerEntityModel.sneaking = false;
+            playerEntityModel.leaningPitch = 0.0F;
+            playerEntityModel.setAngles(player, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+            arm.pitch = 0.0F;
+            Identifier identifier = ExtendedCombat.id("textures/models/armor/wool.png");
+            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTextures().texture())), light, OverlayTexture.DEFAULT_UV);
+            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV);
         }
     }
 

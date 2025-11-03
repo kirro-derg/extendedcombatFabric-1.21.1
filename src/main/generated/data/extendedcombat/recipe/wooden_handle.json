@@ -5,14 +5,14 @@
     "L": {
       "item": "minecraft:leather"
     },
-    "N": {
+    "S": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    " LN",
-    "LNL",
-    "NL "
+    " LS",
+    "LSL",
+    "SL "
   ],
   "result": {
     "count": 1,

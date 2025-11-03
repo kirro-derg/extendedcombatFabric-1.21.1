@@ -1,7 +1,6 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.ExtendedCombatClient;
-import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.enchantment.custom.BurstEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.custom.DashEnchantmentEffect;
@@ -13,7 +12,6 @@ import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -81,8 +79,8 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
                 use();
                 DashParticlePayload.addParticles(player);
                 DashPayload.send();
-            } else if (pressingKey && !wasPressingKey && canUseWithElytra() && hasBurst && offhandStack.isOf(Items.GUNPOWDER)) {
-                useWithElytra(offhandStack);
+            } else if (pressingKey && !wasPressingKey && canUseWithElytra() && hasBurst /*&& offhandStack.isOf(Items.GUNPOWDER)*/) {
+                useWithElytra();
                 DashParticlePayload.addParticles(player);
                 DashPayload.send();
             }
@@ -118,9 +116,9 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
     }
 
     public boolean canUseWithElytra() {
-        ItemStack offhandItem = player.getOffHandStack();
-        boolean hasCorrectAmount = offhandItem.getCount() >= BurstEnchantmentEffect.getLevel(player);
-        return cooldown == 0 && !player.isOnGround() && ExtendedCombatUtil.isGroundedElytra(player) && hasCorrectAmount;
+        /*ItemStack offhandItem = player.getOffHandStack();
+        boolean hasCorrectAmount = offhandItem.getCount() >= BurstEnchantmentEffect.getLevel(player);*/
+        return cooldown == 0 && !player.isOnGround() && ExtendedCombatUtil.isGroundedElytra(player) /*&& hasCorrectAmount*/;
     }
 
     public void use() {
@@ -135,10 +133,10 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
         player.playSound(ModSounds.DASH, volume, 1.0f);
     }
 
-    public void useWithElytra(ItemStack offhand) {
+    public void useWithElytra() {
         resetWithElytra();
         setImmunityTicks(3);
-        useGunpowder(offhand);
+        //useGunpowder(offhand);
         float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.05f : 0.25f;
         float strength = BurstEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
@@ -172,7 +170,7 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
     }
 
     public void resetWithElytra() {
-        setCooldown(DashEnchantmentEffect.getCooldown(player) * 2);
+        setCooldown(DashEnchantmentEffect.getCooldown(player) * 10);
         canRecharge = false;
     }
 }

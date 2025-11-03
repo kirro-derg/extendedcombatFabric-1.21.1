@@ -18,4 +18,9 @@ public class PoisonDaggerItem extends Item {
         stack.damage(1, attacker, EquipmentSlot.MAINHAND);
         return super.postHit(stack, target, attacker);
     }
+
+    @Override
+    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        super.postDamageEntity(stack, target, attacker);
+    }
 }

@@ -23,6 +23,6 @@
   "slots": [
     "armor"
   ],
-  "supported_items": "#minecraft:enchantable/armor",
+  "supported_items": "#extendedcombat:enchantable/vanity",
   "weight": 5
 }

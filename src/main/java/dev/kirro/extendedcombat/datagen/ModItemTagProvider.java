@@ -8,10 +8,9 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
-
-import static net.minecraft.util.Identifier.of;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public ModItemTagProvider(FabricDataOutput output) {
@@ -21,8 +20,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ModItemTags.ALWAYS_HAS_DURABILITY)
-                .add(Items.SHIELD)
                 .add(Items.MACE)
+                .add(ModItems.POISON_DAGGER)
         ;
 
         getOrCreateTagBuilder(ModItemTags.GREATSWORDS)
@@ -34,23 +33,68 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHERITE_GREATSWORD)
                 .add(ModItems.NETHER_STEEL_GREATSWORD)
                 .add(ModItems.ECHO_STEEL_GREATSWORD)
-
         ;
 
         getOrCreateTagBuilder(ModItemTags.SLEEVED_ARMOR)
-                .add(Items.LEATHER_CHESTPLATE)
                 .add(Items.CHAINMAIL_CHESTPLATE)
+                .add(Items.LEATHER_CHESTPLATE)
                 .add(Items.IRON_CHESTPLATE)
                 .add(Items.GOLDEN_CHESTPLATE)
                 .add(Items.DIAMOND_CHESTPLATE)
                 .add(Items.NETHERITE_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .addOptional(Identifier.of("toughasnails", "wool_chestplate"))
         ;
 
         getOrCreateTagBuilder(ModItemTags.REPAIRABLE_ITEMS)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
                 .addTag(ModItemTags.ECHO_STEEL_ITEMS)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.DASH_ENCHANTABLE)
+                .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.AIR_JUMP_ENCHANTABLE)
+                .addTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.BLINK_ENCHANTABLE)
+                .addTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
+                .add(ModItems.WOOL_CLOAK)
+                .add(ModItems.NETHER_STEEL_CLOAK)
+                .add(ModItems.ECHO_STEEL_CLOAK)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.OBSCURITY_ENCHANTABLE)
+                .addTag(ItemTags.HEAD_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.MASK)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.VANITY_ENCHANTABLE)
+                .addTag(ItemTags.ARMOR_ENCHANTABLE)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.CLOAK)
+                .add(ModItems.WOOL_CLOAK)
+                .add(ModItems.NETHER_STEEL_CLOAK)
+                .add(ModItems.ECHO_STEEL_CLOAK)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.MASK)
+                .add(ModItems.HUNTER_MASK)
+                .add(ModItems.NETHER_STEEL_MASK)
+                .add(ModItems.ECHO_STEEL_MASK)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.STEALTH_ENCHANTABLE)
+                .addTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.CLOAK)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.CONCUSSION_ENCHANTABLE)
+                .addTag(ModItemTags.GREATSWORDS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.FLUID_WALKER_ENCHANTABLE)
@@ -71,6 +115,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHER_STEEL_LEGGINGS)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_HELMET)
+                .add(ModItems.NETHER_STEEL_CLOAK)
         ;
 
         getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_TOOLS)
@@ -85,6 +130,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_STEEL_CHESTPLATE)
                 .add(ModItems.ECHO_STEEL_HELMET)
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
+                .add(ModItems.ECHO_STEEL_CLOAK)
+                .add(ModItems.ECHO_STEEL_MASK)
         ;
 
         getOrCreateTagBuilder(ModItemTags.ECHO_STEEL_ITEMS)
@@ -103,7 +150,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addTag(ItemTags.DURABILITY_ENCHANTABLE)
         ;
 
-        getOrCreateTagBuilder(ModItemTags.ELYTRA_ENCHANTABLE)
+        getOrCreateTagBuilder(ModItemTags.BURST_ENCHANTABLE)
                 .add(Items.ELYTRA)
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
         ;

@@ -1,6 +1,6 @@
 {
   "values": [
-    "minecraft:shield",
-    "minecraft:mace"
+    "minecraft:mace",
+    "extendedcombat:poison_dagger"
   ]
 }

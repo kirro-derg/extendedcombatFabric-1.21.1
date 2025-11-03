@@ -27,6 +27,6 @@
   "slots": [
     "chest"
   ],
-  "supported_items": "#extendedcombat:enchantable/elytra",
+  "supported_items": "#extendedcombat:enchantable/burst",
   "weight": 2
 }

@@ -24,10 +24,27 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import virtuoel.pehkui.api.ScaleTypes;
 
+import java.util.Iterator;
+
 public class ExtendedCombatUtil {
 
     public static boolean isUnbreakable(ItemStack stack) {
         return ModConfig.disableDurability && !stack.isEmpty() && stack.contains(DataComponentTypes.MAX_DAMAGE) && !stack.isIn(ModItemTags.ALWAYS_HAS_DURABILITY) || EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.KEEPSAKE);
+    }
+
+    public static int clampLoop(int input, int start, int end) {
+        if (start - end == 0) {
+            return start;
+        }
+        if (end < start) {
+            int temp = start;
+            start = end;
+            end = temp;
+        }
+        if (input < start) {
+            return end - ((start - input) % (end - start));
+        }
+        return start + ((input - start) % (end - start));
     }
 
     public static boolean isGrounded(LivingEntity living, boolean allowWater) {
@@ -160,11 +177,13 @@ public class ExtendedCombatUtil {
     }
 
     public static void removeEffectOfType(LivingEntity living, StatusEffectCategory category) {
-        for (StatusEffectInstance effect : living.getStatusEffects()) {
-            if (effect.getEffectType().value().getCategory().equals(category)) {
-                living.removeStatusEffect(effect.getEffectType());
+        Iterator<StatusEffectInstance> iterator = living.getActiveStatusEffects().values().iterator();
+        iterator.forEachRemaining(instance -> {
+            if (instance.getEffectType().value().getCategory() == category) {
+                iterator.remove();
+                living.onStatusEffectRemoved(instance);
             }
-        }
+        });
     }
 
     public static void removeEffect(LivingEntity entity) {

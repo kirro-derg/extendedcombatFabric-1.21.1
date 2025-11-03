@@ -1,5 +1,6 @@
 package dev.kirro;
 
+import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.block.entity.ModBlockEntityTypes;
 import dev.kirro.extendedcombat.datagen.ModLootTableProvider;
@@ -9,15 +10,17 @@ import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.enchantment.payload.*;
 import dev.kirro.extendedcombat.entity.ModEntities;
 import dev.kirro.extendedcombat.entity.custom.StatueEntity;
-import dev.kirro.extendedcombat.event.*;
+import dev.kirro.extendedcombat.event.EquipmentChange;
+import dev.kirro.extendedcombat.event.HammerUsage;
+import dev.kirro.extendedcombat.item.ModDataComponentTypes;
 import dev.kirro.extendedcombat.item.ModItemGroups;
 import dev.kirro.extendedcombat.item.ModItems;
-import dev.kirro.extendedcombat.behavior.item.XPRepairTracker;
+import dev.kirro.extendedcombat.item.payload.HideHoodClientPayload;
+import dev.kirro.extendedcombat.item.payload.HideHoodServerPayload;
 import dev.kirro.extendedcombat.potion.ModPotions;
 import dev.kirro.extendedcombat.sound.ModSounds;
 import dev.kirro.extendedcombat.villager.ModPOI;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -56,6 +59,7 @@ public class ExtendedCombat implements ModInitializer {
         ModRecipeProvider.registerPotionRecipes();
 
 		ModEnchantmentEffectComponentTypes.register();
+        ModDataComponentTypes.register();
 
 		registerEvents();
 		registerPayloads();
@@ -84,13 +88,16 @@ public class ExtendedCombat implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(DashParticlePayload.ID, DashParticlePayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(BlinkParticlePayload.ID, BlinkParticlePayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(BlinkSyncPayload.ID, BlinkSyncPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(HideHoodServerPayload.ID, HideHoodServerPayload.CODEC);
 		// client
 		PayloadTypeRegistry.playC2S().register(AirJumpPayload.ID, AirJumpPayload.CODEC);
 		PayloadTypeRegistry.playC2S().register(DashPayload.ID, DashPayload.CODEC);
 		PayloadTypeRegistry.playC2S().register(BlinkPayload.ID, BlinkPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(HideHoodClientPayload.ID, HideHoodClientPayload.CODEC);
 		// server receivers
 		ServerPlayNetworking.registerGlobalReceiver(AirJumpPayload.ID, new AirJumpPayload.Reciever());
 		ServerPlayNetworking.registerGlobalReceiver(DashPayload.ID, new DashPayload.Reciever());
 		ServerPlayNetworking.registerGlobalReceiver(BlinkPayload.ID, new BlinkPayload.Reciever());
+        ServerPlayNetworking.registerGlobalReceiver(HideHoodClientPayload.ID, new HideHoodClientPayload.Reciever());
 	}
 }

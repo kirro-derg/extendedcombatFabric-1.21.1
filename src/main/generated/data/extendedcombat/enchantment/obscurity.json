@@ -23,6 +23,6 @@
   "slots": [
     "head"
   ],
-  "supported_items": "#minecraft:enchantable/head_armor",
+  "supported_items": "#extendedcombat:enchantable/obscurity",
   "weight": 5
 }

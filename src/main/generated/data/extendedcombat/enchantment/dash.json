@@ -35,6 +35,6 @@
   "slots": [
     "legs"
   ],
-  "supported_items": "#minecraft:enchantable/leg_armor",
+  "supported_items": "#extendedcombat:enchantable/dash",
   "weight": 5
 }

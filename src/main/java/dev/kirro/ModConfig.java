@@ -21,12 +21,6 @@ public class ModConfig extends MidnightConfig {
     public static int wardingStoneActiveRadius = 55;
 
     @Entry
-    public static boolean wardingStonePacifiesMobs = false;
-
-    @Entry
-    public static boolean xpRepairActive = true;
-
-    @Entry
     public static boolean airMovementActive = true;
 
     // client

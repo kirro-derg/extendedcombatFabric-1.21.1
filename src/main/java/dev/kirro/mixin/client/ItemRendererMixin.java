@@ -30,7 +30,7 @@ public abstract class ItemRendererMixin {
             at = @At(value = "HEAD"),
             argsOnly = true
     )
-    public BakedModel renderItem(BakedModel bakedModel, @Local(argsOnly = true)ItemStack stack, @Local(argsOnly = true)ModelTransformationMode renderMode) {
+    public BakedModel getInventoryItemModel(BakedModel bakedModel, @Local(argsOnly = true)ItemStack stack, @Local(argsOnly = true)ModelTransformationMode renderMode) {
         if (ModConfig.acceptableItems.contains(ItemEntryIterator.getItemId(stack)) && renderMode == ModelTransformationMode.GUI) {
             bakedModel = this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(ItemEntryIterator.getModelPath(stack, "")));
         }
@@ -43,7 +43,7 @@ public abstract class ItemRendererMixin {
             at = @At(value = "STORE"),
             ordinal = 1
     )
-    public BakedModel getHeldItemModelMixin(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack) {
+    public BakedModel getHeldItemModel(BakedModel bakedModel, @Local(argsOnly = true) ItemStack stack) {
         if (ModConfig.acceptableItems.contains(ItemEntryIterator.getItemId(stack))) {
             bakedModel = this.models.getModelManager().getModel(ModelIdentifier.ofInventoryVariant(ItemEntryIterator.getModelPath(stack, "_handheld")));
         }

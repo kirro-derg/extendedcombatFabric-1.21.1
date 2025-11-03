@@ -31,6 +31,19 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.SWIFTNESS)
         ;
 
+        getOrCreateTagBuilder(ModEnchantmentTags.EXTENDEDCOMBAT_ENCHANTMENTS)
+                .add(ModEnchantments.DASH)
+                .add(ModEnchantments.AIR_JUMP)
+                .add(ModEnchantments.BLINK)
+                .add(ModEnchantments.OBSCURITY)
+                .add(ModEnchantments.VANITY)
+                .add(ModEnchantments.STEALTH)
+                .add(ModEnchantments.BURST)
+                .add(ModEnchantments.CONCUSSION)
+                .add(ModEnchantments.FLUID_WALKER)
+                .add(ModEnchantments.SWIFTNESS)
+        ;
+
         getOrCreateTagBuilder(ModEnchantmentTags.COMBAT_EXCLUSIVE_SET)
                 .add(ModEnchantments.BLINK)
         ;

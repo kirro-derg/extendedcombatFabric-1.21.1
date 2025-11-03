@@ -1,6 +1,5 @@
 package dev.kirro.mixin.client;
 
-import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,32 +18,11 @@ public abstract class PlayerEntityMixin {
 
     @Inject(method = "isPartVisible", at = @At("HEAD"), cancellable = true)
     private void hideOverlay(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
-        ItemStack stack = this.getEquippedStack(EquipmentSlot.CHEST);
-        boolean hasSleeves = (stack.isIn(ModItemTags.SLEEVED_ARMOR) && ModConfig.showArmorSleeves);
-        boolean hideHeadOverlay = false;
-        boolean hideArmOverlay = false;
-        boolean hideChestOverlay = false;
-        boolean hideLegOverlay = false;
+        ItemStack chest = this.getEquippedStack(EquipmentSlot.CHEST);
+        boolean wearingCloak = chest.isIn(ModItemTags.CLOAK);
         switch (modelPart) {
-            case HAT -> {
-                if (hideHeadOverlay) {
-                    cir.setReturnValue(false);
-                }
-            }
-            case LEFT_SLEEVE, RIGHT_SLEEVE -> {
-                if (hideArmOverlay) {
-                    cir.setReturnValue(false);
-                }
-            }
-            case JACKET -> {
-                if (hideChestOverlay) {
-                    cir.setReturnValue(false);
-                }
-            }
-            case LEFT_PANTS_LEG, RIGHT_PANTS_LEG -> {
-                if (hideLegOverlay) {
-                    cir.setReturnValue(false);
-                }
+            case JACKET, LEFT_SLEEVE, RIGHT_SLEEVE, RIGHT_PANTS_LEG, LEFT_PANTS_LEG -> {
+                if (wearingCloak) cir.setReturnValue(false);
             }
         }
     }

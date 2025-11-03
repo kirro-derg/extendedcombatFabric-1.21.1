@@ -1,11 +1,15 @@
 package dev.kirro.extendedcombat.item.custom;
 
+import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
+import net.minecraft.item.tooltip.TooltipData;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
@@ -15,11 +19,11 @@ import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class MilkBottleItem extends Item {
-    private static final int MAX_USE_TIME = 40;
+    private static final int MAX_USE_TIME = 32;
     protected final MilkType type;
 
     public MilkBottleItem(Item.Settings settings, MilkType type) {
@@ -38,11 +42,11 @@ public class MilkBottleItem extends Item {
         if (!world.isClient) {
             switch (type) {
                 case PLAIN ->
-                    removeEffectOfType(user, StatusEffectCategory.NEUTRAL);
+                        ExtendedCombatUtil.removeEffectOfType(user, StatusEffectCategory.NEUTRAL);
                 case SWEET_BERRY ->
-                    removeEffectOfType(user, StatusEffectCategory.HARMFUL);
+                        ExtendedCombatUtil.removeEffectOfType(user, StatusEffectCategory.HARMFUL);
                 case CHOCOLATE ->
-                    removeEffectOfType(user, StatusEffectCategory.BENEFICIAL);
+                        ExtendedCombatUtil.removeEffectOfType(user, StatusEffectCategory.BENEFICIAL);
             }
         }
 
@@ -58,22 +62,14 @@ public class MilkBottleItem extends Item {
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         MilkType milkType = this.type;
         switch (milkType) {
-            case PLAIN -> tooltip.add(Text.translatable("tooltip.milk_bottle.milk").formatted(Formatting.GOLD));
-            case SWEET_BERRY -> tooltip.add(Text.translatable("tooltip.milk_bottle.sweet_berry_milk").formatted(Formatting.GOLD));
-            case CHOCOLATE -> tooltip.add(Text.translatable("tooltip.milk_bottle.chocolate_milk").formatted(Formatting.GOLD));
+            case PLAIN -> tooltip.add(Text.translatable("tooltip.milk_bottle.milk").formatted(Formatting.BLUE));
+            case SWEET_BERRY -> tooltip.add(Text.translatable("tooltip.milk_bottle.sweet_berry_milk").formatted(Formatting.BLUE));
+            case CHOCOLATE -> tooltip.add(Text.translatable("tooltip.milk_bottle.chocolate_milk").formatted(Formatting.BLUE));
         }
         super.appendTooltip(stack, context, tooltip, type);
     }
 
-    private void removeEffectOfType(LivingEntity living, StatusEffectCategory category) {
-        Iterator<StatusEffectInstance> iterator = living.getActiveStatusEffects().values().iterator();
-        iterator.forEachRemaining(instance -> {
-            if (instance.getEffectType().value().getCategory() == category) {
-                iterator.remove();
-                living.onStatusEffectRemoved(instance);
-            }
-        });
-    }
+
 
     public MilkType getType() {
         return this.type;
@@ -92,6 +88,16 @@ public class MilkBottleItem extends Item {
     @Override
     public SoundEvent getDrinkSound() {
         return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
+    }
+
+    @Override
+    public ItemStack getRecipeRemainder(ItemStack stack) {
+        return new ItemStack(Items.GLASS_BOTTLE);
+    }
+
+    @Override
+    public Optional<TooltipData> getTooltipData(ItemStack stack) {
+        return super.getTooltipData(stack);
     }
 
     @Override

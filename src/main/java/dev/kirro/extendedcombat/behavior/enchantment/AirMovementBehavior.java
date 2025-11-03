@@ -3,6 +3,7 @@ package dev.kirro.extendedcombat.behavior.enchantment;
 import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.util.ExtendedCombatUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffects;
@@ -10,6 +11,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class AirMovementBehavior implements CommonTickingComponent {
@@ -41,10 +44,14 @@ public class AirMovementBehavior implements CommonTickingComponent {
             if (resetDelay > 0) {
                 resetDelay--;
             }
-            if (player.isOnGround() || player.hasStatusEffect(StatusEffects.SLOWNESS)) {
+            if (player.isOnGround()) {
                 if (resetDelay == 0) {
                     airTime = 0;
                 }
+                BlockPos pos = BlockPos.ofFloored(player.raycast(15, 5, false).getPos());
+                World world = player.getWorld();
+                BlockState state = world.getBlockState(pos);
+                state.getBlock();
             } else if (ExtendedCombatUtil.inAir(player, 1)) {
                 airTime++;
                 if (airTime >= multiplyAfter) {
@@ -67,10 +74,11 @@ public class AirMovementBehavior implements CommonTickingComponent {
         float multiply = EnchantmentHelper.hasAnyEnchantmentsWith(player.getEquippedStack(EquipmentSlot.LEGS), ModEnchantmentEffectComponentTypes.SWIFTNESS)
                 ? 0.5f
                 : 0.0f;
+        float slow = player.hasStatusEffect(StatusEffects.SLOWNESS) ? 1.0f : 0.0f;
         if (stack.isEmpty() || getAirTime() < multiplyAfter) {
             return original;
         } else {
-            return original * Math.min(maxMovementMultiplier + multiply, multiplier);
+            return original * Math.min((maxMovementMultiplier + multiply) - slow, multiplier);
         }
     }
 

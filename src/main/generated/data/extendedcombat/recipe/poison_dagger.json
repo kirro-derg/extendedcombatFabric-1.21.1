@@ -2,19 +2,22 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
     "D": {
       "item": "minecraft:disc_fragment_5"
     },
     "E": {
       "item": "minecraft:echo_shard"
     },
-    "P": {
-      "item": "minecraft:lingering_potion"
+    "S": {
+      "item": "minecraft:spider_eye"
     }
   },
   "pattern": [
-    " PD",
-    " D ",
+    " BD",
+    " DS",
     "E  "
   ],
   "result": {

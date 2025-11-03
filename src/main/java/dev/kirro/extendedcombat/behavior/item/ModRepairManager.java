@@ -1,19 +1,11 @@
 package dev.kirro.extendedcombat.behavior.item;
 
-import dev.kirro.ModConfig;
-import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
-import dev.kirro.extendedcombat.enchantment.ModEnchantments;
-import dev.kirro.extendedcombat.item.ModItems;
 import dev.kirro.extendedcombat.tags.ModItemTags;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ModRepairManager {
 
@@ -24,7 +16,7 @@ public class ModRepairManager {
         allItems.addAll(player.getInventory().offHand);
 
         for (ItemStack stack : allItems) {
-            if (ModConfig.xpRepairActive && stack != null && stack.isIn(ModItemTags.REPAIRABLE_ITEMS) && stack.isDamaged()) {
+            if (stack != null && stack.isIn(ModItemTags.REPAIRABLE_ITEMS) && stack.isDamaged()) {
                 int repairAmount = (xpAmount * 16);
                 int damage = stack.getDamage();
                 int toRepair = Math.min(repairAmount, damage);

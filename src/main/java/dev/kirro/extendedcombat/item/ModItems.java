@@ -14,7 +14,6 @@ public interface ModItems {
     Item NETHER_STEEL_INGOT = registerItem("nether_steel_ingot", new Item(new Item.Settings().fireproof()));
     Item ECHO_STEEL_INGOT = registerItem("echo_steel_ingot", new Item(new Item.Settings().fireproof()));
     Item WOODEN_HANDLE = registerItem("wooden_handle", new Item(new Item.Settings()));
-    Item NETHER_STEEL_HANDLE = registerItem("nether_steel_handle", new Item(new Item.Settings().fireproof()));
     Item NETHER_STEEL_UPGRADE = registerItem("nether_steel_upgrade", new Item(new Item.Settings().fireproof()));
     Item ECHO_STEEL_UPGRADE = registerItem("echo_steel_upgrade", new Item(new Item.Settings().fireproof()));
     Item STATUE = registerItem("statue", new StatueItem(new Item.Settings()));
@@ -94,6 +93,14 @@ public interface ModItems {
     Item ECHO_STEEL_BOOTS = registerItem("echo_steel_boots",
             new ModArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(9124).fireproof()));
 
+    Item WOOL_CLOAK = registerItem("wool_cloak", new WoolArmorItem(ModArmorMaterials.WOOL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(512)));
+    Item NETHER_STEEL_CLOAK = registerItem("nether_steel_cloak", new WoolArmorItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(8124)));
+    Item ECHO_STEEL_CLOAK = registerItem("echo_steel_cloak", new WoolArmorItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(9124)));
+
+    Item HUNTER_MASK = registerItem("hunter_mask", new HunterMaskItem(ModArmorMaterials.WOOL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(512)));
+    Item NETHER_STEEL_MASK = registerItem("nether_steel_mask", new HunterMaskItem(ModArmorMaterials.NETHER_STEEL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(8124)));
+    Item ECHO_STEEL_MASK = registerItem("echo_steel_mask", new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.HELMET, new Item.Settings().maxDamage(9124)));
+
     Item ECHO_REINFORCED_ELYTRA = registerItem("echo_reinforced_elytra",
             new ModElytra(new Item.Settings().maxDamage(864).rarity(Rarity.RARE)));
 
@@ -107,11 +114,11 @@ public interface ModItems {
             new Item(new Item.Settings().food(ModFoodComponents.HONEY_BREAD)));
 
     Item MILK_BOTTLE = registerItem("milk_bottle",
-            new MilkBottleItem(new Item.Settings().maxCount(16), MilkBottleItem.MilkType.PLAIN));
+            new MilkBottleItem(new Item.Settings().maxCount(32), MilkBottleItem.MilkType.PLAIN));
     Item SWEET_BERRY_MILK_BOTTLE = registerItem("sweet_berry_milk_bottle",
-            new MilkBottleItem(new Item.Settings().maxCount(16), MilkBottleItem.MilkType.SWEET_BERRY));
+            new MilkBottleItem(new Item.Settings().maxCount(32), MilkBottleItem.MilkType.SWEET_BERRY));
     Item CHOCOLATE_MILK_BOTTLE = registerItem("chocolate_milk_bottle",
-            new MilkBottleItem(new Item.Settings().maxCount(16), MilkBottleItem.MilkType.CHOCOLATE));
+            new MilkBottleItem(new Item.Settings().maxCount(32), MilkBottleItem.MilkType.CHOCOLATE));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(ExtendedCombat.MOD_ID, name), item);
@@ -124,7 +131,6 @@ public interface ModItems {
             entries.addAfter(Items.NETHERITE_INGOT, NETHER_STEEL_INGOT);
             entries.addAfter(NETHER_STEEL_INGOT, ECHO_STEEL_INGOT);
             entries.addAfter(Items.STICK, WOODEN_HANDLE);
-            entries.addAfter(WOODEN_HANDLE, NETHER_STEEL_HANDLE);
             entries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, NETHER_STEEL_UPGRADE);
             entries.addAfter(NETHER_STEEL_UPGRADE, ECHO_STEEL_UPGRADE);
         });
@@ -146,6 +152,12 @@ public interface ModItems {
             entries.addAfter(ECHO_STEEL_HELMET, ECHO_STEEL_CHESTPLATE);
             entries.addAfter(ECHO_STEEL_CHESTPLATE, ECHO_STEEL_LEGGINGS);
             entries.addAfter(ECHO_STEEL_LEGGINGS, ECHO_STEEL_BOOTS);
+            entries.addAfter(Items.TURTLE_HELMET, HUNTER_MASK);
+            entries.addAfter(HUNTER_MASK, NETHER_STEEL_MASK);
+            entries.addAfter(NETHER_STEEL_MASK, ECHO_STEEL_MASK);
+            entries.addAfter(ECHO_STEEL_MASK, WOOL_CLOAK);
+            entries.addAfter(WOOL_CLOAK, NETHER_STEEL_CLOAK);
+            entries.addAfter(NETHER_STEEL_CLOAK, ECHO_STEEL_CLOAK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
             entries.addAfter(Items.ENCHANTED_GOLDEN_APPLE, GOLDEN_STEAK);

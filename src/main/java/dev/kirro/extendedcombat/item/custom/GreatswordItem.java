@@ -14,6 +14,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 
+import static dev.kirro.extendedcombat.item.custom.ModToolMaterials.ECHO_STEEL;
+import static dev.kirro.extendedcombat.item.custom.ModToolMaterials.NETHER_STEEL;
+import static net.minecraft.item.ToolMaterials.*;
+
 public class GreatswordItem extends SwordItem implements ScaledItem {
     public GreatswordItem(ToolMaterial toolMaterial, Settings settings) {
         super(toolMaterial, settings);
@@ -23,18 +27,20 @@ public class GreatswordItem extends SwordItem implements ScaledItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker instanceof ServerPlayerEntity attackingPlayer) {
             ServerWorld world = (ServerWorld) attacker.getWorld();
-            if (stack.getItem() instanceof ToolItem item) {
-                ToolMaterial material = item.getMaterial();
-                if (material == ToolMaterials.WOOD) {
-                    world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
-                } else if (material == ToolMaterials.STONE) {
-                    world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
-                } else if (material == ToolMaterials.IRON || material == ToolMaterials.GOLD || material == ToolMaterials.DIAMOND) {
-                    world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_METAL_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
-                } else if (material == ToolMaterials.NETHERITE || material == ModToolMaterials.NETHER_STEEL) {
-                    world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_NETHERITE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
-                } else if (material == ModToolMaterials.ECHO_STEEL) {
-                    world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_SCULK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+            if (stack.getItem() instanceof ToolItem greatsword) {
+                ToolMaterial material = greatsword.getMaterial();
+                switch (material) {
+                    case WOOD ->
+                        world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+                    case STONE ->
+                        world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+                    case IRON, GOLD, DIAMOND ->
+                        world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_METAL_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+                    case NETHERITE, NETHER_STEEL ->
+                        world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_NETHERITE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+                    case ECHO_STEEL ->
+                        world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_SCULK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+                    default -> super.postHit(stack, target, attacker);
                 }
             }
         }
@@ -49,7 +55,7 @@ public class GreatswordItem extends SwordItem implements ScaledItem {
                 target.addStatusEffect(new StatusEffectInstance(ModStatusEffects.CONCUSSION, duration), null);
                 target.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, duration), null);
                 target.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, duration), null);
-                ((PlayerEntity) attacker).getItemCooldownManager().set(this, duration * 3);
+                ((PlayerEntity) attacker).getItemCooldownManager().set(this, duration * 2);
             }
         }
         super.postDamageEntity(stack, target, attacker);

@@ -19,7 +19,6 @@ public class ModItemGroups {
                         entries.add(ModItems.NETHER_STEEL_INGOT);
                         entries.add(ModItems.ECHO_STEEL_INGOT);
                         entries.add(ModItems.WOODEN_HANDLE);
-                        entries.add(ModItems.NETHER_STEEL_HANDLE);
                         entries.add(ModItems.NETHER_STEEL_UPGRADE);
                         entries.add(ModItems.ECHO_STEEL_UPGRADE);
                         entries.add(ModItems.POISON_DAGGER);

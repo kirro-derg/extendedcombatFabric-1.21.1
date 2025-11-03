@@ -66,6 +66,21 @@
   "item.extendedcombat.echo_steel_leggings": "Echo Steel Leggings",
   "item.extendedcombat.echo_steel_boots": "Echo Steel Boots",
 
+  "item.extendedcombat.wool_cloak": "Cloak",
+  "item.extendedcombat.nether_steel_cloak": "Cloak",
+  "item.extendedcombat.echo_steel_cloak": "Cloak",
+
+  "item.extendedcombat.hunter_mask": "Mask",
+  "item.extendedcombat.nether_steel_mask": "Mask",
+  "item.extendedcombat.echo_steel_mask": "Mask",
+
+  "tooltip.extendedcombat.wool.cloak_tooltip": "Wool",
+  "tooltip.extendedcombat.nether_steel.cloak_tooltip": "Nether Steel",
+  "tooltip.extendedcombat.echo_steel.cloak_tooltip": "Echo Steel",
+  "tooltip.extendedcombat.wool.mask_tooltip": "Wool",
+  "tooltip.extendedcombat.nether_steel.mask_tooltip": "Nether Steel",
+  "tooltip.extendedcombat.echo_steel.mask_tooltip": "Echo Steel",
+
   "item.extendedcombat.echo_reinforced_elytra": "Echo Steel Reinforced Elytra",
 
   "enchantment.extendedcombat.dash": "Dash",
@@ -117,6 +132,10 @@
   "sounds.extendedcombat.dash": "Player Dashes",
   "sounds.extendedcombat.air_jump": "Player Jumps Midair",
   "sounds.extendedcombat.blink": "Player Blinks",
+  "sounds.extendedcombat.hood_lower": "Player Lowers Hood",
+  "sounds.extendedcombat.hood_raise": "Player Raises Hood",
+  "sounds.extendedcombat.mask_unequip": "Player Unequips Mask",
+  "sounds.extendedcombat.mask_equip": "Player Equips Mask",
 
   "extendedcombat.midnightconfig.title": "Common Settings",
   "extendedcombat.midnightconfig.disableDurability": "Disable Durability",

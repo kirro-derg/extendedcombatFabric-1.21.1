@@ -140,21 +140,6 @@ public class WardingStoneBlock extends Block {
         return original && !nearby;
     }
 
-    public static boolean canPacify(WorldAccess world, BlockPos pos) {
-        int radius = ModConfig.wardingStoneActiveRadius;
-
-        if (!(world instanceof ServerWorld serverWorld)) {
-            return false;
-        }
-
-        return serverWorld.getPointOfInterestStorage().getInCircle(
-                entry -> entry.value() == ModPOI.WARDING_STONE_POI,
-                pos,
-                radius,
-                PointOfInterestStorage.OccupationStatus.ANY
-        ).findAny().isPresent() && ModConfig.wardingStonePacifiesMobs;
-    }
-
 
 
 }

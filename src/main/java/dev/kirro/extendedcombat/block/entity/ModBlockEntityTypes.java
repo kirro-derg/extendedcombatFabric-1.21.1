@@ -8,12 +8,14 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlockEntityTypes {
-    public static <T extends BlockEntityType<?>> T register(String path, T type) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(ExtendedCombat.MOD_ID, path), type);
-    }
 
     public static final BlockEntityType<FlatBlockEntity> FLAT_BLOCK_ENTITY = register("flat_block",
             BlockEntityType.Builder.create(FlatBlockEntity::new, ModBlocks.FLAT_BLOCK).build(null));
+
+
+    public static <T extends BlockEntityType<?>> T register(String path, T type) {
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(ExtendedCombat.MOD_ID, path), type);
+    }
 
     public static void registerBlockEntityTypes() {
         ExtendedCombat.LOGGER.info("registering Block Entities for " + ExtendedCombat.MOD_ID);

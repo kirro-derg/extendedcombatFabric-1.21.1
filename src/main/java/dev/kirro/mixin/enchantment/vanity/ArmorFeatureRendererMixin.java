@@ -1,6 +1,8 @@
 package dev.kirro.mixin.enchantment.vanity;
 
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
+import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
+import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -20,8 +22,18 @@ public class ArmorFeatureRendererMixin<T extends LivingEntity, A extends BipedEn
     private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity,
                                EquipmentSlot armorSlot, int light, A model, CallbackInfo ci) {
             ItemStack stack = entity.getEquippedStack(armorSlot);
-            if (EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.VANITY)) {
+            boolean hasVanity = EnchantmentHelper.hasAnyEnchantmentsWith(stack, ModEnchantmentEffectComponentTypes.VANITY);
+            if (hasVanity || stack.getItem() instanceof WoolArmorItem) {
                 ci.cancel();
             }
+    }
+
+    @Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At("HEAD"), cancellable = true)
+    private void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
+        ItemStack cloak = livingEntity.getEquippedStack(EquipmentSlot.CHEST);
+        if (cloak.isIn(ModItemTags.CLOAK)) {
+            ci.cancel();
+        }
+
     }
 }

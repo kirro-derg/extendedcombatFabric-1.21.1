@@ -6,14 +6,10 @@ import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
 
 public record DashPayload() implements CustomPayload {
     public static final Id<DashPayload> ID = new Id<>(Identifier.of(ExtendedCombat.MOD_ID, "dash"));
@@ -36,7 +32,7 @@ public record DashPayload() implements CustomPayload {
                 dash.use();
                 PlayerLookup.tracking(context.player()).forEach(foundPlayer -> DashParticlePayload.send(foundPlayer, context.player().getId()));
             } else if (dash.hasDash() && dash.canUseWithElytra()) {
-                dash.useWithElytra(context.player().getOffHandStack());
+                dash.useWithElytra(/*context.player().getOffHandStack()*/);
                 PlayerLookup.tracking(context.player()).forEach(foundPlayer -> DashParticlePayload.send(foundPlayer, context.player().getId()));
             }
         }

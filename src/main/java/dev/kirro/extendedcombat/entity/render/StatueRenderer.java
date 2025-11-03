@@ -5,6 +5,7 @@ import dev.kirro.extendedcombat.entity.client.BasicStatueModel;
 import dev.kirro.extendedcombat.entity.client.StatueModel;
 import dev.kirro.extendedcombat.entity.custom.ModEntityModelLayers;
 import dev.kirro.extendedcombat.entity.custom.StatueEntity;
+import dev.kirro.extendedcombat.entity.render.model.CloakFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.SleeveFeatureRenderer;
 import dev.kirro.extendedcombat.entity.render.model.ModElytraFeatureRenderer;
 import net.minecraft.client.render.RenderLayer;
@@ -31,6 +32,9 @@ public class StatueRenderer extends LivingEntityRenderer<StatueEntity, BasicStat
         ));
         this.addFeature(new SleeveFeatureRenderer<>(this,
                 new BasicStatueModel(context.getPart(ModEntityModelLayers.PLAYER_SLEEVES))));
+        this.addFeature(new CloakFeatureRenderer<>(this,
+                new BasicStatueModel(context.getPart(ModEntityModelLayers.CLOAK_INNER)),
+                new BasicStatueModel(context.getPart(ModEntityModelLayers.CLOAK_OUTER))));
         this.addFeature(new HeldItemFeatureRenderer<>(this, context.getHeldItemRenderer()));
         this.addFeature(new ElytraFeatureRenderer<>(this, context.getModelLoader()));
         this.addFeature(new ModElytraFeatureRenderer<>(this, context.getModelLoader()));

@@ -23,6 +23,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#extendedcombat:greatswords",
+  "supported_items": "#extendedcombat:enchantable/concussion",
   "weight": 5
 }

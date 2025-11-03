@@ -12,7 +12,6 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 
 public class ModEnchantments {
@@ -66,7 +65,7 @@ public class ModEnchantments {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
 
         registerable.register(DASH, create(DASH.getValue(),
-                items.getOrThrow(ItemTags.LEG_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.DASH_ENCHANTABLE),
                 3,
                 AttributeModifierSlot.LEGS, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.DASH,
@@ -76,7 +75,7 @@ public class ModEnchantments {
                         ))));
 
         registerable.register(AIR_JUMP, create(AIR_JUMP.getValue(),
-                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.AIR_JUMP_ENCHANTABLE),
                 3,
                 AttributeModifierSlot.FEET, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.AIR_JUMP,
@@ -88,7 +87,7 @@ public class ModEnchantments {
                         ))));
 
         registerable.register(BLINK, create(BLINK.getValue(),
-                items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.BLINK_ENCHANTABLE),
                 1,
                 AttributeModifierSlot.CHEST, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.BLINK,
@@ -98,7 +97,7 @@ public class ModEnchantments {
                         ))));
 
         registerable.register(OBSCURITY, create(OBSCURITY.getValue(),
-                items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.OBSCURITY_ENCHANTABLE),
                 1,
                 AttributeModifierSlot.HEAD, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.OBSCURITY,
@@ -107,7 +106,7 @@ public class ModEnchantments {
                         ))));
 
         registerable.register(VANITY, create(VANITY.getValue(),
-                items.getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.VANITY_ENCHANTABLE),
                 1,
                 AttributeModifierSlot.ARMOR, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.VANITY,
@@ -116,7 +115,7 @@ public class ModEnchantments {
                         ))));
 
         registerable.register(STEALTH, create(STEALTH.getValue(),
-                items.getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.STEALTH_ENCHANTABLE),
                 1,
                 AttributeModifierSlot.CHEST, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.STEALTH,
@@ -137,7 +136,7 @@ public class ModEnchantments {
                         )).exclusiveSet(enchantments.getOrThrow(ModEnchantmentTags.DURABILITY_EXCLUSIVE_SET))));
 
         registerable.register(BURST, createCustom(BURST.getValue(),
-                items.getOrThrow(ModItemTags.ELYTRA_ENCHANTABLE),
+                items.getOrThrow(ModItemTags.BURST_ENCHANTABLE),
                 2,
                 3,
                 Enchantment.leveledCost(25, 10),
@@ -149,7 +148,7 @@ public class ModEnchantments {
                         ))));
 
         registerable.register(CONCUSSION, createCustom(CONCUSSION.getValue(),
-                items.getOrThrow(ModItemTags.GREATSWORDS),
+                items.getOrThrow(ModItemTags.CONCUSSION_ENCHANTABLE),
                 5,
                 3,
                 Enchantment.leveledCost(5, 1),

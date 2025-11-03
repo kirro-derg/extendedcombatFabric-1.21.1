@@ -1,21 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "key": {
-    "G": {
-      "item": "minecraft:glass_bottle"
-    },
-    "M": {
+  "ingredients": [
+    {
       "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:glass_bottle"
     }
-  },
-  "pattern": [
-    "   ",
-    "GMG",
-    " G "
   ],
   "result": {
-    "count": 3,
+    "count": 1,
     "id": "extendedcombat:milk_bottle"
   }
 }
