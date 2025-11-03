@@ -160,6 +160,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .addTag(ModItemTags.NETHER_STEEL_TOOLS)
                 .addTag(ModItemTags.ECHO_STEEL_ITEMS)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
+                .setReplace(false)
         ;
 
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
