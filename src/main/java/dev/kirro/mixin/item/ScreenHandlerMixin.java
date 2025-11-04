@@ -26,11 +26,11 @@ public class ScreenHandlerMixin {
 
     @Inject(method = "internalOnSlotClick", at = @At("HEAD"), cancellable = true)
     private void onClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
-        if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT) {
+        if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT && slotIndex >= 0 && slotIndex < this.slots.size()) {
             Slot slot = this.slots.get(slotIndex);
             ItemStack stack = slot.getStack();
-            HideWoolHoodBehavior hood = ModEntityComponents.HIDE_HOOD.get(player);
-            if (actionType == SlotActionType.QUICK_MOVE && stack.getItem() instanceof WoolArmorItem) {
+            HideWoolHoodBehavior hood = ModEntityComponents.HIDE_HOOD.getNullable(player);
+            if (hood != null && actionType == SlotActionType.QUICK_MOVE && stack.getItem() instanceof WoolArmorItem) {
                 if (stack.isIn(ModItemTags.CLOAK)) hood.useHood();
                 else if (stack.isIn(ModItemTags.MASK)) hood.useMask();
                 ci.cancel();
