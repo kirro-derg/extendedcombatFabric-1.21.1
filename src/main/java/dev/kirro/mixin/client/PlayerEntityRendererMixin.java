@@ -53,7 +53,8 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
                 ctx.getModelLoader()));
         this.addFeature(new CloakFeatureRenderer<>(this,
                 new ArmorEntityModel<>(ctx.getPart(slim ? ModEntityModelLayers.CLOAK_INNER_SLIM : ModEntityModelLayers.CLOAK_INNER)),
-                new ArmorEntityModel<>(ctx.getPart(ModEntityModelLayers.CLOAK_OUTER))));
+                new ArmorEntityModel<>(ctx.getPart(ModEntityModelLayers.CLOAK_OUTER)),
+                ctx.getModelManager()));
         this.addFeature(new MaskFeatureRenderer<>(this,
                 new ArmorEntityModel<>(ctx.getPart(ModEntityModelLayers.MASK))));
     }
@@ -77,7 +78,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             //arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV);
             sleeve.pitch = 0.0F;
             sleeve.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV, i);
-        } else if (getArmor(player).isIn(ModItemTags.CLOAK)) {
+        } else if (getArmor(player).isIn(ModItemTags.CLOAK) && ModConfig.showArmorSleeves) {
             ci.cancel();
             PlayerEntityModel<AbstractClientPlayerEntity> playerEntityModel = this.getModel();
             this.setModelPose(player);
@@ -88,7 +89,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             arm.pitch = 0.0F;
             Identifier identifier = ExtendedCombat.id("textures/models/armor/wool.png");
             arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(player.getSkinTextures().texture())), light, OverlayTexture.DEFAULT_UV);
-            arm.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV);
+            sleeve.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier)), light, OverlayTexture.DEFAULT_UV);
         }
     }
 

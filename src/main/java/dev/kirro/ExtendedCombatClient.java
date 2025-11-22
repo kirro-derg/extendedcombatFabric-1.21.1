@@ -55,11 +55,6 @@ public class ExtendedCombatClient implements ClientModInitializer {
 			InputUtil.Type.KEYSYM,
 			GLFW.GLFW_KEY_B,
 			"key.categories.enchantments")));
-    public static final KeyBinding HIDE_HOOD = registerKeyBinding(() -> KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "key.extendedcombat.hide_hood",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_H,
-            "key.categories.misc")));
 
 	private static KeyBinding registerKeyBinding(Supplier<KeyBinding> supplier) {
 		KeyBinding keyBinding = supplier.get();
@@ -72,6 +67,7 @@ public class ExtendedCombatClient implements ClientModInitializer {
 		HudRenderCallback.EVENT.register(new DashHud());
 		HudRenderCallback.EVENT.register(new AirJumpHud());
 		HudRenderCallback.EVENT.register(new BlinkHud());
+
 	}
 
 	private void registerPayloads() {

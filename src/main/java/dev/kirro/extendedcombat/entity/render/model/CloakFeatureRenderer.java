@@ -1,33 +1,43 @@
 package dev.kirro.extendedcombat.entity.render.model;
 
+import com.google.common.collect.Maps;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.item.ModDataComponentTypes;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.model.BakedModelManager;
+import net.minecraft.client.texture.Sprite;
+import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.trim.ArmorTrim;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 
+import java.util.Map;
+
 public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
+    private static final Map<String, Identifier> ARMOR_TEXTURE_CACHE = Maps.<String, Identifier>newHashMap();
     private final A outerModel;
     private final A innerModel;
+    private final SpriteAtlasTexture armorTrimsAtlas;
 
-    public CloakFeatureRenderer(FeatureRendererContext<T, M> context, A innerModel, A outerModel) {
+    public CloakFeatureRenderer(FeatureRendererContext<T, M> context, A innerModel, A outerModel, BakedModelManager bakery) {
         super(context);
         this.outerModel = outerModel;
         this.innerModel = innerModel;
+        this.armorTrimsAtlas = bakery.getAtlas(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE);
     }
 
     @Override
@@ -41,11 +51,17 @@ public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityM
         if (itemStack.getItem() instanceof WoolArmorItem armorItem) {
             if (armorItem.getSlotType() == armorSlot) {
                 this.getContextModel().copyBipedStateTo(model);
+                boolean bl = this.usesOuterModel(armorSlot);
                 boolean hidden = itemStack.getOrDefault(ModDataComponentTypes.HIDDEN, false);
                 this.setVisible(model, armorSlot, hidden);
                 int i = itemStack.isIn(ItemTags.DYEABLE) ? ColorHelper.Argb.fullAlpha(DyedColorComponent.getColor(itemStack, -6265536)) : -1;
 
                 this.renderArmorParts(matrices, vertexConsumers, light, model, i, getTextureId(itemStack));
+
+                ArmorTrim armorTrim = itemStack.get(DataComponentTypes.TRIM);
+                if (armorTrim != null) {
+                    this.renderTrim(armorItem.getMaterial(), matrices, vertexConsumers, light, armorTrim, model, bl);
+                }
 
                 if (itemStack.hasGlint()) {
                     this.renderGlint(matrices, vertexConsumers, light, model);
@@ -87,6 +103,22 @@ public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityM
     private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model, int i, Identifier identifier) {
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(identifier));
         model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, i);
+    }
+
+    private void renderTrim(
+            RegistryEntry<ArmorMaterial> armorMaterial,
+            MatrixStack matrices,
+            VertexConsumerProvider vertexConsumers,
+            int light,
+            ArmorTrim trim,
+            A model,
+            boolean leggings
+    ) {
+        Sprite sprite = this.armorTrimsAtlas.getSprite(leggings ? trim.getLeggingsModelId(armorMaterial) : trim.getGenericModelId(armorMaterial));
+        VertexConsumer vertexConsumer = sprite.getTextureSpecificVertexConsumer(
+                vertexConsumers.getBuffer(TexturedRenderLayers.getArmorTrims(trim.getPattern().value().decal()))
+        );
+        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
     }
 
     private void renderGlint(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model) {

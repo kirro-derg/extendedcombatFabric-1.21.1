@@ -1,8 +1,6 @@
 {
   "values": [
     "#minecraft:enchantable/chest_armor",
-    "extendedcombat:wool_cloak",
-    "extendedcombat:nether_steel_cloak",
-    "extendedcombat:echo_steel_cloak"
+    "#extendedcombat:cloak"
   ]
 }

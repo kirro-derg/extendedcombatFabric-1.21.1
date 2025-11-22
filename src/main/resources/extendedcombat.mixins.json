@@ -19,6 +19,7 @@
     "enchantment.obscurity.EndermanEntityMixin",
     "enchantment.obscurity.LivingEntityRendererMixin",
     "enchantment.stealth.EntityMixin",
+    "enchantment.swiftness.BlocksMixin",
     "enchantment.vanity.ArmorFeatureRendererMixin",
     "item.BrewingRecipeBuilderMixin",
     "item.BrewingRecipeBuilderMixin$BrewingRecipeRegistryMixin",

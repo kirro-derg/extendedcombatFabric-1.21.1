@@ -29,6 +29,7 @@ public abstract class ArmorStandEntityRendererMixin extends LivingEntityRenderer
                 context.getModelLoader()));
         this.addFeature(new CloakFeatureRenderer<>(this,
                 new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.CLOAK_INNER)),
-                new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.CLOAK_OUTER))));
+                new ArmorEntityModel<>(context.getPart(ModEntityModelLayers.CLOAK_OUTER)),
+                context.getModelManager()));
     }
 }

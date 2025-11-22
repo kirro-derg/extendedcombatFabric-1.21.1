@@ -51,14 +51,20 @@ public class ModItemGroups {
                         entries.add(ModItems.NETHER_STEEL_HAMMER);
                         entries.add(ModItems.ECHO_STEEL_HAMMER);
 
+                        entries.add(ModItems.WOOL_CLOAK);
+                        entries.add(ModItems.HUNTER_MASK);
                         entries.add(ModItems.NETHER_STEEL_HELMET);
                         entries.add(ModItems.NETHER_STEEL_CHESTPLATE);
                         entries.add(ModItems.NETHER_STEEL_LEGGINGS);
                         entries.add(ModItems.NETHER_STEEL_BOOTS);
+                        entries.add(ModItems.NETHER_STEEL_CLOAK);
+                        entries.add(ModItems.NETHER_STEEL_MASK);
                         entries.add(ModItems.ECHO_STEEL_HELMET);
                         entries.add(ModItems.ECHO_STEEL_CHESTPLATE);
                         entries.add(ModItems.ECHO_STEEL_LEGGINGS);
                         entries.add(ModItems.ECHO_STEEL_BOOTS);
+                        entries.add(ModItems.ECHO_STEEL_CLOAK);
+                        entries.add(ModItems.ECHO_STEEL_MASK);
                         entries.add(ModItems.ECHO_REINFORCED_ELYTRA);
 
                         entries.add(ModItems.BLACK_APPLE);

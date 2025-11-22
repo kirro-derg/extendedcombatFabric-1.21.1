@@ -16,7 +16,7 @@ public class BlinkHud implements HudRenderCallback {
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         ModEntityComponents.BLINK.maybeGet(MinecraftClient.getInstance().cameraEntity).ifPresent(blinkBehavior -> {
-            if (blinkBehavior.hasBlink() && blinkBehavior.getCooldown() > 0) {
+            if (blinkBehavior.hasBlink() && blinkBehavior.getCooldown() > 0 && MinecraftClient.isHudEnabled()) {
                 RenderSystem.enableBlend();
                 int x = drawContext.getScaledWindowWidth() / 2 - 14, y = drawContext.getScaledWindowHeight() / 2 - 7;
                 drawContext.drawGuiTexture(PROGRESS_TEXTURE, x, y, 6, 15);

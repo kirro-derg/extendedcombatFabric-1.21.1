@@ -21,7 +21,7 @@ public class AirJumpHud implements HudRenderCallback {
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         ModEntityComponents.AIR_JUMP.maybeGet(MinecraftClient.getInstance().cameraEntity).ifPresent(airJump -> {
-            if (airJump.getCanUse()) {
+            if (airJump.getCanUse() && MinecraftClient.isHudEnabled()) {
                 int jumpAmount = airJump.getJumpAmount();
                 if (jumpAmount < airJump.getMaxJumps()) {
                     RenderSystem.enableBlend();

@@ -7,6 +7,8 @@
     "extendedcombat:echo_reinforced_elytra",
     "extendedcombat:echo_steel_hammer",
     "extendedcombat:echo_steel_greatsword",
+    "extendedcombat:echo_steel_cloak",
+    "extendedcombat:echo_steel_mask",
     "#minecraft:enchantable/durability"
   ]
 }

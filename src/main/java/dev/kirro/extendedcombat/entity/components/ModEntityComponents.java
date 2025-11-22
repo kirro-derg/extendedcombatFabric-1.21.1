@@ -24,7 +24,7 @@ public class ModEntityComponents implements EntityComponentInitializer {
         registry.registerForPlayers(AIR_JUMP, AirJumpBehavior::new, RespawnCopyStrategy.LOSSLESS_ONLY);
         registry.registerForPlayers(DASH, DashBehavior::new, RespawnCopyStrategy.LOSSLESS_ONLY);
         registry.registerForPlayers(BLINK, BlinkBehavior::new, RespawnCopyStrategy.LOSSLESS_ONLY);
-        registry.registerForPlayers(HIDE_HOOD, HideWoolHoodBehavior::new, RespawnCopyStrategy.NEVER_COPY);
+        registry.registerForPlayers(HIDE_HOOD, HideWoolHoodBehavior::new, RespawnCopyStrategy.ALWAYS_COPY);
         registry.registerForPlayers(FLUID_MOVEMENT, FluidMovementBehavior::new, RespawnCopyStrategy.NEVER_COPY);
     }
 }

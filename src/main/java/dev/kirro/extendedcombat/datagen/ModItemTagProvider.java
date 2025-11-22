@@ -62,9 +62,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.BLINK_ENCHANTABLE)
                 .addTag(ItemTags.CHEST_ARMOR_ENCHANTABLE)
-                .add(ModItems.WOOL_CLOAK)
-                .add(ModItems.NETHER_STEEL_CLOAK)
-                .add(ModItems.ECHO_STEEL_CLOAK)
+                .addTag(ModItemTags.CLOAK)
         ;
 
         getOrCreateTagBuilder(ModItemTags.OBSCURITY_ENCHANTABLE)
@@ -116,9 +114,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_HELMET)
                 .add(ModItems.NETHER_STEEL_CLOAK)
+                .add(ModItems.NETHER_STEEL_MASK)
         ;
 
-        getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_TOOLS)
+        getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_ITEMS)
                 .add(ModItems.NETHER_STEEL_GREATSWORD)
                 .add(ModItems.NETHER_STEEL_PICKAXE)
                 .add(ModItems.NETHER_STEEL_HAMMER)
@@ -147,6 +146,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
                 .add(ModItems.ECHO_STEEL_HAMMER)
                 .add(ModItems.ECHO_STEEL_GREATSWORD)
+                .add(ModItems.ECHO_STEEL_CLOAK)
+                .add(ModItems.ECHO_STEEL_MASK)
                 .addTag(ItemTags.DURABILITY_ENCHANTABLE)
         ;
 
@@ -157,20 +158,15 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED)
                 .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
-                .addTag(ModItemTags.NETHER_STEEL_TOOLS)
+                .addTag(ModItemTags.NETHER_STEEL_ITEMS)
                 .addTag(ModItemTags.ECHO_STEEL_ITEMS)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
                 .setReplace(false)
         ;
 
         getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
-                .add(ModItems.NETHER_STEEL_BOOTS)
-                .add(ModItems.NETHER_STEEL_LEGGINGS)
-                .add(ModItems.NETHER_STEEL_CHESTPLATE)
-                .add(ModItems.NETHER_STEEL_HELMET)
-                .add(ModItems.NETHER_STEEL_PICKAXE)
-                .add(ModItems.NETHER_STEEL_HAMMER)
-                .add(ModItems.NETHER_STEEL_GREATSWORD)
+                .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
+                .addTag(ModItemTags.NETHER_STEEL_ITEMS)
                 .add(ModItems.WOODEN_HAMMER)
                 .add(ModItems.STONE_HAMMER)
                 .add(ModItems.IRON_HAMMER)
@@ -182,10 +178,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
 
         getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
-                .add(ModItems.NETHER_STEEL_BOOTS)
-                .add(ModItems.NETHER_STEEL_LEGGINGS)
-                .add(ModItems.NETHER_STEEL_CHESTPLATE)
-                .add(ModItems.NETHER_STEEL_HELMET)
+                .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
                 .add(ModItems.ECHO_STEEL_BOOTS)
                 .add(ModItems.ECHO_STEEL_LEGGINGS)
                 .add(ModItems.ECHO_STEEL_CHESTPLATE)
@@ -239,6 +232,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
 
         getOrCreateTagBuilder(ItemTags.HOES)
+                .add(ModItems.ECHO_STEEL_GREATSWORD)
                 .setReplace(false)
         ;
 

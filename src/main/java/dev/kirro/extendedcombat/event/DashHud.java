@@ -16,7 +16,7 @@ public class DashHud implements HudRenderCallback {
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         ModEntityComponents.DASH.maybeGet(MinecraftClient.getInstance().cameraEntity).ifPresent(dashBehavior -> {
-            if (dashBehavior.hasDash() && dashBehavior.getCooldown() > 0) {
+            if (dashBehavior.hasDash() && dashBehavior.getCooldown() > 0 && MinecraftClient.isHudEnabled()) {
                 RenderSystem.enableBlend();
                 int x = drawContext.getScaledWindowWidth() / 2 - 7, y = drawContext.getScaledWindowHeight() / 2 - 14;
                 drawContext.drawGuiTexture(BACKGROUND_TEXTURE, x, y, 15, 6);

@@ -20,10 +20,10 @@ public abstract class PlayerEntityMixin {
     private void hideOverlay(PlayerModelPart modelPart, CallbackInfoReturnable<Boolean> cir) {
         ItemStack chest = this.getEquippedStack(EquipmentSlot.CHEST);
         boolean wearingCloak = chest.isIn(ModItemTags.CLOAK);
-        switch (modelPart) {
-            case JACKET, LEFT_SLEEVE, RIGHT_SLEEVE, RIGHT_PANTS_LEG, LEFT_PANTS_LEG -> {
-                if (wearingCloak) cir.setReturnValue(false);
-            }
-        }
+        //switch (modelPart) {
+            //case JACKET, LEFT_SLEEVE, RIGHT_SLEEVE, RIGHT_PANTS_LEG, LEFT_PANTS_LEG -> {
+            //    if (wearingCloak) cir.setReturnValue(false);
+            //}
+        //}
     }
 }

@@ -1,12 +1,7 @@
 {
   "values": [
-    "extendedcombat:nether_steel_boots",
-    "extendedcombat:nether_steel_leggings",
-    "extendedcombat:nether_steel_chestplate",
-    "extendedcombat:nether_steel_helmet",
-    "extendedcombat:nether_steel_pickaxe",
-    "extendedcombat:nether_steel_hammer",
-    "extendedcombat:nether_steel_greatsword",
+    "#extendedcombat:nether_steel_wearables",
+    "#extendedcombat:nether_steel_tools",
     "extendedcombat:wooden_hammer",
     "extendedcombat:stone_hammer",
     "extendedcombat:iron_hammer",
