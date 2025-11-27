@@ -72,13 +72,22 @@ public class ModModelProvider extends FabricModelProvider {
         generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_CHESTPLATE);
         generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_HELMET);
 
-        generator.registerArmor((ArmorItem) ModItems.WOOL_CLOAK);
-        generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_CLOAK);
-        generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_CLOAK);
-
         generator.registerArmor((ArmorItem) ModItems.HUNTER_MASK);
+        generator.registerArmor((ArmorItem) ModItems.HUNTER_CLOAK);
+        generator.registerArmor((ArmorItem) ModItems.HUNTER_LEGGINGS);
+        generator.registerArmor((ArmorItem) ModItems.HUNTER_BOOTS);
         generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_MASK);
+        generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_CLOAK);
+        generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_HUNTER_LEGGINGS);
+        generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_HUNTER_BOOTS);
         generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_MASK);
+        generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_CLOAK);
+        generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_HUNTER_LEGGINGS);
+        generator.registerArmor((ArmorItem) ModItems.ECHO_STEEL_HUNTER_BOOTS);
+
+
+
+
 
         generator.register(ModItems.ECHO_REINFORCED_ELYTRA, Models.GENERATED);
     }

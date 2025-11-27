@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "extendedcombat:nether_steel_mask_chestplate_smithing"
+        "recipe": "extendedcombat:nether_steel_hunter_boots_boots_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "extendedcombat:nether_steel_mask_chestplate_smithing"
+      "extendedcombat:nether_steel_hunter_boots_boots_smithing"
     ]
   }
 }

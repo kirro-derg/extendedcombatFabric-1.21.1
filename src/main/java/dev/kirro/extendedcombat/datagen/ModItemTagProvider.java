@@ -44,6 +44,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.NETHERITE_CHESTPLATE)
                 .add(ModItems.NETHER_STEEL_CHESTPLATE)
                 .add(ModItems.ECHO_STEEL_CHESTPLATE)
+                .addTag(ModItemTags.CLOAK)
                 .addOptional(Identifier.of("toughasnails", "wool_chestplate"))
         ;
 
@@ -54,10 +55,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.DASH_ENCHANTABLE)
                 .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_LEGGINGS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.AIR_JUMP_ENCHANTABLE)
                 .addTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_BOOTS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.BLINK_ENCHANTABLE)
@@ -75,7 +78,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
 
         getOrCreateTagBuilder(ModItemTags.CLOAK)
-                .add(ModItems.WOOL_CLOAK)
+                .add(ModItems.HUNTER_CLOAK)
                 .add(ModItems.NETHER_STEEL_CLOAK)
                 .add(ModItems.ECHO_STEEL_CLOAK)
         ;
@@ -97,15 +100,29 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModItemTags.FLUID_WALKER_ENCHANTABLE)
                 .addTag(ItemTags.FOOT_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_BOOTS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.SWIFTNESS_ENCHANTABLE)
                 .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_LEGGINGS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.FLAME_RESISTANT_ARMOR)
                 .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
                 .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.HUNTER_LEGGINGS)
+                .add(ModItems.HUNTER_LEGGINGS)
+                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_HUNTER_LEGGINGS)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.HUNTER_BOOTS)
+                .add(ModItems.HUNTER_BOOTS)
+                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS)
+                .add(ModItems.ECHO_STEEL_HUNTER_BOOTS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_WEARABLES)
@@ -115,6 +132,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.NETHER_STEEL_HELMET)
                 .add(ModItems.NETHER_STEEL_CLOAK)
                 .add(ModItems.NETHER_STEEL_MASK)
+                .add(ModItems.NETHER_STEEL_HUNTER_LEGGINGS)
+                .add(ModItems.NETHER_STEEL_HUNTER_BOOTS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.NETHER_STEEL_ITEMS)
@@ -131,6 +150,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
                 .add(ModItems.ECHO_STEEL_CLOAK)
                 .add(ModItems.ECHO_STEEL_MASK)
+                .add(ModItems.ECHO_STEEL_HUNTER_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_HUNTER_BOOTS)
         ;
 
         getOrCreateTagBuilder(ModItemTags.ECHO_STEEL_ITEMS)
@@ -146,14 +167,21 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
                 .add(ModItems.ECHO_STEEL_HAMMER)
                 .add(ModItems.ECHO_STEEL_GREATSWORD)
-                .add(ModItems.ECHO_STEEL_CLOAK)
                 .add(ModItems.ECHO_STEEL_MASK)
+                .add(ModItems.ECHO_STEEL_CLOAK)
+                .add(ModItems.ECHO_STEEL_HUNTER_LEGGINGS)
+                .add(ModItems.ECHO_STEEL_HUNTER_BOOTS)
                 .addTag(ItemTags.DURABILITY_ENCHANTABLE)
         ;
 
         getOrCreateTagBuilder(ModItemTags.BURST_ENCHANTABLE)
                 .add(Items.ELYTRA)
                 .add(ModItems.ECHO_REINFORCED_ELYTRA)
+        ;
+
+        getOrCreateTagBuilder(ModItemTags.WATERGEL_ENCHANTABLE)
+                .addTag(ItemTags.LEG_ARMOR_ENCHANTABLE)
+                .addTag(ModItemTags.HUNTER_LEGGINGS)
         ;
 
         getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED)
@@ -179,10 +207,11 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
                 .addTag(ModItemTags.NETHER_STEEL_WEARABLES)
-                .add(ModItems.ECHO_STEEL_BOOTS)
-                .add(ModItems.ECHO_STEEL_LEGGINGS)
-                .add(ModItems.ECHO_STEEL_CHESTPLATE)
-                .add(ModItems.ECHO_STEEL_HELMET)
+                .addTag(ModItemTags.ECHO_STEEL_WEARABLES)
+                .add(ModItems.HUNTER_BOOTS)
+                .add(ModItems.HUNTER_LEGGINGS)
+                .add(ModItems.HUNTER_CLOAK)
+                .add(ModItems.HUNTER_MASK)
                 .setReplace(false)
         ;
 

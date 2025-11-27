@@ -1,9 +1,9 @@
 package dev.kirro.extendedcombat.entity.render.model;
 
 import dev.kirro.ExtendedCombat;
-import dev.kirro.ModConfig;
 import dev.kirro.extendedcombat.behavior.enchantment.BlinkBehavior;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
+import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -43,7 +43,7 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
 
     private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, int light, A model) {
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.CHEST);
-        if (stack.isIn(ModItemTags.SLEEVED_ARMOR) && stack.getItem() instanceof ArmorItem && ModConfig.showArmorSleeves && !(entity instanceof PlayerEntity)) {
+        if (stack.isIn(ModItemTags.SLEEVED_ARMOR) && stack.getItem() instanceof ArmorItem && !(entity instanceof PlayerEntity)) {
             this.getContextModel().copyBipedStateTo(model);
             this.setVisible(model);
             int i = stack.isIn(ItemTags.DYEABLE) ? ColorHelper.Argb.fullAlpha(DyedColorComponent.getColor(stack, -6265536)) : -1;
@@ -51,7 +51,7 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
             if (stack.hasGlint()) {
                 this.renderGlint(matrices, vertexConsumers, light, model);
             }
-        } else if (stack.isIn(ModItemTags.SLEEVED_ARMOR) && stack.getItem() instanceof ArmorItem && ModConfig.showArmorSleeves && (entity instanceof PlayerEntity player)) {
+        } else if (stack.isIn(ModItemTags.SLEEVED_ARMOR) && stack.getItem() instanceof ArmorItem && (entity instanceof PlayerEntity player)) {
             BlinkBehavior blink = ModEntityComponents.BLINK.get(player);
             if (!blink.isInvisible() && blink.getDuration() == 0) {
                 this.getContextModel().copyBipedStateTo(model);
@@ -69,7 +69,11 @@ public class SleeveFeatureRenderer<T extends LivingEntity, M extends BipedEntity
         Identifier texturePath = Registries.ITEM.getId(stack.getItem());
         Identifier truncatedPath = Identifier.of(texturePath.getPath().replace("_chestplate", ""));
 
-        return ExtendedCombat.id("textures/models/armor/" + truncatedPath.getPath() + "_sleeve_overlay" + ".png");
+        if (!(stack.getItem() instanceof WoolArmorItem)) {
+            return ExtendedCombat.id("textures/models/armor/" + truncatedPath.getPath() + "_sleeve_overlay" + ".png");
+        } else {
+            return ExtendedCombat.id("textures/models/armor/wool.png");
+        }
     }
 
     protected void setVisible(A bipedModel) {

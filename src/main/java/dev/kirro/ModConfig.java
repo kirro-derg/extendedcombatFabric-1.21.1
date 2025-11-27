@@ -25,9 +25,6 @@ public class ModConfig extends MidnightConfig {
 
     // client
     @Entry(category = client)
-    public static boolean showArmorSleeves = true;
-
-    @Entry(category = client)
     public static DuplicateKeyBindsMode allowDuplicateKeybinds = DuplicateKeyBindsMode.MOVEMENT;
 
     // model system

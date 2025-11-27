@@ -29,6 +29,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider.EnchantmentTagP
                 .add(ModEnchantments.CONCUSSION)
                 .add(ModEnchantments.FLUID_WALKER)
                 .add(ModEnchantments.SWIFTNESS)
+                .add(ModEnchantments.WATERGEL)
         ;
 
         getOrCreateTagBuilder(ModEnchantmentTags.EXTENDEDCOMBAT_ENCHANTMENTS)

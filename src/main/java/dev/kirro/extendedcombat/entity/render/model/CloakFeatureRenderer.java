@@ -2,8 +2,10 @@ package dev.kirro.extendedcombat.entity.render.model;
 
 import com.google.common.collect.Maps;
 import dev.kirro.ExtendedCombat;
-import dev.kirro.extendedcombat.item.ModDataComponentTypes;
+import dev.kirro.extendedcombat.item.custom.HunterMaskItem;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
@@ -19,31 +21,34 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.trim.ArmorTrim;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
+import net.minecraft.util.math.ColorHelper.Argb;
 
 import java.util.Map;
 
+@Environment(EnvType.CLIENT)
 public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> extends FeatureRenderer<T, M> {
     private static final Map<String, Identifier> ARMOR_TEXTURE_CACHE = Maps.<String, Identifier>newHashMap();
-    private final A outerModel;
     private final A innerModel;
+    private final A outerModel;
     private final SpriteAtlasTexture armorTrimsAtlas;
 
     public CloakFeatureRenderer(FeatureRendererContext<T, M> context, A innerModel, A outerModel, BakedModelManager bakery) {
         super(context);
-        this.outerModel = outerModel;
         this.innerModel = innerModel;
+        this.outerModel = outerModel;
         this.armorTrimsAtlas = bakery.getAtlas(TexturedRenderLayers.ARMOR_TRIMS_ATLAS_TEXTURE);
     }
 
-    @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        this.renderArmor(matrices, vertexConsumers, entity, EquipmentSlot.CHEST, light, this.getModel(EquipmentSlot.CHEST));
-        this.renderArmor(matrices, vertexConsumers, entity, EquipmentSlot.CHEST, light, this.getModel(EquipmentSlot.HEAD));
+    public void render(
+            MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l
+    ) {
+        this.renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.CHEST, i, this.getModel(EquipmentSlot.CHEST));
+        this.renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.LEGS, i, this.getModel(EquipmentSlot.LEGS));
+        this.renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.FEET, i, this.getModel(EquipmentSlot.FEET));
+        this.renderArmor(matrixStack, vertexConsumerProvider, livingEntity, EquipmentSlot.HEAD, i, this.getModel(EquipmentSlot.HEAD));
     }
 
     private void renderArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model) {
@@ -51,12 +56,15 @@ public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityM
         if (itemStack.getItem() instanceof WoolArmorItem armorItem) {
             if (armorItem.getSlotType() == armorSlot) {
                 this.getContextModel().copyBipedStateTo(model);
-                boolean bl = this.usesOuterModel(armorSlot);
-                boolean hidden = itemStack.getOrDefault(ModDataComponentTypes.HIDDEN, false);
-                this.setVisible(model, armorSlot, hidden);
-                int i = itemStack.isIn(ItemTags.DYEABLE) ? ColorHelper.Argb.fullAlpha(DyedColorComponent.getColor(itemStack, -6265536)) : -1;
+                this.setVisible(model, armorSlot, itemStack);
+                boolean bl = this.usesInnerModel(armorSlot);
+                ArmorMaterial armorMaterial = armorItem.getMaterial().value();
+                int i = itemStack.isIn(ItemTags.DYEABLE) ? Argb.fullAlpha(DyedColorComponent.getColor(itemStack, -6265536)) : -1;
 
-                this.renderArmorParts(matrices, vertexConsumers, light, model, i, getTextureId(itemStack));
+                for (ArmorMaterial.Layer layer : armorMaterial.layers()) {
+                    int j = layer.isDyeable() ? i : -1;
+                    this.renderArmorParts(matrices, vertexConsumers, light, model, j, getTextureId(itemStack, bl));
+                }
 
                 ArmorTrim armorTrim = itemStack.get(DataComponentTypes.TRIM);
                 if (armorTrim != null) {
@@ -70,39 +78,44 @@ public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityM
         }
     }
 
-    private Identifier getTextureId(ItemStack stack) {
-        Identifier texturePath = Registries.ITEM.getId(stack.getItem());
-        Identifier truncatedPath = Identifier.of(texturePath.getPath().replace("_chestplate", ""));
+    private Identifier getTextureId(ItemStack stack, boolean secondLayer) {
         if (stack.getItem() instanceof WoolArmorItem) {
-            return ExtendedCombat.id("textures/models/armor/wool.png");
+            return ExtendedCombat.id("textures/models/armor/wool" + "_layer_" + (secondLayer ? 2 : 1) + ".png");
         }
-
-        return ExtendedCombat.id("textures/models/armor/" + truncatedPath.getPath() + ".png");
+        return Identifier.of("hi :3");
     }
 
-    protected void setVisible(A bipedModel, EquipmentSlot slot, boolean hidden) {
+    protected void setVisible(A bipedModel, EquipmentSlot slot, ItemStack stack) {
         bipedModel.setVisible(false);
         switch (slot) {
-            case CHEST -> {
-                if (bipedModel == this.outerModel) {
-                    if (!hidden) {
-                        bipedModel.head.visible = true;
-                        bipedModel.hat.visible = true;
-                    }
-                } else {
-                    bipedModel.body.visible = true;
-                    bipedModel.rightArm.visible = true;
-                    bipedModel.leftArm.visible = true;
-                    bipedModel.rightLeg.visible = true;
-                    bipedModel.leftLeg.visible = true;
+            case HEAD -> {
+                if (!HunterMaskItem.isHidden(stack)) {
+                    bipedModel.head.visible = true;
                 }
+            }
+            case CHEST -> {
+                if (!WoolArmorItem.isHidden(stack)) {
+                    bipedModel.hat.visible = true;
+                }
+                bipedModel.body.visible = true;
+                bipedModel.rightArm.visible = true;
+                bipedModel.leftArm.visible = true;
+            }
+            case LEGS -> {
+                bipedModel.body.visible = true;
+                bipedModel.rightLeg.visible = true;
+                bipedModel.leftLeg.visible = true;
+            }
+            case FEET -> {
+                bipedModel.rightLeg.visible = true;
+                bipedModel.leftLeg.visible = true;
             }
         }
     }
 
-    private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model, int i, Identifier identifier) {
+    private void renderArmorParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, A model, int color, Identifier identifier) {
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(identifier));
-        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, i);
+        model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, color);
     }
 
     private void renderTrim(
@@ -126,10 +139,11 @@ public class CloakFeatureRenderer<T extends LivingEntity, M extends BipedEntityM
     }
 
     private A getModel(EquipmentSlot slot) {
-        return this.usesOuterModel(slot) ? this.outerModel : this.innerModel;
+        return this.usesInnerModel(slot) ? this.innerModel : this.outerModel;
     }
 
-    private boolean usesOuterModel(EquipmentSlot slot) {
-        return slot == EquipmentSlot.HEAD;
+    private boolean usesInnerModel(EquipmentSlot slot) {
+        return slot == EquipmentSlot.LEGS;
     }
 }
+

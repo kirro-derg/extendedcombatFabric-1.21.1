@@ -15,38 +15,29 @@ import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.util.Identifier;
 
 public class ModEnchantments {
-    public static final RegistryKey<Enchantment> DASH =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("dash"));
+    public static final RegistryKey<Enchantment> DASH = create("dash");
 
-    public static final RegistryKey<Enchantment> AIR_JUMP =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("air_jump"));
+    public static final RegistryKey<Enchantment> AIR_JUMP = create("air_jump");
 
-    public static final RegistryKey<Enchantment> BLINK =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("blink"));
+    public static final RegistryKey<Enchantment> BLINK = create("blink");
 
-    public static final RegistryKey<Enchantment> OBSCURITY =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("obscurity"));
+    public static final RegistryKey<Enchantment> OBSCURITY = create("obscurity");
 
-    public static final RegistryKey<Enchantment> VANITY =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("vanity"));
+    public static final RegistryKey<Enchantment> VANITY = create("vanity");
 
-    public static final RegistryKey<Enchantment> STEALTH =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("stealth"));
+    public static final RegistryKey<Enchantment> STEALTH = create("stealth");
 
-    public static final RegistryKey<Enchantment> KEEPSAKE =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("keepsake"));
+    public static final RegistryKey<Enchantment> KEEPSAKE = create("keepsake");
 
-    public static final RegistryKey<Enchantment> BURST =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("burst"));
+    public static final RegistryKey<Enchantment> BURST = create("burst");
 
-    public static final RegistryKey<Enchantment> CONCUSSION =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("concussion"));
+    public static final RegistryKey<Enchantment> CONCUSSION = create("concussion");
 
-    public static final RegistryKey<Enchantment> FLUID_WALKER =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("fluid_walker"));
+    public static final RegistryKey<Enchantment> FLUID_WALKER = create("fluid_walker");
 
-    public static final RegistryKey<Enchantment> SWIFTNESS =
-            RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id("swiftness"));
+    public static final RegistryKey<Enchantment> SWIFTNESS = create("swiftness");
+
+    public static final RegistryKey<Enchantment> WATERGEL = create("watergel");
 
     public static Enchantment create(Identifier id, RegistryEntryList<Item> supportedItems, int maxLevel, AttributeModifierSlot slot, EffectsAdder effectsAdder) {
         Enchantment.Builder builder = Enchantment.builder(Enchantment.definition(supportedItems, 5, maxLevel, Enchantment.leveledCost(5, 6), Enchantment.leveledCost(20, 6), 2, slot));
@@ -182,9 +173,25 @@ public class ModEnchantments {
                         new SwiftnessEnchantmentEffect(
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(0.5f))
                         ))));
+
+        registerable.register(WATERGEL, createCustom(WATERGEL.getValue(),
+                items.getOrThrow(ModItemTags.WATERGEL_ENCHANTABLE),
+                5,
+                1,
+                Enchantment.leveledCost(25, 10),
+                Enchantment.leveledCost(75, 10),
+                AttributeModifierSlot.LEGS, builder -> builder.addNonListEffect(
+                        ModEnchantmentEffectComponentTypes.WATERGEL,
+                        new WaterGelEnchantmentEffect(
+                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.0f))
+                        ))));
     }
 
     public interface EffectsAdder {
         void addEffects(Enchantment.Builder builder);
+    }
+
+    private static RegistryKey<Enchantment> create(String name) {
+        return RegistryKey.of(RegistryKeys.ENCHANTMENT, ExtendedCombat.id(name));
     }
 }

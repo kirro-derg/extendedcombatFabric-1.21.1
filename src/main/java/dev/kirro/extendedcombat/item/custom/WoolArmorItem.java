@@ -3,9 +3,7 @@ package dev.kirro.extendedcombat.item.custom;
 import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.item.ModDataComponentTypes;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -29,9 +27,9 @@ public class WoolArmorItem extends ArmorItem {
         if (entity instanceof PlayerEntity player) {
             HideWoolHoodBehavior behavior = ModEntityComponents.HIDE_HOOD.get(player);
             cycleData(stack, behavior.isHoodHidden());
-            if (player.getEquippedStack(EquipmentSlot.CHEST).isOf(this) || player.getEquippedStack(EquipmentSlot.HEAD).isOf(this)) {
-                stack.set(DataComponentTypes.TRIM, null);
-            }
+            //if (player.getEquippedStack(EquipmentSlot.CHEST).isOf(this) || player.getEquippedStack(EquipmentSlot.HEAD).isOf(this)) {
+                //stack.set(DataComponentTypes.TRIM, null);
+            //}
         }
         super.inventoryTick(stack, world, entity, slot, selected);
     }
@@ -47,5 +45,9 @@ public class WoolArmorItem extends ArmorItem {
 
     public void cycleData(ItemStack stack, boolean hidden) {
         stack.set(ModDataComponentTypes.HIDDEN, hidden);
+    }
+
+    public static boolean isHidden(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponentTypes.HIDDEN, false);
     }
 }

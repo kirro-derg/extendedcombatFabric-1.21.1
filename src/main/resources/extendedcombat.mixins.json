@@ -21,6 +21,7 @@
     "enchantment.stealth.EntityMixin",
     "enchantment.swiftness.BlocksMixin",
     "enchantment.vanity.ArmorFeatureRendererMixin",
+    "enchantment.watergel.EntityMixin",
     "item.BrewingRecipeBuilderMixin",
     "item.BrewingRecipeBuilderMixin$BrewingRecipeRegistryMixin",
     "item.BrewingRecipeBuilderMixin$BrewingStandBlockEntityMixin",
@@ -47,7 +48,8 @@
     "duplicates.ControlsListWidgetKeyBindingEntryMixin",
     "duplicates.GameOptionsMixin",
     "duplicates.KeyBindingMixin",
-    "enchantment.fluidWalker.BackgroundRendererMixin"
+    "enchantment.fluidWalker.BackgroundRendererMixin",
+    "item.ArmorFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

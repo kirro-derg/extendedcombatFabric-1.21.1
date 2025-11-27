@@ -66,13 +66,21 @@
   "item.extendedcombat.echo_steel_leggings": "Echo Steel Leggings",
   "item.extendedcombat.echo_steel_boots": "Echo Steel Boots",
 
-  "item.extendedcombat.wool_cloak": "Cloak",
-  "item.extendedcombat.nether_steel_cloak": "Cloak",
-  "item.extendedcombat.echo_steel_cloak": "Cloak",
-
   "item.extendedcombat.hunter_mask": "Mask",
   "item.extendedcombat.nether_steel_mask": "Mask",
   "item.extendedcombat.echo_steel_mask": "Mask",
+
+  "item.extendedcombat.hunter_cloak": "Cloak",
+  "item.extendedcombat.nether_steel_cloak": "Cloak",
+  "item.extendedcombat.echo_steel_cloak": "Cloak",
+
+  "item.extendedcombat.hunter_leggings": "Trousers",
+  "item.extendedcombat.nether_steel_hunter_leggings": "Trousers",
+  "item.extendedcombat.echo_steel_hunter_leggings": "Trousers",
+
+  "item.extendedcombat.hunter_boots": "Boots",
+  "item.extendedcombat.nether_steel_hunter_boots": "Boots",
+  "item.extendedcombat.echo_steel_hunter_boots": "Boots",
 
   "tooltip.extendedcombat.wool.cloak_tooltip": "Wool",
   "tooltip.extendedcombat.nether_steel.cloak_tooltip": "Nether Steel",
@@ -94,6 +102,7 @@
   "enchantment.extendedcombat.concussion": "Concussion",
   "enchantment.extendedcombat.fluid_walker": "Fluid Walker",
   "enchantment.extendedcombat.swiftness": "Swiftness",
+  "enchantment.extendedcombat.watergel": "Watergel",
 
   "effect.extendedcombat.shrinking": "Shrinking",
   "effect.extendedcombat.vulnerability": "Vulnerability",
@@ -145,7 +154,6 @@
   "extendedcombat.midnightconfig.allowDuplicateKeybinds": "Allow Duplicate Keybinds",
   "extendedcombat.midnightconfig.wardingStoneActiveRadius": "Warding Stone Active Radius",
   "extendedcombat.midnightconfig.wardingStonePacifiesMobs": "Warding Stone Pacifies Mobs",
-  "extendedcombat.midnightconfig.showArmorSleeves": "Show Armor Sleeves",
   "extendedcombat.midnightconfig.category.model_system": "Model System",
   "extendedcombat.midnightconfig.namespacesDescription": "Enter namespaces to be checked for item suffixes here.",
   "extendedcombat.midnightconfig.namespaces": "Acceptable Namespaces",

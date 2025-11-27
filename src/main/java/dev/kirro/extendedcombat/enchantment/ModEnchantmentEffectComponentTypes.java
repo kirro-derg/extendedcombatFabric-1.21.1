@@ -5,7 +5,6 @@ import dev.kirro.extendedcombat.enchantment.custom.*;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 import java.util.function.UnaryOperator;
 
@@ -21,6 +20,7 @@ public class ModEnchantmentEffectComponentTypes {
     public static final ComponentType<ConcussionEnchantmentEffect> CONCUSSION = register("concussion", builder -> builder.codec(ConcussionEnchantmentEffect.CODEC));
     public static final ComponentType<FluidWalkerEnchantmentEffect> FLUID_WALKER = register("fluid_walker", builder -> builder.codec(FluidWalkerEnchantmentEffect.CODEC));
     public static final ComponentType<SwiftnessEnchantmentEffect> SWIFTNESS = register("swiftness", builder -> builder.codec(SwiftnessEnchantmentEffect.CODEC));
+    public static final ComponentType<WaterGelEnchantmentEffect> WATERGEL = register("watergel", builder -> builder.codec(WaterGelEnchantmentEffect.CODEC));
 
     private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, ExtendedCombat.id(id), builderOperator.apply(ComponentType.builder()).build());

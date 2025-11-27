@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "extendedcombat:echo_steel_mask_chestplate_smithing"
+        "recipe": "extendedcombat:echo_steel_hunter_leggings_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "extendedcombat:echo_steel_mask_chestplate_smithing"
+      "extendedcombat:echo_steel_hunter_leggings_smithing"
     ]
   }
 }

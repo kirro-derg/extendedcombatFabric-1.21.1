@@ -16,6 +16,8 @@ public interface ModItemTags {
     TagKey<Item> SLEEVED_ARMOR = create("sleeved_armor");
     TagKey<Item> CLOAK = create("cloak");
     TagKey<Item> MASK = create("mask");
+    TagKey<Item> HUNTER_LEGGINGS = create("hunter_leggings");
+    TagKey<Item> HUNTER_BOOTS = create("hunter_boots");
     TagKey<Item> FLAME_RESISTANT_ARMOR = create("flame_resistant_armor");
     TagKey<Item> DASH_ENCHANTABLE = create("enchantable/dash");
     TagKey<Item> AIR_JUMP_ENCHANTABLE = create("enchantable/air_jump");
@@ -28,6 +30,7 @@ public interface ModItemTags {
     TagKey<Item> CONCUSSION_ENCHANTABLE = create("enchantable/concussion");
     TagKey<Item> FLUID_WALKER_ENCHANTABLE = create("enchantable/fluid_walker");
     TagKey<Item> SWIFTNESS_ENCHANTABLE = create("enchantable/swiftness");
+    TagKey<Item> WATERGEL_ENCHANTABLE = create("enchantable/watergel");
 
 
     private static TagKey<Item> create(String id) {

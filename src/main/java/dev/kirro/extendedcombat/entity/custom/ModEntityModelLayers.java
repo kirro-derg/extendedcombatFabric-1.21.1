@@ -22,6 +22,7 @@ public class ModEntityModelLayers {
     public static final EntityModelLayer CLOAK_INNER = create("cloak", "inner");
     public static final EntityModelLayer CLOAK_INNER_SLIM = create("cloak", "inner_slim");
     public static final EntityModelLayer CLOAK_OUTER = create("cloak", "outer");
+    public static final EntityModelLayer CLOAK_OUTER_SLIM = create("cloak", "outer_slim");
     public static final EntityModelLayer MASK = create("mask");
 
     public static EntityModelLayer create(String id) {
@@ -51,9 +52,10 @@ public class ModEntityModelLayers {
         EntityModelLayerRegistry.registerModelLayer(STATUE_OUTER_ARMOR, () -> StatueModel.getTexturedModelData(new Dilation(1.0f)));
         EntityModelLayerRegistry.registerModelLayer(PLAYER_SLEEVES, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), false), 64, 64));
         EntityModelLayerRegistry.registerModelLayer(PLAYER_SLIM_SLEEVES, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), true), 64, 64));
-        EntityModelLayerRegistry.registerModelLayer(CLOAK_INNER, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), false), 64, 64));
-        EntityModelLayerRegistry.registerModelLayer(CLOAK_INNER_SLIM, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), true), 64, 64));
-        EntityModelLayerRegistry.registerModelLayer(CLOAK_OUTER, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(1.0f), false), 64, 64));
+        EntityModelLayerRegistry.registerModelLayer(CLOAK_INNER, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), false), 64, 32));
+        EntityModelLayerRegistry.registerModelLayer(CLOAK_INNER_SLIM, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.3f), true), 64, 32));
+        EntityModelLayerRegistry.registerModelLayer(CLOAK_OUTER, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.35f), false), 64, 32));
+        EntityModelLayerRegistry.registerModelLayer(CLOAK_OUTER_SLIM, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.35f), true), 64, 32));
         EntityModelLayerRegistry.registerModelLayer(MASK, () -> TexturedModelData.of(PlayerEntityModel.getTexturedModelData(new Dilation(0.5f), false), 64, 64));
         EntityRendererRegistry.register(ModEntities.STATUE, StatueRenderer::new);
     }

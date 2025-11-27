@@ -2,6 +2,7 @@ package dev.kirro.extendedcombat.item.custom;
 
 import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
+import dev.kirro.extendedcombat.item.ModDataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
@@ -38,5 +39,9 @@ public class HunterMaskItem extends WoolArmorItem {
     @Override
     public void cycleData(ItemStack stack, boolean hidden) {
         super.cycleData(stack, hidden);
+    }
+
+    public static boolean isHidden(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponentTypes.HIDDEN, false);
     }
 }

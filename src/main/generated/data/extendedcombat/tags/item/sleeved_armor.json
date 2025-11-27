@@ -8,6 +8,7 @@
     "minecraft:netherite_chestplate",
     "extendedcombat:nether_steel_chestplate",
     "extendedcombat:echo_steel_chestplate",
+    "#extendedcombat:cloak",
     {
       "id": "toughasnails:wool_chestplate",
       "required": false
