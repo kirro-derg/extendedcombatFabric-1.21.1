@@ -1,7 +1,7 @@
 package dev.kirro.mixin.item;
 
 import dev.kirro.ExtendedCombat;
-import dev.kirro.extendedcombat.item.custom.HunterMaskItem;
+import dev.kirro.extendedcombat.item.ModDataComponentTypes;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
@@ -82,12 +82,12 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
         bipedModel.setVisible(false);
         switch (slot) {
             case HEAD -> {
-                if (!HunterMaskItem.isHidden(stack)) {
+                if (!stack.getOrDefault(ModDataComponentTypes.HIDDEN, false)) {
                     bipedModel.head.visible = true;
                 }
             }
             case CHEST -> {
-                if (!WoolArmorItem.isHidden(stack)) {
+                if (!stack.getOrDefault(ModDataComponentTypes.HIDDEN, false)) {
                     bipedModel.hat.visible = true;
                 }
                 bipedModel.body.visible = true;
