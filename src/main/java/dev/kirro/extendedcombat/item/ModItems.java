@@ -22,28 +22,28 @@ public interface ModItems {
 
     Item WOODEN_GREATSWORD = registerItem("wooden_greatsword",
             new GreatswordItem(ToolMaterials.WOOD, new Item.Settings()
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.WOOD, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.WOOD, 7, -2.5f, 0.75f))));
     Item STONE_GREATSWORD = registerItem("stone_greatsword",
             new GreatswordItem(ToolMaterials.STONE, new Item.Settings().maxDamage(ToolMaterials.STONE.getDurability())
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.STONE, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.STONE, 7, -2.5f, 0.75f))));
     Item IRON_GREATSWORD = registerItem("iron_greatsword",
             new GreatswordItem(ToolMaterials.IRON, new Item.Settings().maxDamage(ToolMaterials.IRON.getDurability())
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.IRON, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.IRON, 7, -2.5f, 0.75f))));
     Item GOLDEN_GREATSWORD = registerItem("golden_greatsword",
             new GreatswordItem(ToolMaterials.GOLD, new Item.Settings().maxDamage(ToolMaterials.GOLD.getDurability())
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.GOLD, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.GOLD, 7, -2.5f, 0.75f))));
     Item DIAMOND_GREATSWORD = registerItem("diamond_greatsword",
             new GreatswordItem(ToolMaterials.DIAMOND, new Item.Settings().maxDamage(ToolMaterials.DIAMOND.getDurability())
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.DIAMOND, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.DIAMOND, 7, -2.5f, 0.75f))));
     Item NETHERITE_GREATSWORD = registerItem("netherite_greatsword",
             new GreatswordItem(ToolMaterials.NETHERITE, new Item.Settings().maxDamage(ToolMaterials.NETHERITE.getDurability())
-                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(GreatswordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 7, -2.5f, 0.75f))));
     Item NETHER_STEEL_GREATSWORD = registerItem("nether_steel_greatsword",
             new PickSwordItem(ModToolMaterials.NETHER_STEEL, new Item.Settings().fireproof().maxDamage(ModToolMaterials.NETHER_STEEL.getDurability())
-                    .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(PickSwordItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 7, -2.5f, 0.75f))));
     Item ECHO_STEEL_GREATSWORD = registerItem("echo_steel_greatsword",
             new AxeSwordItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof().maxDamage(ModToolMaterials.ECHO_STEEL.getDurability())
-                    .attributeModifiers(AxeSwordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.5f, 5.0f))));
+                    .attributeModifiers(AxeSwordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.5f, 0.75f))));
 
     Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             new ModPickaxeItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()

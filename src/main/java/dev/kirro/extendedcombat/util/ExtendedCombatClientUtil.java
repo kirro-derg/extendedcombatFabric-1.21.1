@@ -1,7 +1,6 @@
 package dev.kirro.extendedcombat.util;
 
 import dev.kirro.ModConfig;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +25,7 @@ public class ExtendedCombatClientUtil {
     }
 
     public static boolean isThirdPerson(Entity entity) {
-        return MinecraftClient.getInstance().gameRenderer.getCamera().isThirdPerson() || entity != MinecraftClient.getInstance().getCameraEntity();
+        return true; //MinecraftClient.getInstance().gameRenderer.getCamera().isThirdPerson() || entity != MinecraftClient.getInstance().getCameraEntity();
     }
 
     public static void setBlinking(UUID playerId, boolean blinking, int duration) {

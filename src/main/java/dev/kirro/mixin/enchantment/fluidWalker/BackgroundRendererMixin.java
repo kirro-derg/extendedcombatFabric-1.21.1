@@ -27,7 +27,7 @@ public class BackgroundRendererMixin {
                     && EnchantmentHelper.hasAnyEnchantmentsWith(living.getEquippedStack(EquipmentSlot.FEET), ModEnchantmentEffectComponentTypes.FLUID_WALKER)
             && type == CameraSubmersionType.LAVA) {
                 RenderSystem.setShaderFogStart(0.0f);
-                RenderSystem.setShaderFogEnd(viewDistance * 0.025f);
+                RenderSystem.setShaderFogEnd(viewDistance * 0.25f);
                 RenderSystem.setShaderFogShape(FogShape.SPHERE);
                 ci.cancel();
             }
