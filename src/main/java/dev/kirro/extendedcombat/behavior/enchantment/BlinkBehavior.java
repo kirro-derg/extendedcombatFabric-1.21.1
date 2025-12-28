@@ -1,7 +1,6 @@
 package dev.kirro.extendedcombat.behavior.enchantment;
 
 import dev.kirro.ExtendedCombatClient;
-import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.enchantment.custom.BlinkEnchantmentEffect;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkParticlePayload;
 import dev.kirro.extendedcombat.enchantment.payload.BlinkPayload;
@@ -9,17 +8,13 @@ import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
 import dev.kirro.extendedcombat.sound.ModSounds;
 import dev.kirro.extendedcombat.util.ExtendedCombatClientUtil;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.sound.SoundEvents;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
-public class BlinkBehavior implements AutoSyncedComponent, CommonTickingComponent {
+public class  BlinkBehavior implements AutoSyncedComponent, CommonTickingComponent {
     private final LivingEntity player;
     private boolean canRecharge = false, hasBlink = false, wasPressingKey = false, invisible = false;
     private int cooldown = 0, lastCooldown = 0, duration = 0;

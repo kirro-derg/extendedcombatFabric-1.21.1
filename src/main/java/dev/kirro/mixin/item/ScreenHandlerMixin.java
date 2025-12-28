@@ -2,6 +2,8 @@ package dev.kirro.mixin.item;
 
 import dev.kirro.extendedcombat.behavior.item.HideWoolHoodBehavior;
 import dev.kirro.extendedcombat.entity.components.ModEntityComponents;
+import dev.kirro.extendedcombat.item.ModDataComponentTypes;
+import dev.kirro.extendedcombat.item.custom.HunterMaskItem;
 import dev.kirro.extendedcombat.item.custom.WoolArmorItem;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,8 +33,13 @@ public class ScreenHandlerMixin {
             ItemStack stack = slot.getStack();
             HideWoolHoodBehavior hood = ModEntityComponents.HIDE_HOOD.getNullable(player);
             if (hood != null && actionType == SlotActionType.QUICK_MOVE && stack.getItem() instanceof WoolArmorItem) {
-                if (stack.isIn(ModItemTags.CLOAK)) hood.useHood();
-                else if (stack.isIn(ModItemTags.MASK)) hood.useMask();
+                if (stack.isIn(ModItemTags.CLOAK)) {
+                    hood.useHood();
+                    WoolArmorItem.cycleData(stack, !stack.getOrDefault(ModDataComponentTypes.HIDDEN, false));
+                } else if (stack.isIn(ModItemTags.MASK)) {
+                    hood.useMask();
+                    HunterMaskItem.cycleData(stack, !stack.getOrDefault(ModDataComponentTypes.HIDDEN, false));
+                }
                 ci.cancel();
             }
         }

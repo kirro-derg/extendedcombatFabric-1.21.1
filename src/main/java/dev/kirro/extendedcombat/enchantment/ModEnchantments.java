@@ -178,7 +178,7 @@ public class ModEnchantments {
                 items.getOrThrow(ModItemTags.WATERGEL_ENCHANTABLE),
                 5,
                 1,
-                Enchantment.leveledCost(25, 10),
+                Enchantment.leveledCost(65, 10),
                 Enchantment.leveledCost(75, 10),
                 AttributeModifierSlot.LEGS, builder -> builder.addNonListEffect(
                         ModEnchantmentEffectComponentTypes.WATERGEL,
