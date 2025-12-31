@@ -58,10 +58,6 @@ dependencies {
 	modIncludeApi "org.ladysnake.cardinal-components-api:cardinal-components-entity:${cardinal_components_version}"
 	modIncludeApi "org.ladysnake.cardinal-components-api:cardinal-components-world:${cardinal_components_version}"
 
-	modApi("com.github.Virtuoel:Pehkui:${pehkui_version}", {
-		exclude group: "net.fabricmc.fabric-api"
-	})
-
 	modImplementation include ("maven.modrinth:midnightLib:${project.midnightLib_version}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.

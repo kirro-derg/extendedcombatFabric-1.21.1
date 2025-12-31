@@ -104,31 +104,12 @@
   "enchantment.extendedcombat.swiftness": "Swiftness",
   "enchantment.extendedcombat.watergel": "Watergel",
 
-  "effect.extendedcombat.shrinking": "Shrinking",
   "effect.extendedcombat.vulnerability": "Vulnerability",
   "effect.extendedcombat.concussion": "Concussion",
 
-  "item.minecraft.potion.effect.shrinking_1.00": "Shrinking Potion",
-  "item.minecraft.splash_potion.effect.shrinking_1.00": "Shrinking Splash Potion",
-  "item.minecraft.lingering_potion.effect.shrinking_1.00": "Shrinking Lingering Potion",
-  "item.minecraft.potion.effect.shrinking_2.00": "Shrinking Potion",
-  "item.minecraft.splash_potion.effect.shrinking_2.00": "Shrinking Splash Potion",
-  "item.minecraft.lingering_potion.effect.shrinking_2.00": "Shrinking Lingering Potion",
-  "item.minecraft.potion.effect.shrinking_3.00": "Shrinking Potion",
-  "item.minecraft.splash_potion.effect.shrinking_3.00": "Shrinking Splash Potion",
-  "item.minecraft.lingering_potion.effect.shrinking_3.00": "Shrinking Lingering Potion",
-  "item.minecraft.potion.effect.shrinking_4.00": "Shrinking Potion",
-  "item.minecraft.splash_potion.effect.shrinking_4.00": "Shrinking Splash Potion",
-  "item.minecraft.lingering_potion.effect.shrinking_4.00": "Shrinking Lingering Potion",
-  "item.minecraft.potion.effect.permanent_shrinking": "Permanent Shrinking Potion",
-  "item.minecraft.splash_potion.effect.permanent_shrinking": "Permanent Shrinking Splash Potion",
-  "item.minecraft.lingering_potion.effect.permanent_shrinking": "Permanent Shrinking Lingering Potion",
+  "item.minecraft.potion.effect.concussion": "Concussion Potion",
 
-  "item.minecraft.tipped_arrow.effect.shrinking_1.00": "Arrow of Shrinking",
-  "item.minecraft.tipped_arrow.effect.shrinking_2.00": "Arrow of Shrinking",
-  "item.minecraft.tipped_arrow.effect.shrinking_3.00": "Arrow of Shrinking",
-  "item.minecraft.tipped_arrow.effect.shrinking_4.00": "Arrow of Shrinking",
-  "item.minecraft.tipped_arrow.effect.permanent_shrinking": "Arrow of Permanent Shrinking",
+  "item.minecraft.tipped_arrow.effect.concussion": "Arrow of Concussion",
 
   "entity.extendedcombat.statue": "Statue",
 

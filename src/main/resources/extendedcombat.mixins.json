@@ -22,9 +22,6 @@
     "enchantment.swiftness.BlocksMixin",
     "enchantment.vanity.ArmorFeatureRendererMixin",
     "enchantment.watergel.EntityMixin",
-    "item.BrewingRecipeBuilderMixin",
-    "item.BrewingRecipeBuilderMixin$BrewingRecipeRegistryMixin",
-    "item.BrewingRecipeBuilderMixin$BrewingStandBlockEntityMixin",
     "item.CowEntityMixin",
     "item.ItemStackMixin",
     "item.PiglinBrainMixin",
@@ -32,7 +29,6 @@
     "item.ScreenHandlerMixin",
     "item.ShieldBreakMixin",
     "potion.concussion.EntityMixin",
-    "potion.shrinking.LivingEntityMixin",
     "potion.vulnerability.EnchantmentHelperMixin"
   ],
   "client": [

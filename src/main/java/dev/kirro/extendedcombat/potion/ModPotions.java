@@ -11,16 +11,8 @@ import net.minecraft.util.Identifier;
 
 public class ModPotions {
 
-    public static final RegistryEntry<Potion> SHRINKING_POTION_0 = register("shrinking_1.00",
-        new Potion(new StatusEffectInstance(ModStatusEffects.SHRINKING, 20 * 60)));
-    public static final RegistryEntry<Potion> SHRINKING_POTION_1 = register("shrinking_2.00",
-            new Potion(new StatusEffectInstance(ModStatusEffects.SHRINKING, 20 * 120)));
-    public static final RegistryEntry<Potion> SHRINKING_POTION_2 = register("shrinking_3.00",
-            new Potion(new StatusEffectInstance(ModStatusEffects.SHRINKING, 20 * 180)));
-    public static final RegistryEntry<Potion> SHRINKING_POTION_3 = register("shrinking_4.00",
-            new Potion(new StatusEffectInstance(ModStatusEffects.SHRINKING, 20 * 240)));
-    public static final RegistryEntry<Potion> PERMANENT_SHRINKING_POTION = register("permanent_shrinking",
-        new Potion(new StatusEffectInstance(ModStatusEffects.SHRINKING, -1)));
+    public static final RegistryEntry<Potion> CONCUSSION = register("concussion",
+        new Potion(new StatusEffectInstance(ModStatusEffects.CONCUSSION, 20 * 60)));
 
     private static RegistryEntry<Potion> register(String id, Potion potion) {
         return Registry.registerReference(Registries.POTION, Identifier.of(ExtendedCombat.MOD_ID, id), potion);

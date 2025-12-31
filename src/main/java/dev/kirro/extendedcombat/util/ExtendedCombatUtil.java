@@ -1,7 +1,6 @@
 package dev.kirro.extendedcombat.util;
 
 import dev.kirro.ModConfig;
-import dev.kirro.extendedcombat.effects.ModStatusEffects;
 import dev.kirro.extendedcombat.enchantment.ModEnchantmentEffectComponentTypes;
 import dev.kirro.extendedcombat.tags.ModItemTags;
 import net.minecraft.component.ComponentType;
@@ -22,7 +21,6 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
-import virtuoel.pehkui.api.ScaleTypes;
 
 import java.util.Iterator;
 
@@ -184,11 +182,5 @@ public class ExtendedCombatUtil {
                 living.onStatusEffectRemoved(instance);
             }
         });
-    }
-
-    public static void removeEffect(LivingEntity entity) {
-        if (!entity.hasStatusEffect(ModStatusEffects.SHRINKING)) {
-            ScaleTypes.BASE.getScaleData(entity).setTargetScale(1.0f);
-        }
     }
 }

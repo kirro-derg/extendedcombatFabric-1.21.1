@@ -3,13 +3,11 @@ package dev.kirro.extendedcombat.datagen;
 import dev.kirro.ExtendedCombat;
 import dev.kirro.extendedcombat.block.ModBlocks;
 import dev.kirro.extendedcombat.item.ModItems;
-import dev.kirro.extendedcombat.potion.ModPotions;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Items;
-import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -484,16 +482,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     public static void registerPotionRecipes() {
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-            builder.registerPotionRecipe(Potions.AWKWARD, Items.AMETHYST_SHARD, ModPotions.SHRINKING_POTION_0);
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_0, Items.REDSTONE, ModPotions.SHRINKING_POTION_1);
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_1, Items.REDSTONE, ModPotions.SHRINKING_POTION_2);
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_2, Items.REDSTONE, ModPotions.SHRINKING_POTION_3);
-
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_0, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_1, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_2, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
-            builder.registerPotionRecipe(ModPotions.SHRINKING_POTION_3, Items.OBSIDIAN, ModPotions.PERMANENT_SHRINKING_POTION);
-        });
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {});
     }
 }

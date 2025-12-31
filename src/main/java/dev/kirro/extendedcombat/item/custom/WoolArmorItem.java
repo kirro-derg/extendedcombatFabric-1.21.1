@@ -2,7 +2,6 @@ package dev.kirro.extendedcombat.item.custom;
 
 import dev.kirro.extendedcombat.item.ModDataComponentTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -14,7 +13,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class WoolArmorItem extends ArmorItem {
+public class WoolArmorItem extends ModArmorItem {
     public WoolArmorItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);
     }

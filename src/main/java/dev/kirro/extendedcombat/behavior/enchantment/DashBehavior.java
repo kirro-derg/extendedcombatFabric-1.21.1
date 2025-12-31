@@ -140,7 +140,7 @@ public class DashBehavior implements AutoSyncedComponent, CommonTickingComponent
         float volume = hasStealth(player.getEquippedStack(EquipmentSlot.CHEST)) ? 0.05f : 0.25f;
         float strength = BurstEnchantmentEffect.getStrength(player);
         Vec3d velocity = player.getRotationVector().normalize().multiply(strength);
-        player.setVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
+        player.addVelocity(velocity.getX(), velocity.getY(), velocity.getZ());
         player.fallDistance = 0;
         player.velocityModified = true;
         player.playSound(ModSounds.DASH, volume, 1.0f);

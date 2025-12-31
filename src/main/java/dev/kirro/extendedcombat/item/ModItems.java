@@ -110,7 +110,7 @@ public interface ModItems {
     Item ECHO_STEEL_HUNTER_BOOTS = registerItem("echo_steel_hunter_boots", new HunterMaskItem(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(9124)));
 
     Item ECHO_REINFORCED_ELYTRA = registerItem("echo_reinforced_elytra",
-            new ModElytra(new Item.Settings().maxDamage(864).rarity(Rarity.RARE)));
+            new ModElytra(ModArmorMaterials.ECHO_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(864).rarity(Rarity.RARE)));
 
     Item BLACK_APPLE = registerItem("black_apple",
             new Item(new Item.Settings().rarity(Rarity.UNCOMMON).food(ModFoodComponents.BLACK_APPLE)));
