@@ -45,6 +45,10 @@ public interface ModItems {
             new AxeSwordItem(ModToolMaterials.ECHO_STEEL, new Item.Settings().fireproof().maxDamage(ModToolMaterials.ECHO_STEEL.getDurability())
                     .attributeModifiers(AxeSwordItem.createAttributeModifiers(ModToolMaterials.ECHO_STEEL, 7, -2.5f, 0.75f))));
 
+    Item VOID_STEEL_SWORD = registerItem("void_steel_sword",
+            new HeatBladeItem(ModToolMaterials.VOID_STEEL, new Item.Settings().fireproof().maxDamage(-1)
+                    .attributeModifiers(AxeSwordItem.createAttributeModifiers(ModToolMaterials.VOID_STEEL, 0, -2.5f, 0.75f))));
+
     Item NETHER_STEEL_PICKAXE = registerItem("nether_steel_pickaxe",
             new ModPickaxeItem(ModToolMaterials.NETHER_STEEL,  new Item.Settings().fireproof()
                     .attributeModifiers(ModPickaxeItem.createAttributeModifiers(ModToolMaterials.NETHER_STEEL, 1, -2.8f))));

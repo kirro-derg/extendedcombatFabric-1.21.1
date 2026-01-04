@@ -49,10 +49,6 @@ public interface ModBlocks {
             new SeatBlock(AbstractBlock.Settings.create().strength(2f).nonOpaque()
                     .sounds(BlockSoundGroup.WOOD)));
 
-    Block HEAVY_DOOR = registerBlockWithItem("heavy_door",
-            new HeavyDoor(BlockSetType.CHERRY, AbstractBlock.Settings.create().strength(25f)
-                    .requiresTool().sounds(BlockSoundGroup.METAL)));
-
     Block BLACK_APPLE_BUSH = registerBlockWithoutItem("black_apple_bush",
             new BlackAppleBushBlock(AbstractBlock.Settings.create().strength(0.05f).sounds(BlockSoundGroup.SWEET_BERRY_BUSH).ticksRandomly().noCollision().pistonBehavior(PistonBehavior.DESTROY)));
 
@@ -78,11 +74,7 @@ public interface ModBlocks {
             entries.add(ECHO_STEEL_BLOCK);
             entries.add(FRAMED_GLASS_PANEL);
             entries.add(FLAT_BLOCK);
-            entries.add(HEAVY_DOOR);
             entries.add(SEAT);
-        });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
-            entries.add(HEAVY_DOOR);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.add(WARDING_STONE);
