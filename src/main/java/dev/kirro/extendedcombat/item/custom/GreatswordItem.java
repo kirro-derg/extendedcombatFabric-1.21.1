@@ -21,8 +21,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 
-import static dev.kirro.extendedcombat.item.custom.ModToolMaterials.ECHO_STEEL;
-import static dev.kirro.extendedcombat.item.custom.ModToolMaterials.NETHER_STEEL;
+import static dev.kirro.extendedcombat.item.custom.ModToolMaterials.*;
 import static net.minecraft.item.ToolMaterials.*;
 
 public class GreatswordItem extends SwordItem implements ScaledItem {
@@ -47,6 +46,8 @@ public class GreatswordItem extends SwordItem implements ScaledItem {
                         world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_NETHERITE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
                     case ECHO_STEEL ->
                         world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_SCULK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
+                    case VOID_STEEL ->
+                            world.playSound(null, attackingPlayer.getX(), attackingPlayer.getY(), attackingPlayer.getZ(), SoundEvents.BLOCK_BONE_BLOCK_BREAK, SoundCategory.PLAYERS, 1.0f, (float) (1.0f + attackingPlayer.getRandom().nextGaussian() / 10f));
                     default -> super.postHit(stack, target, attacker);
                 }
             }

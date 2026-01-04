@@ -61,6 +61,7 @@ public class ModModelProvider extends FabricModelProvider {
         createItemVariants(GREATSWORD_TEMPLATE, ModItems.NETHERITE_GREATSWORD, generator);
         createItemVariants(GREATSWORD_TEMPLATE, ModItems.NETHER_STEEL_GREATSWORD, generator);
         createItemVariants(GREATSWORD_TEMPLATE, ModItems.ECHO_STEEL_GREATSWORD, generator);
+        createItemVariants(GREATSWORD_TEMPLATE, ModItems.VOID_STEEL_SWORD, generator);
 
         generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_BOOTS);
         generator.registerArmor((ArmorItem) ModItems.NETHER_STEEL_LEGGINGS);
